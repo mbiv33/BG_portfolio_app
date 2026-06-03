@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bivines Group — Secure Partner Console</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts (Montserrat) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: "Montserrat", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      background-color: #0e0e0e;
+      overflow-x: hidden;
+    }
+
+    /* Brand Accent Colors matching Bivines style-tokens */
+    .bg-brand-maroon { background-color: #91000D; }
+    .text-brand-maroon { color: #91000D; }
+    .border-brand-maroon { border-color: #91000D; }
+    .bg-brand-navy { background-color: #193661; }
+    .text-brand-navy { color: #193661; }
+    .bg-brand-ink { background-color: #151515; }
+    .border-brand-charcoal { border-color: #333333; }
+
+    /* Smooth Transitions & Glassmorphism */
+    .glass-panel {
+      background: rgba(21, 21, 21, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .glowing-dot {
+      animation: pulse-glow 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.25); opacity: 1; }
+    }
+
+    /* Input shaking animation for wrong password */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .shake-input {
+      animation: shake 0.4s ease-in-out;
+    }
+
+    /* Custom range sliders styling matched to design tokens */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: #2a2a2a;
+      border-radius: 999px;
+      outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #91000D;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(145, 0, 13, 0.6);
+      transition: transform 0.1s;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    /* Hide scrollbars */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0e0e0e;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #333333;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #91000D;
+    }
+  </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col justify-between">
+
+  <!-- ==========================================
+      1. SECURITY GATE SCREEN (Password Access)
+      ========================================== -->
+  <div id="securityGate" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#090909] px-4 transition-all duration-700">
+    <!-- Abstract background grid design -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#151515_1px,transparent_1px),linear-gradient(to_bottom,#151515_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40"></div>
+
+    <!-- Security Gate Card -->
+    <div class="max-w-md w-full glass-panel border border-[#333333] rounded-2xl p-8 text-center relative shadow-2xl relative z-10">
+
+      <!-- Brand Crest / Header inside Lock -->
+      <div class="flex flex-col items-center gap-3 mb-6">
+        <div class="h-14 w-14 rounded-full bg-[#151515] border border-[#333333] flex items-center justify-center text-brand-maroon shadow-lg">
+          <i data-lucide="shield-alert" class="w-7 h-7 text-[#91000D]"></i>
+        </div>
+        <div>
+          <span class="text-[9px] uppercase tracking-widest font-extrabold text-[#91000D] flex items-center justify-center gap-1.5 mb-1">
+            <span class="h-2 w-2 rounded-full bg-red-500 inline-block glowing-dot"></span>
+            Secured Partner Access
+          </span>
+          <h1 class="text-lg font-extrabold tracking-tight text-white uppercase">Bivines Group Portal</h1>
+        </div>
+      </div>
+
+      <p class="text-xs text-slate-400 leading-relaxed mb-6">
+        This platform contains unredacted financial pro formas, legal deal agreements, and strategic pitch models for active institutional clients and capital sponsors.
+      </p>
+
+      <!-- Key Input Form -->
+      <form onsubmit="verifyClearanceKey(event)" class="flex flex-col gap-4">
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
+            <i data-lucide="key" class="w-4 h-4"></i>
+          </span>
+          <input
+            id="clearancePasscode"
+            type="password"
+            required
+            placeholder="Enter authorized clearance key..."
+            class="w-full bg-[#0e0e0e] border border-[#333333] rounded-lg py-3 pl-10 pr-10 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-red-600 transition-colors"
+          >
+          <button
+            type="button"
+            onclick="toggleKeyVisibility()"
+            class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-300"
+          >
+            <i id="eyeIcon" data-lucide="eye" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <div id="gateErrorLabel" class="text-[10px] text-red-500 font-bold hidden text-left flex items-center gap-1.5">
+          <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+          Incorrect passcode. Access credentials logged.
+        </div>
+
+        <button
+          type="submit"
+          id="gateSubmitBtn"
+          class="w-full bg-[#91000D] hover:bg-[#b00c19] text-white text-xs font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
+        >
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          Verify Clearance
+        </button>
+      </form>
+
+      <!-- Passcode Helper Tip -->
+      <div class="mt-6 pt-4 border-t border-[#333333] flex justify-between items-center text-[10px] text-slate-500">
+        <span>Clearance Level 3</span>
+        <span class="text-slate-400 font-semibold cursor-pointer hover:underline" onclick="fillDemoPasscode()">Demo Key: Bivines2026</span>
+      </div>
+
+    </div>
+
+    <!-- Security logging notification footer -->
+    <div class="mt-6 text-center z-10">
+      <p class="text-[10px] text-slate-600 uppercase tracking-widest font-mono">
+        All login attempts, IP signatures, and credentials are logged under NDA parameters.
+      </p>
+    </div>
+  </div>
+
+  <!-- ==========================================
+      2. DECRYPTION LOADING COVER
+      ========================================== -->
+  <div id="decryptingOverlay" class="fixed inset-0 z-40 flex flex-col items-center justify-center bg-[#090909] px-4 hidden">
+    <div class="text-center flex flex-col items-center gap-4">
+      <div class="h-10 w-10 border-2 border-t-brand-maroon border-slate-800 rounded-full animate-spin"></div>
+      <div>
+        <h3 class="text-xs uppercase tracking-widest text-emerald-400 font-mono font-bold">Decrypting Client Vault...</h3>
+        <p class="text-[10px] text-slate-600 mt-1 font-mono">Session ID: SEC-BG-2026-99X</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+      3. MAIN PORTAL INTERFACE (Initially Hidden)
+      ========================================== -->
+  <div id="authorizedConsole" class="hidden flex-1 flex flex-col justify-between">
+
+    <!-- Portal Header Bar -->
+    <header class="border-b border-[#333333] bg-[#151515]/90 backdrop-blur sticky top-0 z-30 px-6 py-4">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="bg-[#91000D] text-white text-[10px] uppercase tracking-widest font-extrabold px-2 py-0.5 rounded-sm flex items-center gap-1.5">
+              <span class="h-2 w-2 rounded-full bg-emerald-400 inline-block glowing-dot"></span>
+              Clearance Key Active
+            </span>
+            <span class="text-slate-500 text-xs font-mono">Clearence Level: Sovereign Partners</span>
+          </div>
+          <h1 class="text-xl font-extrabold tracking-tight text-white flex items-center gap-2">
+            <i data-lucide="shield-check" class="text-[#91000D] w-5 h-5"></i>
+            Bivines Group Partner Console
+          </h1>
+        </div>
+
+        <!-- Session User Info -->
+        <div class="flex items-center gap-3 bg-[#0e0e0e] border border-[#333333] px-3 py-2 rounded-lg">
+          <i data-lucide="user" class="text-[#91000D] w-4 h-4"></i>
+          <div class="text-left">
+            <p class="text-xs font-bold text-slate-200">authorized.visitor@institutional-partner.com</p>
+            <p class="text-[10px] text-slate-500 uppercase font-mono tracking-wider">Level 3 Clearance (NDA Verified)</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Layout Grid -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+      <!-- Left Sidebar: SOW Vault & Highlights -->
+      <div class="lg:col-span-1 flex flex-col gap-6">
+
+        <!-- Quick document vault -->
+        <div class="bg-[#151515] border border-[#333333] rounded-xl p-5 shadow-xl">
+          <div class="flex items-center gap-2 border-b border-[#333333] pb-3 mb-3">
+            <i data-lucide="folder-key" class="text-[#91000D] w-5 h-5"></i>
+            <h2 class="text-sm uppercase tracking-widest text-slate-300 font-extrabold">Client Vault (Unlocked)</h2>
+          </div>
+
+          <div class="flex flex-col gap-2.5">
+            <div class="p-2.5 bg-[#0e0e0e] border border-[#333333] rounded hover:border-slate-500 transition-all flex items-center justify-between group cursor-pointer" onclick="triggerSimulatedDownload('VALETVAULT_PROFORMA_5.22.20.xlsx')">
+              <div class="flex items-center gap-2 overflow-hidden">
+                <i data-lucide="file-spreadsheet" class="text-emerald-400 w-4 h-4 shrink-0"></i>
+                <span class="text-xs text-slate-300 font-semibold truncate">Valet Vault Pro Forma</span>
+              </div>
+              <i data-lucide="download" class="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-400 transition-colors"></i>
+            </div>
+
+            <div class="p-2.5 bg-[#0e0e0e] border border-[#333333] rounded hover:border-slate-500 transition-all flex items-center justify-between group cursor-pointer" onclick="triggerSimulatedDownload('2e Calulations -Conyers copy.xlsx')">
+              <div class="flex items-center gap-2 overflow-hidden">
+                <i data-lucide="file-spreadsheet" class="text-emerald-400 w-4 h-4 shrink-0"></i>
+                <span class="text-xs text-slate-300 font-semibold truncate">Conyers Calculations</span>
+              </div>
+              <i data-lucide="download" class="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-400 transition-colors"></i>
+            </div>
+
+            <div class="p-2.5 bg-[#0e0e0e] border border-[#333333] rounded hover:border-slate-500 transition-all flex items-center justify-between group cursor-pointer" onclick="triggerSimulatedDownload('BGIC Deck 10.30.22.pdf')">
+              <div class="flex items-center gap-2 overflow-hidden">
+                <i data-lucide="file-text" class="text-cyan-400 w-4 h-4 shrink-0"></i>
+                <span class="text-xs text-slate-300 font-semibold truncate">Belize Sovereign Deck</span>
+              </div>
+              <i data-lucide="download" class="w-3.5 h-3.5 text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+            </div>
+
+            <div class="p-2.5 bg-[#0e0e0e] border border-[#333333] rounded hover:border-slate-500 transition-all flex items-center justify-between group cursor-pointer" onclick="triggerSimulatedDownload('BGIC Fundraising Options 8.1.22.pdf')">
+              <div class="flex items-center gap-2 overflow-hidden">
+                <i data-lucide="file-text" class="text-cyan-400 w-4 h-4 shrink-0"></i>
+                <span class="text-xs text-slate-300 font-semibold truncate">Belize Capital Roadmap</span>
+              </div>
+              <i data-lucide="download" class="w-3.5 h-3.5 text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOW Status Milestone tracker card -->
+        <div class="bg-[#151515] border border-[#333333] rounded-xl p-5 shadow-xl flex flex-col gap-3">
+          <div class="flex items-center gap-2 border-b border-[#333333] pb-3">
+            <i data-lucide="map" class="text-cyan-400 w-5 h-5"></i>
+            <h2 class="text-sm uppercase tracking-widest text-slate-300 font-extrabold">Active SOW Tracks</h2>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Welcome back to the Bivines Group secure portal. Your Level 3 Clearance grants unredacted access to modeling data and operational roadmaps.
+          </p>
+
+          <div class="h-px bg-[#333333] my-1"></div>
+
+          <div class="flex flex-col gap-2 text-xs text-slate-300">
+            <div class="flex justify-between items-center bg-[#0e0e0e] p-2.5 rounded border border-[#333333]">
+              <span class="text-slate-500">Active Deals</span>
+              <span class="font-bold text-white">3 Engagements</span>
+            </div>
+            <div class="flex justify-between items-center bg-[#0e0e0e] p-2.5 rounded border border-[#333333]">
+              <span class="text-slate-500">Gated Documents</span>
+              <span class="font-bold text-emerald-400">All Decrypted</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Center Main Panels: Projects & Dynamic Simulators -->
+      <div class="lg:col-span-3 flex flex-col gap-6">
+
+        <!-- Tab Project Selector -->
+        <div class="bg-[#151515] border border-[#333333] rounded-xl p-4 flex flex-col gap-4 shadow-xl">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+            <div>
+              <h2 class="text-base font-extrabold text-white flex items-center gap-2">
+                <i data-lucide="sliders" class="text-[#91000D] w-5 h-5"></i>
+                Interactive Deal Acceleration Sandboxes
+              </h2>
+              <p class="text-xs text-slate-400 mt-0.5">Change parameters dynamically to observe cash flow yield curves mapped from our models.</p>
+            </div>
+
+            <!-- Switch Tabs -->
+            <div class="flex gap-2 bg-[#0e0e0e] p-1 rounded-lg border border-[#333333] self-stretch sm:self-auto">
+              <button onclick="switchSandboxTab('belize')" id="tab-belize" class="flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded-md bg-[#91000D] text-white">
+                Infinity Belize
+              </button>
+              <button onclick="switchSandboxTab('valet')" id="tab-valet" class="flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded-md text-slate-400 hover:text-white transition-colors">
+                Valet Vault
+              </button>
+              <button onclick="switchSandboxTab('conyers')" id="tab-conyers" class="flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded-md text-slate-400 hover:text-white transition-colors">
+                Conyers Complex
+              </button>
+            </div>
+          </div>
+
+          <!-- BELIZE SANDBOX PANEL -->
+          <div id="panel-belize" class="sandbox-panel flex flex-col gap-4">
+            <div class="bg-[#0e0e0e] p-3.5 border border-[#333333] rounded-lg text-xs leading-relaxed text-slate-400">
+              <strong class="text-white block mb-1">Caribbean Tourism lodging coefficient: 17.4%</strong>
+              In the Caribbean, travelers allocate precisely 17.4% of their total trip budget to accommodations. Change development scale, occupancy, and ADR to calculate gross Caribbean revenues and the broader sovereign Belize national economic impact.
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-5 mt-2">
+              <div class="md:col-span-5 bg-[#0e0e0e] border border-[#333333] p-4 rounded-xl flex flex-col gap-5">
+                <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#91000D]">Modifying Variables</span>
+
+                <div class="flex flex-col gap-1.5">
+                  <div class="flex justify-between text-xs">
+                    <span class="text-slate-400">Development Keys:</span>
+                    <strong id="valLabel1-belize" class="text-white">4,860 Keys (100%)</strong>
+                  </div>
+                  <input type="range" id="slider1-belize" min="50" max="120" step="10" value="100" oninput="calculateBelizeOutputs()" class="w-full h-1 cursor-pointer">
+                </div>
+
+                <div class="flex flex-col gap-1.5">
+                  <div class="flex justify-between text-xs">
+                    <span class="text-slate-400">ADR Rate Factor:</span>
+                    <strong id="valLabel2-belize" class="text-white">1.0x Base Rate</strong>
+                  </div>
+                  <input type="range" id="slider2-belize" min="0.8" max="1.5" step="0.1" value="1.0" oninput="calculateBelizeOutputs()" class="w-full h-1 cursor-pointer">
+                </div>
+
+                <div class="flex flex-col gap-1.5">
+                  <div class="flex justify-between text-xs">
+                    <span class="text-slate-400">Projected Occupancy:</span>
+                    <strong id="valLabel3-belize" class="text-white">60%</strong>
+                  </div>
+                  <input type="range" id="slider3-belize" min="40" max="95" step="5" value="60" oninput="calculateBelizeOutputs()" class="w-full h-1 cursor-pointer">
+                </div>
+              </div>
+
+              <!-- Output Cards -->
+              <div class="md:col-span-7 flex flex-col gap-3 justify-between">
+                <div class="bg-[#0e0e0e]/50 border border-[#333333] p-5 rounded-xl flex flex-col gap-4 h-full justify-center">
+                  <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Calculated Yield Outputs</span>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="border-l-2 border-[#91000D] pl-3">
+                      <span class="text-[9px] text-slate-500 uppercase block font-bold">Annual Gross Revenue</span>
+                      <span id="belize-out-1" class="text-lg font-bold text-white">$485.3M</span>
+                    </div>
+                    <div class="border-l-2 border-[#193661] pl-3">
+                      <span class="text-[9px] text-slate-500 uppercase block font-bold">Belize National GDP Impact</span>
+                      <span id="belize-out-2" class="text-lg font-bold text-white">$2.7B</span>
+                    </div>
+                    <div class="border-l-2 border-emerald-500 pl-3">
+                      <span class="text-[9px] text-slate-500 uppercase block font-bold">Belize Corporate Taxes</span>
+                      <span id="belize-out-3" class="text-lg font-bold text-emerald-400">$142.5M</span>
+                    </div>
+                    <div class="border-l-2 border-purple-500 pl-3">
+                      <span class="text-[9px] text-slate-500 uppercase block font-bold">Direct Jobs Created</span>
+                      <span id="belize-out-4" class="text-lg font-bold text-white">5,954 jobs</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VALET VAULT SANDBOX PANEL -->
+          <div id="panel-valet" class="sandbox-panel flex flex-col gap-4 hidden">
+            <div class="bg-[#0e0e0e] p-3.5 border border-[#333333] rounded-lg text-xs leading-relaxed text-slate-400">
+              <strong class="text-white block mb-1">Dual Monetization: Hardware sales + SaaS Licences</strong>
+              Hardware parking stations are sold to operators at a fixed unit retail cost. Additionally, a monthly recurring SaaS security license fee scales cash flow at 45% operating margins. Change sales volumes to observe ARR projections.
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-5 mt-2">
+              <div class="md:col-span-5 bg-[#0e0e0e] border border-[#333333] p-4 rounded-xl flex flex-col gap-5">
+                <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#193661]">Modifying Variables</span>
+
+                <div class="flex flex-col gap-1.5">
+                  <div class="flex justify-between text-xs">
+                    <span class="text-slate-400">Monthly Unit Sales:</span>
+                    <strong id="valLabel1-valet" class="text-white">25 units/mo</strong>
+                  </div>
+                  <input type="range" id="slider1-valet" min="5" max="100" step="5" value="25" oninput="calculateValetOutputs()" class="w-full h-1 cursor-pointer">
+                </div>
+
+                <div class="flex flex-col gap-1.5">
+                  <div class="flex justify-between text-xs">
+                    <span class="text-slate-400">Unit Retail Price ($):</span>
+                    <strong id="valLabel2-valet" class="text-white">$3,000</strong>
+                  </div>
+                  <input type="range" id="slider2-valet" min="1500" max="6000" step="250" value="3000" oninput="calculateValetOutputs()" class="w-full h-1 cursor-pointer">
+                </div>
+
+                <div class="flex flex-col gap-1.5">
+                  <div class="flex justify-between text-xs">
+                    <span class="text-slate-400">Monthly SaaS Fee:</span>
+                    <strong id="valLabel3-valet" class="text-white">$49/mo</strong>
+                  </div>
+                  <input type="range" id="slider3-valet" min="19" max="99" step="10" value="49" oninput="calculateValetOutputs()" class="w-full h-1 cursor-pointer">
+                </div>
+              </div>
+
+              <!-- Output Cards -->
+              <div class="md:col-span-7 flex flex-col gap-3 justify-between">
+                <div class="bg-[#0e0e0e]/50 border border-[#333333] p-5 rounded-xl flex flex-col gap-4 h-full justify-center">
+                  <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Calculated Yield Outputs</span>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="border-l-2 border-[#193661] pl-3">
+                      <span class="text-[9px] text-slate-500 uppercase block font-bold">Year 1 Hardware Rev</span>
+                      <span id="valet-out-1" class="text-lg font-bold text-white">$900K</span>
+                    </div>
+                    <div class="border-l-2 border-emerald-500 pl-3">
+                      <span class="text-[9px] text-slate-500 uppercase block font-bold">Total ARR (Gross)</span>
+                      <span id="valet-out-2" class="text-lg font-bold text-white">$973K</span>
+                    </div>
+                    <div class="border-l-2 border-cyan-500 pl-3">
+                      <span class="text-[9px] text-slate-500 uppercase block font-bold">EBITDA (Est)</span>
+                      <span id="valet-out-3" class="text-lg font-bold text-white">$438K</span>
+                    </div>
+                    <div class="border-l-2 border-purple-500 pl-3">
+                      <span class="text-[9px] text-slate-500 uppercase block font-bold">Investor Dilution</span>
+                      <span id="valet-out-4" class="text-lg font-bold text-[#91000D]">5.0% post-seed</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONYERS SANDBOX PANEL -->
+          <div id="panel-conyers" class="sandbox-panel flex flex-col gap-4 hidden">
+            <div class="bg-[#0e0e0e] p-3.5 border border-[#333333] rounded-lg text-xs leading-relaxed text-slate-400">
+              <strong class="text-white block mb-1">Conyers Sports Complex: Sheet3 Revenue Matrix</strong>
+              Conyers sports complex operations include leagues, pro shops, concessions, and batting cages. Multi-sport tournaments gross an average of $37.5K per weekend. Adjust the sliders to evaluate EBITDA coverage ratios against our $12.21M construction debt.
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-5 mt-2">
+              <div class="md:col-span-5 bg-[#0e0e0e] border border-[#333333] p-4 rounded-xl flex flex-col gap-5">
+                <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#808080]">Modifying Variables</span>
+
+                <div class="flex flex-col gap-1.5">
+                  <div class="flex justify-between text-xs">
+                    <span class="text-slate-400">Monthly Training Clients:</span>
+                    <strong id="valLabel1-conyers" class="text-white">350 clients</strong>
+                  </div>
+                  <input type="range" id="slider1-conyers" min="100" max="800" step="50" value="350" oninput="calculateConyersOutputs()" class="w-full h-1 cursor-pointer">
+                </div>
+
+                <div class="flex flex-col gap-1.5">
+                  <div class="flex justify-between text-xs">
+                    <span class="text-slate-400">Average Package Price:</span>
+                    <strong id="valLabel2-conyers" class="text-white">$450/mo</strong>
+                  </div>
+                  <input type="range" id="slider2-conyers" min="200" max="800" step="50" value="450" oninput="calculateConyersOutputs()" class="w-full h-1 cursor-pointer">
+                </div>
+
+                <div class="flex flex-col gap-1.5">
+                  <div class="flex justify-between text-xs">
+                    <span class="text-slate-400">Tournaments Hosted / Year:</span>
+                    <strong id="valLabel3-conyers" class="text-white">38 Hostings</strong>
+                  </div>
+                  <input type="range" id="slider3-conyers" min="10" max="60" step="2" value="38" oninput="calculateConyersOutputs()" class="w-full h-1 cursor-pointer">
+                </div>
+              </div>
+
+              <!-- Output Cards -->
+              <div class="md:col-span-7 flex flex-col gap-3 justify-between">
+                <div class="bg-[#0e0e0e]/50 border border-[#333333] p-5 rounded-xl flex flex-col gap-4 h-full justify-center">
+                  <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Calculated Yield Outputs</span>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="border-l-2 border-amber-500 pl-3">
+                      <span class="text-[9px] text-slate-500 uppercase block font-bold">Training Revenue Gross</span>
+                      <span id="conyers-out-1" class="text-lg font-bold text-white">$1.89M</span>
+                    </div>
+                    <div class="border-l-2 border-emerald-500 pl-3">
+                      <span class="text-[9px] text-slate-500 uppercase block font-bold">Total Year 1 gross</span>
+                      <span id="conyers-out-2" class="text-lg font-bold text-white">$5.24M</span>
+                    </div>
+                    <div class="border-l-2 border-cyan-500 pl-3">
+                      <span class="text-[9px] text-slate-500 uppercase block font-bold">EBITDA (Year 1)</span>
+                      <span id="conyers-out-3" class="text-lg font-bold text-white">$2.65M</span>
+                    </div>
+                    <div class="border-l-2 border-purple-500 pl-3">
+                      <span class="text-[9px] text-slate-500 uppercase block font-bold">Debt Coverage (DSCR)</span>
+                      <span id="conyers-out-4" class="text-lg font-bold text-emerald-400">2.33x DSCR</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Split-panel: Live Secure Chat & Strategy Session Scheduler -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Secure Advisor Chat Terminal -->
+          <div class="bg-[#151515] border border-[#333333] rounded-xl p-5 shadow-xl flex flex-col gap-4">
+            <div class="border-b border-[#333333] pb-3.5 flex justify-between items-center">
+              <h3 class="text-sm uppercase tracking-widest text-slate-300 font-extrabold flex items-center gap-2">
+                <i data-lucide="message-square" class="text-[#91000D] w-4.5 h-4.5"></i>
+                Advisor Secure Chat
+              </h3>
+              <span class="h-2 w-2 rounded-full bg-emerald-400 glowing-dot"></span>
+            </div>
+
+            <!-- Chat messages area -->
+            <div id="chatMessageWindow" class="bg-[#0e0e0e] border border-[#333333] rounded-lg p-3 h-52 overflow-y-auto flex flex-col gap-3">
+              <div class="flex flex-col gap-1">
+                <span class="text-[9px] uppercase font-bold text-slate-500">Marcus Bivines, Esq. · 09:32 AM</span>
+                <p class="text-xs bg-[#151515] border border-[#333333] p-2.5 rounded-lg max-w-[90%] leading-relaxed text-slate-300">
+                  Good morning. I've unredacted the financial pro formas for the sports complex (Sheet3) and Valet Vault (VALETVAULT_PROFORMA_5.22.20.xlsx) in your Client Vault on the left. Let me know when you've reviewed the operational cash-flow coverage ratios.
+                </p>
+              </div>
+            </div>
+
+            <!-- Message entry input -->
+            <form onsubmit="sendMessageToAdvisor(event)" class="flex gap-2">
+              <input id="chatTextInputField" type="text" placeholder="Type secure message to Marcus Bivines..." required
+                     class="flex-1 bg-[#0e0e0e] border border-[#333333] rounded-lg p-2 text-xs text-white focus:outline-none focus:border-slate-500">
+              <button type="submit" class="bg-[#91000D] hover:bg-[#b00c19] text-white font-bold px-4 py-2 rounded-lg text-xs transition-colors shrink-0">
+                Send
+              </button>
+            </form>
+          </div>
+
+          <!-- Strategy Session Booker -->
+          <div class="bg-[#151515] border border-[#333333] rounded-xl p-5 shadow-xl flex flex-col gap-4">
+            <div class="border-b border-[#333333] pb-3.5">
+              <h3 class="text-sm uppercase tracking-widest text-slate-300 font-extrabold flex items-center gap-2">
+                <i data-lucide="calendar" class="text-cyan-400 w-4.5 h-4.5"></i>
+                Book Strategic Check-In
+              </h3>
+            </div>
+
+            <!-- Quick scheduling picker -->
+            <form onsubmit="scheduleConsultation(event)" class="flex flex-col gap-3">
+              <div class="flex flex-col gap-1.5">
+                <label class="text-[9px] uppercase text-slate-500 font-bold">Select Meeting Agenda</label>
+                <select id="meetingAgenda" class="bg-[#0e0e0e] border border-[#333333] rounded p-2 text-xs text-slate-300 focus:outline-none">
+                  <option value="conyers">Sports Complex: Phase V Operational Review</option>
+                  <option value="belize">Infinity Belize: Escrow Sovereign Bond Tranche Structure</option>
+                  <option value="sow">Requesting a New Project Scope of Work (SOW)</option>
+                </select>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <div class="flex flex-col gap-1">
+                  <label class="text-[9px] uppercase text-slate-500 font-bold">Choose Date</label>
+                  <input id="meetingDate" type="date" required
+                         class="bg-[#0e0e0e] border border-[#333333] rounded p-2 text-xs text-slate-300 focus:outline-none">
+                </div>
+                <div class="flex flex-col gap-1">
+                  <label class="text-[9px] uppercase text-slate-500 font-bold">Select Time Slot</label>
+                  <select id="meetingTime" class="bg-[#0e0e0e] border border-[#333333] rounded p-2 text-xs text-slate-300 focus:outline-none">
+                    <option value="10:00 AM">10:00 AM EST</option>
+                    <option value="02:30 PM">02:30 PM EST</option>
+                    <option value="04:00 PM">04:00 PM EST</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="bg-[#193661] hover:bg-[#254b80] text-white font-bold py-2 rounded-lg text-xs transition-all flex items-center justify-center gap-2 mt-1">
+                <i data-lucide="check-circle" class="w-4 h-4"></i>
+                Schedule Consultation
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Footer section -->
+    <footer class="border-t border-[#333333] bg-[#151515]/40 px-6 py-6 text-center text-xs text-slate-500 mt-6">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+          &copy; 2026 Bivines Group Consulting, LLC. All rights reserved. Principal: Marcus Bivines, Esq.
+        </div>
+        <div class="flex gap-4">
+          <span class="hover:text-slate-300 cursor-pointer">NDA Terms</span>
+          <span>·</span>
+          <span class="hover:text-slate-300 cursor-pointer">Security Protocol</span>
+          <span>·</span>
+          <span class="hover:text-slate-300 cursor-pointer">SOW Inquiries</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Notification Toast Banner -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-[#151515] border border-emerald-500/30 p-4 rounded-xl shadow-2xl flex items-center gap-3 max-w-sm">
+      <i data-lucide="info" class="text-emerald-400 w-5 h-5 shrink-0"></i>
+      <div class="text-left">
+        <h4 class="font-bold text-xs text-white">System Notification</h4>
+        <p id="toastMessage" class="text-[11px] text-slate-400 mt-0.5">Verification successful.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Toggle Password Gate visibility
+    function toggleKeyVisibility() {
+      const input = document.getElementById('clearancePasscode');
+      const eyeIcon = document.getElementById('eyeIcon');
+
+      if (input.type === 'password') {
+        input.type = 'text';
+        eyeIcon.setAttribute('data-lucide', 'eye-off');
+      } else {
+        input.type = 'password';
+        eyeIcon.setAttribute('data-lucide', 'eye');
+      }
+      lucide.createIcons();
+    }
+
+    // Direct bypass Helper link
+    function fillDemoPasscode() {
+      document.getElementById('clearancePasscode').value = 'Bivines2026';
+    }
+
+    // Key Validation Engine
+    function verifyClearanceKey(event) {
+      event.preventDefault();
+      const input = document.getElementById('clearancePasscode');
+      const errorLabel = document.getElementById('gateErrorLabel');
+
+      if (input.value === 'Bivines2026') {
+        errorLabel.classList.add('hidden');
+        document.getElementById('securityGate').classList.add('opacity-0');
+        document.getElementById('decryptingOverlay').classList.remove('hidden');
+
+        setTimeout(() => {
+          document.getElementById('securityGate').classList.add('hidden');
+          document.getElementById('decryptingOverlay').classList.add('hidden');
+          document.getElementById('authorizedConsole').classList.remove('hidden');
+          // Trigger default formula computations
+          calculateBelizeOutputs();
+          calculateValetOutputs();
+          calculateConyersOutputs();
+        }, 1500);
+      } else {
+        input.classList.add('shake-input');
+        errorLabel.classList.remove('hidden');
+        setTimeout(() => {
+          input.classList.remove('shake-input');
+        }, 400);
+      }
+    }
+
+    // Tab Switcher
+    function switchSandboxTab(tabId) {
+      document.querySelectorAll('.sandbox-panel').forEach(panel => {
+        panel.classList.add('hidden');
+      });
+      document.getElementById(`panel-${tabId}`).classList.remove('hidden');
+
+      // Update button highlights
+      document.getElementById('tab-belize').className = "flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded-md text-slate-400 hover:text-white transition-colors";
+      document.getElementById('tab-valet').className = "flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded-md text-slate-400 hover:text-white transition-colors";
+      document.getElementById('tab-conyers').className = "flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded-md text-slate-400 hover:text-white transition-colors";
+
+      const activeBtn = document.getElementById(`tab-${tabId}`);
+      if (tabId === 'belize') {
+        activeBtn.className = "flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded-md bg-[#91000D] text-white";
+      } else if (tabId === 'valet') {
+        activeBtn.className = "flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded-md bg-[#193661] text-white";
+      } else {
+        activeBtn.className = "flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded-md bg-[#808080] text-white";
+      }
+    }
+
+    // Formulas & Sandbox calculations
+    function calculateBelizeOutputs() {
+      const var1 = Number(document.getElementById('slider1-belize').value);
+      const var2 = Number(document.getElementById('slider2-belize').value);
+      const var3 = Number(document.getElementById('slider3-belize').value);
+
+      document.getElementById('valLabel1-belize').innerText = `${Math.round(4860 * (var1/100)).toLocaleString()} Keys (${var1}%)`;
+      document.getElementById('valLabel2-belize').innerText = `${var2.toFixed(1)}x Base Rate`;
+      document.getElementById('valLabel3-belize').innerText = `${var3}%`;
+
+      const scaleFactor = var1 / 100;
+      const keys5Star = Math.round(1660 * scaleFactor);
+      const keys4Star = Math.round(2260 * scaleFactor);
+      const keys3Star = Math.round(940 * scaleFactor);
+
+      const dailyRev = (keys5Star * (600 * var2) * (var3 / 100)) +
+                        (keys4Star * (415 * var2) * (var3 / 100)) +
+                        (keys3Star * (300 * var2) * (var3 / 100));
+
+      const annualRev = dailyRev * 365;
+      const economicImpact = annualRev / 0.174;
+      const corporateTax = annualRev * 0.12 * 0.533;
+      const jobs = Math.round((keys5Star * 1.5) + (keys4Star * 1.2) + (keys3Star * 0.8));
+
+      document.getElementById('belize-out-1').innerText = `$${(annualRev / 1000000).toFixed(1)}M`;
+      document.getElementById('belize-out-2').innerText = `$${(economicImpact / 1000000000).toFixed(2)}B`;
+      document.getElementById('belize-out-3').innerText = `$${(corporateTax / 1000000).toFixed(1)}M`;
+      document.getElementById('belize-out-4').innerText = `${jobs.toLocaleString()} jobs`;
+    }
+
+    function calculateValetOutputs() {
+      const var1 = Number(document.getElementById('slider1-valet').value);
+      const var2 = Number(document.getElementById('slider2-valet').value);
+      const var3 = Number(document.getElementById('slider3-valet').value);
+
+      document.getElementById('valLabel1-valet').innerText = `${var1} units/mo`;
+      document.getElementById('valLabel2-valet').innerText = `$${var2.toLocaleString()}`;
+      document.getElementById('valLabel3-valet').innerText = `$${var3}/mo`;
+
+      const annualHardwareRev = var1 * 12 * var2;
+      const yr1SaaSRunRate = var1 * 6 * var3 * 12;
+      const annualGrossRevenue = annualHardwareRev + yr1SaaSRunRate;
+      const estimatedEBITDA = Math.round(annualGrossRevenue * 0.45);
+
+      document.getElementById('valet-out-1').innerText = `$${(annualHardwareRev / 1000).toFixed(0)}K`;
+      document.getElementById('valet-out-2').innerText = `$${(annualGrossRevenue / 1000).toFixed(0)}K`;
+      document.getElementById('valet-out-3').innerText = `$${(estimatedEBITDA / 1000).toFixed(0)}K`;
+    }
+
+    function calculateConyersOutputs() {
+      const var1 = Number(document.getElementById('slider1-conyers').value);
+      const var2 = Number(document.getElementById('slider2-conyers').value);
+      const var3 = Number(document.getElementById('slider3-conyers').value);
+
+      document.getElementById('valLabel1-conyers').innerText = `${var1} clients`;
+      document.getElementById('valLabel2-conyers').innerText = `$${var2}/mo`;
+      document.getElementById('valLabel3-conyers').innerText = `${var3} Hostings`;
+
+      const ptRevenue = var1 * var2 * 12;
+      const tournamentRevenue = var3 * 37500;
+      const baselineAuxiliaryRevenue = 1921600;
+
+      const totalGrossRevenue = ptRevenue + tournamentRevenue + baselineAuxiliaryRevenue;
+      const estimatedEBITDA = Math.round(totalGrossRevenue - (500000 + (totalGrossRevenue * 0.15)));
+      const DSCR = estimatedEBITDA / 1136665;
+
+      document.getElementById('conyers-out-1').innerText = `$${(ptRevenue / 1000000).toFixed(2)}M`;
+      document.getElementById('conyers-out-2').innerText = `$${(totalGrossRevenue / 1000000).toFixed(2)}M`;
+      document.getElementById('conyers-out-3').innerText = `$${(estimatedEBITDA / 1000000).toFixed(2)}M`;
+      document.getElementById('conyers-out-4').innerText = `${DSCR.toFixed(2)}x DSCR`;
+    }
+
+    // Simulated downloads
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      const toastMsg = document.getElementById('toastMessage');
+
+      toastMsg.innerText = message;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 4000);
+    }
+
+    function triggerSimulatedDownload(filename) {
+      showToast(`Simulated unredacted SOW decrypt download completed for: ${filename}`);
+    }
+
+    // Meeting Session Scheduler
+    function scheduleConsultation(event) {
+      event.preventDefault();
+      const date = document.getElementById('meetingDate').value;
+      const time = document.getElementById('meetingTime').value;
+      showToast(`Meeting booked: Strategic Check-in on ${date} at ${time}. Key calendar event pushed.`);
+      event.target.reset();
+    }
+
+    // Secure Advisor Message Center Logic
+    function sendMessageToAdvisor(event) {
+      event.preventDefault();
+      const chatInput = document.getElementById('chatTextInputField');
+      const text = chatInput.value;
+
+      const chatWindow = document.getElementById('chatMessageWindow');
+
+      // Render user message on chat window
+      const userMsgBlock = document.createElement('div');
+      userMsgBlock.className = "flex flex-col gap-1 items-end";
+      userMsgBlock.innerHTML = `
+        <span class="text-[9px] uppercase font-bold text-slate-500">Authorized Visitor · Just Now</span>
+        <p class="text-xs bg-[#193661] border border-[#333333] p-2.5 rounded-lg max-w-[90%] leading-relaxed text-slate-200">
+          ${text}
+        </p>
+      `;
+      chatWindow.appendChild(userMsgBlock);
+      chatInput.value = '';
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+
+      // Automated secure corporate response trigger after 1.5s delay
+      setTimeout(() => {
+        const advisorReplyBlock = document.createElement('div');
+        advisorReplyBlock.className = "flex flex-col gap-1 animate-fade-in";
+        advisorReplyBlock.innerHTML = `
+          <span class="text-[9px] uppercase font-bold text-slate-500">Marcus Bivines, Esq. · Just Now</span>
+          <p class="text-xs bg-[#151515] border border-[#333333] p-2.5 rounded-lg max-w-[90%] leading-relaxed text-slate-300">
+            Clearance verification verified. Secure parameter logged. Let's Touch base during our next strategic check-in.
+          </p>
+        `;
+        chatWindow.appendChild(advisorReplyBlock);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+        lucide.createIcons();
+      }, 1500);
+    }
+  </script>
+</body>
+</html>

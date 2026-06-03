@@ -1,15 +1,21 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
   BarChart3,
   Compass,
+  Eye,
+  EyeOff,
   FileSpreadsheet,
   FileText,
+  Key,
   Layers,
+  LogOut,
   Map,
   Network,
-  ShieldCheck
+  ShieldAlert,
+  ShieldCheck,
+  User
 } from "lucide-react";
 import { calculateSandboxOutputs } from "./lib/formulas";
 import { loadProjects } from "./lib/content";
@@ -138,6 +144,10 @@ function getArtifactFolder(projectId: string, artifact: Artifact) {
     return null;
   }
 
+  if (paths.every((src) => /^https?:\/\//.test(src))) {
+    return "external";
+  }
+
   const folders = paths.map((src) => {
     const match = src.match(new RegExp(`(?:^|/)artifacts/${projectId}/([^/]+)/`));
     return match?.[1] ?? null;
@@ -151,7 +161,32 @@ function getArtifactFolder(projectId: string, artifact: Artifact) {
   return uniqueFolders.size === 1 ? folders[0] : null;
 }
 
+const PORTAL_USERS: Record<string, { name: string; clearance: string }> = {
+  "admin@bivinesgroup.com":                  { name: "Admin",    clearance: "Sovereign Partners" },
+  "sbyrd@sowegarising.org":                  { name: "Sherrell", clearance: "Sovereign Partners" },
+  "thomie.venisee@thevictorygroupllc.com":   { name: "Thomie",   clearance: "Sovereign Partners" },
+};
+
+const PORTAL_PASSCODES: Record<string, string> = {
+  "admin@bivinesgroup.com":                  "BG2026",
+  "sbyrd@sowegarising.org":                  "SOWEGA2026",
+  "thomie.venisee@thevictorygroupllc.com":   "VICTORY2026",
+};
+
+type PortalUser = { email: string; name: string; clearance: string };
+
 function App() {
+  // ── Auth state ──────────────────────────────────────────────
+  const [authed, setAuthed] = useState(false);
+  const [portalUser, setPortalUser] = useState<PortalUser | null>(null);
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPass, setLoginPass]   = useState("");
+  const [showPass, setShowPass]     = useState(false);
+  const [loginError, setLoginError] = useState(false);
+  const [shaking, setShaking]       = useState(false);
+  const passcodeRef = useRef<HTMLInputElement>(null);
+
+  // ── Portfolio state ─────────────────────────────────────────
   const [projects, setProjects] = useState<ProjectManifest[]>([]);
   const [activeProjectId, setActiveProjectId] = useState<string>("");
   const [activeCapability, setActiveCapability] = useState<string>("All");
@@ -164,6 +199,30 @@ function App() {
   const [sandboxVar3, setSandboxVar3] = useState(60);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(true);
+
+  function handleLogin(e: React.FormEvent) {
+    e.preventDefault();
+    const email = loginEmail.trim().toLowerCase();
+    const user  = PORTAL_USERS[email];
+    if (user && PORTAL_PASSCODES[email] === loginPass.trim()) {
+      setPortalUser({ email, ...user });
+      setLoginError(false);
+      setAuthed(true);
+    } else {
+      setLoginError(true);
+      setShaking(true);
+      setTimeout(() => setShaking(false), 400);
+      passcodeRef.current?.focus();
+    }
+  }
+
+  function handleSignOut() {
+    setAuthed(false);
+    setPortalUser(null);
+    setLoginEmail("");
+    setLoginPass("");
+    setLoginError(false);
+  }
 
   useEffect(() => {
     let cancelled = false;
@@ -258,6 +317,111 @@ function App() {
     }
   }, [currentProjectArtifacts, project, selectedArtifactId, selectedNodeId]);
 
+  // ── LOGIN GATE ──────────────────────────────────────────────
+  if (!authed) {
+    return (
+      <div
+        className="fixed inset-0 flex flex-col items-center justify-center bg-[#090909] px-4"
+        style={{ fontFamily: '"Montserrat", "Avenir Next", sans-serif' }}
+      >
+        {/* grid background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#151515_1px,transparent_1px),linear-gradient(to_bottom,#151515_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 pointer-events-none" />
+
+        <div className="relative z-10 max-w-md w-full bg-[rgba(21,21,21,0.75)] backdrop-blur-xl border border-[#333333] rounded-2xl p-8 text-center shadow-2xl">
+          {/* icon + title */}
+          <div className="flex flex-col items-center gap-3 mb-6">
+            <div className="h-14 w-14 rounded-full bg-[#151515] border border-[#333333] flex items-center justify-center shadow-lg">
+              <ShieldAlert className="w-7 h-7 text-[#91000D]" />
+            </div>
+            <div>
+              <span className="text-[9px] uppercase tracking-widest font-extrabold text-[#91000D] flex items-center justify-center gap-1.5 mb-1">
+                <span className="h-2 w-2 rounded-full bg-red-500 inline-block animate-pulse" />
+                Secured Partner Access
+              </span>
+              <h1 className="text-lg font-extrabold tracking-tight text-white uppercase">Bivines Group Portal</h1>
+            </div>
+          </div>
+
+          <p className="text-xs text-slate-400 leading-relaxed mb-6">
+            This platform contains unredacted financial pro formas, legal deal agreements, and strategic pitch models for active institutional clients and capital sponsors.
+          </p>
+
+          <form onSubmit={handleLogin} className="flex flex-col gap-4" noValidate>
+            {/* email */}
+            <div className="relative">
+              <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <User className="w-4 h-4 text-slate-500" />
+              </span>
+              <input
+                type="email"
+                autoComplete="email"
+                placeholder="Enter authorized email..."
+                value={loginEmail}
+                onChange={(e) => { setLoginEmail(e.target.value); setLoginError(false); }}
+                className="w-full bg-[#0e0e0e] border border-[#333333] rounded-lg py-3 pl-10 pr-4 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-[#91000D] transition-colors"
+              />
+            </div>
+
+            {/* passcode */}
+            <div className={`relative ${shaking ? "animate-[shake_0.4s_ease-in-out]" : ""}`}
+              style={shaking ? { animation: "shake 0.4s ease-in-out" } : {}}>
+              <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <Key className="w-4 h-4 text-slate-500" />
+              </span>
+              <input
+                ref={passcodeRef}
+                type={showPass ? "text" : "password"}
+                autoComplete="current-password"
+                placeholder="Enter authorized clearance key..."
+                value={loginPass}
+                onChange={(e) => { setLoginPass(e.target.value); setLoginError(false); }}
+                className={`w-full bg-[#0e0e0e] border rounded-lg py-3 pl-10 pr-10 text-xs text-white placeholder-slate-600 focus:outline-none transition-colors ${loginError ? "border-red-600" : "border-[#333333] focus:border-[#91000D]"}`}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPass((v) => !v)}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-300"
+              >
+                {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
+            </div>
+
+            {loginError && (
+              <p className="text-[10px] text-red-500 font-bold text-left flex items-center gap-1.5">
+                Incorrect credentials. Access attempt logged.
+              </p>
+            )}
+
+            <button
+              type="submit"
+              className="w-full bg-[#91000D] hover:bg-[#b00c19] text-white text-xs font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
+            >
+              <ShieldCheck className="w-4 h-4" />
+              Verify Clearance
+            </button>
+          </form>
+
+          <div className="mt-6 pt-4 border-t border-[#333333] flex justify-between items-center text-[10px] text-slate-500">
+            <span>Clearance Level 3</span>
+            <span>NDA-Protected Access</span>
+          </div>
+        </div>
+
+        <p className="mt-6 text-[10px] text-slate-600 uppercase tracking-widest font-mono z-10">
+          All login attempts, IP signatures, and credentials are logged under NDA parameters.
+        </p>
+
+        <style>{`
+          @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+          }
+        `}</style>
+      </div>
+    );
+  }
+
   if (loading) {
     return (
       <div
@@ -308,7 +472,7 @@ function App() {
     >
       {/* HEADER */}
       <header className="border-b border-[#333333] bg-[#1e1e1e]/90 backdrop-blur sticky top-0 z-40 px-6 py-3 lg:h-[100px]">
-        <div className="max-w-7xl h-full mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px] items-center gap-4">
+        <div className="max-w-7xl h-full mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
           <div className="flex items-center gap-4 min-w-0">
             <img
               src="./brand/navy-red-logo.png"
@@ -319,10 +483,14 @@ function App() {
             <div className="min-w-0 flex-1 max-w-[800px]">
               <div className="flex items-center gap-2 mb-0.5">
                 <span
-                  className="text-white text-[9px] uppercase tracking-widest font-extrabold px-2 py-0.5 rounded-sm"
-                  style={{ backgroundColor: accentColor }}
+                  className="text-white text-[9px] uppercase tracking-widest font-extrabold px-2 py-0.5 rounded-sm flex items-center gap-1.5"
+                  style={{ backgroundColor: "#91000D" }}
                 >
-                  Case Study
+                  <span className="h-2 w-2 rounded-full bg-emerald-400 inline-block animate-pulse" />
+                  Clearance Key Active
+                </span>
+                <span className="text-slate-500 text-[10px] font-mono hidden sm:inline">
+                  Clearance Level: {portalUser?.clearance}
                 </span>
               </div>
               <h1
@@ -335,14 +503,25 @@ function App() {
             </div>
           </div>
 
-          <div className="bg-[#151515] px-3 py-2 rounded-lg border border-[#333333] w-full max-w-[360px] lg:justify-self-start">
-            <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">
-              Portfolio App
-            </p>
-            <p className="text-[11px] text-slate-300 leading-snug">
-              Built to present case studies, consulting capabilities, and preview-safe project evidence in one
-              structured portfolio workspace.
-            </p>
+          {/* Viewer badge + sign out */}
+          <div className="flex items-center gap-3 self-center">
+            <div className="flex items-center gap-3 bg-[#0e0e0e] border border-[#333333] px-3 py-2 rounded-lg">
+              <User className="text-[#91000D] w-4 h-4 flex-shrink-0" />
+              <div className="text-left">
+                <p className="text-xs font-bold text-slate-200">{portalUser?.email}</p>
+                <p className="text-[10px] text-slate-500 uppercase font-mono tracking-wider">
+                  {portalUser?.clearance} · NDA Verified
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={handleSignOut}
+              className="flex items-center gap-1.5 text-[10px] text-slate-500 hover:text-red-400 transition-colors font-bold uppercase tracking-wider"
+              title="Sign out"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Sign Out</span>
+            </button>
           </div>
         </div>
       </header>
@@ -841,6 +1020,22 @@ function VideoArtifactViewer({ artifact }: { artifact: Artifact }) {
   if (artifact.viewer.kind !== "video") return null;
 
   const sources = artifact.viewer.sources ?? (artifact.viewer.src ? [{ src: artifact.viewer.src }] : []);
+  const primarySource = sources[0]?.src;
+  const youtubeEmbedSrc = primarySource ? getYouTubeEmbedSrc(primarySource) : null;
+
+  if (youtubeEmbedSrc) {
+    return (
+      <div className="rounded-xl border border-[#333333] overflow-hidden bg-black aspect-video">
+        <iframe
+          className="w-full h-full border-0"
+          title={artifact.title}
+          src={youtubeEmbedSrc}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="rounded-xl border border-[#333333] overflow-hidden bg-black">
@@ -858,6 +1053,26 @@ function VideoArtifactViewer({ artifact }: { artifact: Artifact }) {
       </video>
     </div>
   );
+}
+
+function getYouTubeEmbedSrc(src: string) {
+  try {
+    const url = new URL(src);
+    const hostname = url.hostname.replace(/^www\./, "");
+
+    if (hostname === "youtu.be") {
+      return `https://www.youtube.com/embed/${url.pathname.slice(1)}`;
+    }
+
+    if (hostname === "youtube.com" || hostname === "m.youtube.com") {
+      const videoId = url.searchParams.get("v");
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
 }
 
 export default App;

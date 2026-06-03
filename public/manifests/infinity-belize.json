@@ -520,6 +520,32 @@
       }
     },
     {
+      "id": "prime-minister-endorsement-video",
+      "title": "Prime Minister endorsement",
+      "category": "Video",
+      "type": "Video",
+      "summary": "Endorsement video from the Prime Minister of Belize, documenting sovereign-level support for the Infinity Belize project.",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Bivines Group",
+        "Government of Belize"
+      ],
+      "relatedNodeIds": [
+        "investor-campaign",
+        "fund-architecture"
+      ],
+      "viewer": {
+        "kind": "video",
+        "sources": [
+          {
+            "src": "https://youtu.be/p8JYC8onNCk",
+            "type": "video/youtube"
+          }
+        ]
+      }
+    },
+    {
       "id": "project-media-gallery",
       "title": "Project media gallery",
       "category": "Gallery",

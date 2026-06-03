@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bivines Group | Client Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:  { DEFAULT: '#0f172a', 700: '#1e293b', 800: '#0f172a' },
+            gold:  { DEFAULT: '#c9922a', light: '#e8b84b', muted: '#a07820' },
+          },
+          fontFamily: {
+            sans: ['Georgia', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { background-color: #0f172a; }
+
+    .card {
+      background: #ffffff;
+      border-top: 4px solid #c9922a;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #c9922a;
+      box-shadow: 0 0 0 3px rgba(201,146,42,0.15);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #c9922a, #e8b84b);
+      color: #0f172a;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: opacity 0.2s;
+    }
+    .btn-gold:hover:not(:disabled) { opacity: 0.88; }
+    .btn-gold:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .screen { display: none; }
+    .screen.active { display: flex; }
+
+    /* checkbox accent */
+    input[type="checkbox"]:checked { accent-color: #c9922a; }
+
+    .divider {
+      border-color: #e2e8f0;
+    }
+
+    .signout {
+      color: #94a3b8;
+      font-size: 0.8rem;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .signout:hover { color: #c9922a; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- ────────────────────────────────────────────────
+       SCREEN 1 — WELCOME / LOGIN
+  ──────────────────────────────────────────────── -->
+  <div id="screen-login" class="screen active min-h-screen items-center justify-center px-4 py-12">
+    <div class="card rounded-2xl shadow-2xl w-full max-w-md p-8 sm:p-10">
+
+      <!-- Logo / Brand -->
+      <div class="text-center mb-8">
+        <p class="text-xs uppercase tracking-widest text-gray-400 mb-1">Client Portfolio</p>
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight">
+          Bivines Group
+        </h1>
+        <div class="mx-auto mt-3 mb-4 h-px w-16 bg-yellow-600 opacity-60"></div>
+        <p class="text-sm text-gray-500 leading-relaxed">
+          A curated presentation of our work,<br />prepared exclusively for invited guests.
+        </p>
+      </div>
+
+      <!-- Form -->
+      <form id="login-form" onsubmit="handleLogin(event)" novalidate>
+        <div class="mb-4">
+          <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1" for="email">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            autocomplete="email"
+            placeholder="you@example.com"
+            class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 transition"
+          />
+        </div>
+
+        <div class="mb-6">
+          <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1" for="passcode">
+            Passcode
+          </label>
+          <input
+            id="passcode"
+            type="password"
+            autocomplete="current-password"
+            placeholder="••••••••"
+            class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 transition"
+          />
+        </div>
+
+        <!-- Error -->
+        <p id="login-error" class="hidden text-red-600 text-xs mb-4 text-center font-medium">
+          Email or passcode not recognized. Please try again.
+        </p>
+
+        <button type="submit" class="btn-gold w-full rounded-lg py-3 text-sm">
+          Enter Portfolio
+        </button>
+      </form>
+
+      <p class="mt-8 text-center text-xs text-gray-400">
+        Access is by invitation only.<br />
+        If you received this link in error, contact
+        <a href="mailto:marcus@bivinesgroup.com" class="underline hover:text-yellow-700">marcus@bivinesgroup.com</a>.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ────────────────────────────────────────────────
+       SCREEN 2 — CONFIDENTIALITY ACKNOWLEDGMENT
+  ──────────────────────────────────────────────── -->
+  <div id="screen-nda" class="screen min-h-screen items-center justify-center px-4 py-12">
+    <div class="card rounded-2xl shadow-2xl w-full max-w-lg p-8 sm:p-10">
+
+      <div class="text-center mb-6">
+        <p class="text-xs uppercase tracking-widest text-gray-400 mb-1">Bivines Group | Client Portfolio</p>
+        <h2 id="nda-welcome-heading" class="text-2xl font-bold text-gray-900">Before You Proceed</h2>
+        <div class="mx-auto mt-3 h-px w-16 bg-yellow-600 opacity-60"></div>
+      </div>
+
+      <p class="text-sm font-semibold text-gray-700 mb-3">
+        This portfolio contains confidential work product.
+      </p>
+
+      <p class="text-sm text-gray-600 leading-relaxed mb-4">
+        The materials you are about to view are protected under a Mutual Non-Disclosure Agreement
+        between Bivines Group LLC and your organization, executed in May 2026.
+      </p>
+
+      <hr class="divider mb-4" />
+
+      <ul class="text-sm text-gray-600 space-y-2 mb-6 list-none">
+        <li class="flex gap-2">
+          <span class="text-yellow-600 mt-0.5">&#9656;</span>
+          <span>All work samples, models, frameworks, and strategies presented here are proprietary to Bivines Group LLC.</span>
+        </li>
+        <li class="flex gap-2">
+          <span class="text-yellow-600 mt-0.5">&#9656;</span>
+          <span>This content is shared solely for the purpose of evaluating a potential or active professional engagement.</span>
+        </li>
+        <li class="flex gap-2">
+          <span class="text-yellow-600 mt-0.5">&#9656;</span>
+          <span>You will not copy, reproduce, or share any portion of this portfolio outside your organization without written consent from Bivines Group LLC.</span>
+        </li>
+      </ul>
+
+      <!-- Checkbox -->
+      <label class="flex items-start gap-3 cursor-pointer mb-6 group">
+        <input
+          type="checkbox"
+          id="nda-checkbox"
+          onchange="toggleProceed()"
+          class="mt-1 w-4 h-4 rounded border-gray-300 cursor-pointer"
+        />
+        <span class="text-sm text-gray-700 leading-snug">
+          I understand that the materials in this portfolio are confidential, and I agree to treat them accordingly.
+        </span>
+      </label>
+
+      <button
+        id="proceed-btn"
+        onclick="handleProceed()"
+        disabled
+        class="btn-gold w-full rounded-lg py-3 text-sm"
+      >
+        Proceed to Portfolio
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ────────────────────────────────────────────────
+       SCREEN 3 — PORTFOLIO HOME
+  ──────────────────────────────────────────────── -->
+  <div id="screen-portfolio" class="screen min-h-screen flex-col">
+
+    <!-- Top bar -->
+    <header class="w-full px-6 py-4 flex items-center justify-between border-b border-white/10">
+      <span class="text-xs text-white/40 uppercase tracking-widest">Bivines Group | Client Portfolio</span>
+      <button onclick="signOut()" class="signout">Sign Out</button>
+    </header>
+
+    <!-- Main content -->
+    <div class="flex-1 flex items-center justify-center px-4 py-16">
+      <div class="card rounded-2xl shadow-2xl w-full max-w-xl p-8 sm:p-12 text-center">
+        <p class="text-xs uppercase tracking-widest text-gray-400 mb-2">Client Portfolio</p>
+        <h2 id="portfolio-heading" class="text-3xl font-bold text-gray-900 mb-3">Welcome</h2>
+        <div class="mx-auto mb-6 h-px w-16 bg-yellow-600 opacity-60"></div>
+        <p class="text-gray-500 text-sm mb-2">Your portfolio is loading.</p>
+        <p class="text-gray-400 text-xs">Work samples will be added here.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ────────────────────────────────────────────────
+       SCRIPT
+  ──────────────────────────────────────────────── -->
+  <script>
+    const USERS = {
+      'admin@bivinesgroup.com':              { passcode: 'BG2026',      name: 'Admin' },
+      'sbyrd@sowegarising.org':             { passcode: 'SOWEGA2026',  name: 'Sherrell' },
+      'thomie.venisee@thevictorygroupllc.com': { passcode: 'VICTORY2026', name: 'Thomie' },
+    };
+
+    let currentUser = null;
+
+    function show(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const email   = document.getElementById('email').value.trim().toLowerCase();
+      const pass    = document.getElementById('passcode').value.trim();
+      const errEl   = document.getElementById('login-error');
+
+      const user = USERS[email];
+      if (user && user.passcode === pass) {
+        errEl.classList.add('hidden');
+        currentUser = user;
+        document.getElementById('nda-welcome-heading').textContent = `Welcome, ${user.name} — Before You Proceed`;
+        document.getElementById('nda-checkbox').checked = false;
+        document.getElementById('proceed-btn').disabled = true;
+        show('screen-nda');
+      } else {
+        errEl.classList.remove('hidden');
+      }
+    }
+
+    function toggleProceed() {
+      const checked = document.getElementById('nda-checkbox').checked;
+      document.getElementById('proceed-btn').disabled = !checked;
+    }
+
+    function handleProceed() {
+      document.getElementById('portfolio-heading').textContent = `Welcome, ${currentUser.name}.`;
+      show('screen-portfolio');
+    }
+
+    function signOut() {
+      currentUser = null;
+      document.getElementById('email').value = '';
+      document.getElementById('passcode').value = '';
+      document.getElementById('login-error').classList.add('hidden');
+      show('screen-login');
+    }
+  </script>
+</body>
+</html>

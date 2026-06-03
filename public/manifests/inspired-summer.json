@@ -362,6 +362,28 @@
       }
     },
     {
+      "id": "inspired-summer-campaign-video",
+      "title": "APS X Inspired Concert Recap",
+      "category": "Video",
+      "type": "Video",
+      "summary": "Public campaign video used to communicate the inspirED Summer program energy and student-facing enrollment push.",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Bivines Group",
+        "APS"
+      ],
+      "relatedNodeIds": [
+        "campaign-system",
+        "creative-platform",
+        "public-impact"
+      ],
+      "viewer": {
+        "kind": "video",
+        "src": "https://youtu.be/S-5scuReWMI"
+      }
+    },
+    {
       "id": "inspired-summer-tech-summary",
       "title": "Tech Summary",
       "category": "Deliverable",
@@ -476,6 +498,22 @@
       "visibility": "public-preview",
       "relatedArtifactIds": [
         "inspired-summer-social-media"
+      ]
+    },
+    {
+      "id": "gallery-inspired-summer-campaign-video",
+      "title": "APS X Inspired Concert Recap",
+      "caption": "Concert recap video from the inspirED Summer enrollment campaign.",
+      "category": "Video",
+      "parties": [
+        "Bivines Group",
+        "APS"
+      ],
+      "date": "2021",
+      "role": "Shows the campaign tone and student-facing energy behind the enrollment effort.",
+      "visibility": "public-preview",
+      "relatedArtifactIds": [
+        "inspired-summer-campaign-video"
       ]
     },
     {
