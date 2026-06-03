@@ -1,0 +1,321 @@
+{
+  "id": "sports-complex",
+  "title": "Sports Complex Deal Development",
+  "subtitle": "Deal structuring, investor materials, and capital campaign planning for a 34-acre youth sports development.",
+  "type": "Case Study",
+  "duration": "12 months",
+  "location": "Conyers, Georgia",
+  "summary": "This first public version shows the narrative, financial sandbox, and styled highlight asset while keeping the proposal PDF and workbook archived as restricted records.",
+  "capabilities": [
+    "Deal Development",
+    "Financial Modeling",
+    "Capital Campaigns",
+    "Enterprise PM"
+  ],
+  "kpis": [
+    {
+      "label": "PE raise target",
+      "value": "$4.125M",
+      "subtext": "Equity placement goal"
+    },
+    {
+      "label": "Debt stack",
+      "value": "$12.2M",
+      "subtext": "Construction financing"
+    },
+    {
+      "label": "Engagement fee",
+      "value": "$352K",
+      "subtext": "Fixed fee across milestones"
+    },
+    {
+      "label": "Year-one revenue",
+      "value": "$5.24M",
+      "subtext": "Modeled across business lines"
+    }
+  ],
+  "kpiSummary": {
+    "budget": "$16.29M total capital requirement spanning construction, renovation, reserves, and fee structure.",
+    "rates": "Milestone-based consulting scope designed as a full deal-development engagement rather than hourly advisory.",
+    "outcomes": "Proves the ability to design a multi-stream business model, investor stack, and phased operating plan for a non-standard real estate asset.",
+    "challenges": [
+      "Construction had started before the business model and fundraising engine were fully in place.",
+      "The story had to bridge youth sports, real estate, hospitality, and operations into one investable narrative.",
+      "The engagement stretched beyond documents into phased PM and campaign sequencing."
+    ]
+  },
+  "carousel": [
+    {
+      "title": "1. The Situation",
+      "heading": "Construction had started. Money had not been secured.",
+      "content": "A youth sports academy in Conyers, Georgia had already broken ground on a 34-acre property — but without a business model, investor materials, or a capital campaign to fund completion. Construction had started. Money had not been secured."
+    },
+    {
+      "title": "2. The Approach",
+      "heading": "Five sequential phases",
+      "content": "The engagement was structured across five sequential phases, each with defined milestones, deliverable deadlines, and fee invoices tied directly to delivery — not to time."
+    },
+    {
+      "title": "3. The Financial Model",
+      "heading": "Seven distinct income streams",
+      "content": "The revenue model identified seven distinct income streams across the 34-acre complex. All figures are gross revenue projections from the financial model."
+    },
+    {
+      "title": "4. The Deliverable Stack",
+      "heading": "18 distinct deliverable categories",
+      "content": "The engagement produced 18 distinct deliverable categories across five phases spanning business and financial materials, investor relations, and brand and operations systems."
+    },
+    {
+      "title": "5. The Fee Structure",
+      "heading": "$352,205 fixed-fee engagement",
+      "content": "Total engagement fee: $352,205 — structured as fixed-fee milestones tied to deliverables, not hourly billing. Equivalent market-rate services from large management consulting firms were benchmarked at $1,126,475 for the same scope."
+    },
+    {
+      "title": "6. What This Demonstrates",
+      "heading": "End-to-end deal development",
+      "content": "The consultant was not engaged to do one thing. The scope ran from raw vision articulation through business model design, financial modeling, entity structuring, investor materials production, capital campaign management, and post-funding operations oversight."
+    },
+    {
+      "title": "7. Portfolio Card",
+      "heading": "Management Consulting Proposal + Financial Model",
+      "content": "This engagement proves the consultant can hold the entire arc of a complex development deal — from structuring the business model and building investor-grade financials, to designing and running the capital campaign, to managing phased operations after funding."
+    }
+  ],
+  "sandbox": {
+    "title": "Revenue and debt coverage sandbox",
+    "explanation": "This sandbox keeps the original showcase logic: personal training revenue, tournament revenue, and baseline auxiliary revenue combine into an EBITDA estimate and DSCR check.",
+    "formulaId": "conyers_sports_academy",
+    "slider1": {
+      "label": "Monthly training clients",
+      "min": 100,
+      "max": 800,
+      "step": 50,
+      "default": 350
+    },
+    "slider2": {
+      "label": "Average package price ($)",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "default": 450
+    },
+    "slider3": {
+      "label": "Host tournaments per year",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "default": 38
+    },
+    "outputs": [
+      "Training revenue",
+      "Total year-one revenue",
+      "Estimated EBITDA",
+      "Debt service coverage"
+    ]
+  },
+  "blueprint": {
+    "title": "12-month engagement blueprint",
+    "phases": [
+      {
+        "label": "Strategic planning",
+        "desc": "Define vision, market logic, and milestone path."
+      },
+      {
+        "label": "Collateral engineering",
+        "desc": "Produce proposal, pro forma logic, and business materials."
+      },
+      {
+        "label": "Deal structuring",
+        "desc": "Clarify entity, ownership, and capital stack mechanics."
+      },
+      {
+        "label": "Capital campaign",
+        "desc": "Launch investor outreach, process design, and diligence path."
+      },
+      {
+        "label": "Operations transition",
+        "desc": "Support phased execution and PM continuity."
+      }
+    ],
+    "entities": [
+      {
+        "from": "Founder entity",
+        "connection": "Control position and operating vision",
+        "to": "Sports complex ownership model"
+      },
+      {
+        "from": "Bivines Group",
+        "connection": "Strategy, modeling, investor, and PM scope",
+        "to": "Engagement delivery system"
+      },
+      {
+        "from": "Private equity",
+        "connection": "Equity raise target",
+        "to": "Project capital stack"
+      },
+      {
+        "from": "Commercial lenders",
+        "connection": "Construction debt",
+        "to": "Build-out program"
+      }
+    ]
+  },
+  "dnaMap": {
+    "title": "Sports complex project DNA",
+    "nodes": [
+      {
+        "id": "revenue-model",
+        "label": "Revenue model",
+        "category": "Finance",
+        "detail": "The seven-stream operating logic is the clearest proof of modeling depth and the best candidate for future preview extraction.",
+        "relatedArtifactIds": [
+          "sports-highlight",
+          "sports-workbook"
+        ]
+      },
+      {
+        "id": "proposal",
+        "label": "Consulting proposal",
+        "category": "Operations",
+        "detail": "The proposal is a strong proof point for sequencing, fee framing, and milestone design, even if the raw PDF stays private for now.",
+        "relatedArtifactIds": [
+          "sports-highlight",
+          "sports-proposal"
+        ]
+      },
+      {
+        "id": "capital-stack",
+        "label": "Capital stack",
+        "category": "Structure",
+        "detail": "Equity tiers, construction debt, and operating assumptions all needed to fit together inside one persuasive investor story.",
+        "relatedArtifactIds": [
+          "sports-highlight",
+          "sports-workbook"
+        ]
+      },
+      {
+        "id": "pm-architecture",
+        "label": "Project management architecture",
+        "category": "EPM",
+        "detail": "The engagement demonstrates not just financial modeling but also the operational choreography needed to carry a project through a long development cycle.",
+        "relatedArtifactIds": [
+          "sports-highlight",
+          "sports-proposal"
+        ]
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "sports-highlight",
+      "title": "Portfolio highlight page",
+      "category": "Narrative",
+      "type": "HTML",
+      "summary": "A designed portfolio artifact summarizing the fee structure, deliverable stack, revenue logic, and what-to-show guidance for this case study.",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Bivines Group"
+      ],
+      "relatedNodeIds": [
+        "revenue-model",
+        "proposal",
+        "capital-stack",
+        "pm-architecture"
+      ],
+      "viewer": {
+        "kind": "html",
+        "src": "./artifacts/sports-complex/highlight.html"
+      }
+    },
+    {
+      "id": "sports-workbook",
+      "title": "Financial workbook",
+      "category": "Finance",
+      "type": "XLSX",
+      "summary": "The workbook is represented in the portfolio model but not published directly until specific tabs are converted into safe preview assets.",
+      "status": "restricted",
+      "sensitivity": "confidential",
+      "parties": [
+        "Bivines Group",
+        "Premier Prospects Academy"
+      ],
+      "relatedNodeIds": [
+        "revenue-model",
+        "capital-stack"
+      ],
+      "viewer": {
+        "kind": "none"
+      }
+    },
+    {
+      "id": "sports-proposal",
+      "title": "Management consulting proposal",
+      "category": "Operations",
+      "type": "PDF",
+      "summary": "The proposal remains restricted, but the manifest makes it visible in the app and ready for future redacted page previews.",
+      "status": "restricted",
+      "sensitivity": "confidential",
+      "parties": [
+        "Bivines Group",
+        "Premier Prospects Academy"
+      ],
+      "relatedNodeIds": [
+        "proposal",
+        "pm-architecture"
+      ],
+      "viewer": {
+        "kind": "none"
+      }
+    }
+  ],
+  "gallery": [
+    {
+      "id": "gallery-sports-highlight",
+      "title": "Sports complex artifact highlight",
+      "caption": "Public-facing HTML summary that carries the project story while source documents remain private.",
+      "category": "Narrative",
+      "parties": [
+        "Bivines Group"
+      ],
+      "date": "2026 portfolio build",
+      "role": "Current preview-safe hero artifact for the project.",
+      "visibility": "public-preview",
+      "relatedArtifactIds": [
+        "sports-highlight"
+      ]
+    },
+    {
+      "id": "gallery-sports-model",
+      "title": "Revenue workbook",
+      "caption": "Manifested as a structured restricted artifact so the app can tell the truth about what exists before previews are manually prepared.",
+      "category": "Finance",
+      "parties": [
+        "Bivines Group",
+        "Premier Prospects Academy"
+      ],
+      "date": "2023-2024",
+      "role": "Next best candidate for screenshot-based preview extraction.",
+      "visibility": "redacted",
+      "relatedArtifactIds": [
+        "sports-workbook"
+      ]
+    },
+    {
+      "id": "gallery-sports-proposal",
+      "title": "Consulting proposal",
+      "caption": "A useful narrative proof point for sequencing, value framing, and deliverable scope, preserved in the portfolio data model without publishing the raw PDF.",
+      "category": "Operations",
+      "parties": [
+        "Bivines Group",
+        "Premier Prospects Academy"
+      ],
+      "date": "2023",
+      "role": "Ready for later redacted cover-page or table preview.",
+      "visibility": "redacted",
+      "relatedArtifactIds": [
+        "sports-proposal"
+      ]
+    }
+  ]
+}

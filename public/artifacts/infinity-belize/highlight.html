@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infinity Belize — Portfolio Highlight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #0a9396;
+    --teal-light: #94d2bd;
+    --navy: #001219;
+    --ink: #0d1b2a;
+    --sand: #e9d8a6;
+    --cream: #f8f4ed;
+    --coral: #ee9b00;
+    --white: #ffffff;
+    --muted: #8a9ba8;
+    --border: rgba(10,147,150,0.18);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ---- HERO ---- */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 30%, rgba(10,147,150,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 80% at 10% 80%, rgba(238,155,0,0.07) 0%, transparent 50%),
+      linear-gradient(160deg, #001219 0%, #0d1b2a 50%, #001219 100%);
+    z-index: 0;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(10,147,150,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10,147,150,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 80px 60px;
+    max-width: 1100px;
+  }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(52px, 7vw, 92px);
+    line-height: 0.95;
+    color: var(--white);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+
+  h1 span {
+    color: var(--teal);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(248,244,237,0.65);
+    max-width: 520px;
+    line-height: 1.65;
+    margin-bottom: 48px;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .meta-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 500;
+  }
+
+  .meta-value {
+    font-size: 15px;
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  /* ---- STAT BAR ---- */
+  .stat-bar {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border);
+  }
+
+  .stat {
+    padding: 32px 36px;
+    border-right: 1px solid var(--border);
+    transition: background 0.25s;
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat:hover { background: rgba(10,147,150,0.07); }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--teal-light);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  /* ---- SECTION ---- */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 80px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 200px;
+  }
+
+  /* ---- CAPABILITIES ---- */
+  .caps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 60px;
+  }
+
+  .cap-tag {
+    padding: 8px 18px;
+    border: 1px solid var(--teal);
+    border-radius: 2px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--teal-light);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ---- ARTIFACT CARDS ---- */
+  .artifact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .artifact-card {
+    background: var(--ink);
+    padding: 40px;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .artifact-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--teal);
+    transition: height 0.3s ease;
+  }
+
+  .artifact-card:hover { background: rgba(10,147,150,0.06); }
+  .artifact-card:hover::before { height: 100%; }
+  .artifact-card.active { background: rgba(10,147,150,0.1); }
+  .artifact-card.active::before { height: 100%; }
+
+  .artifact-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(10,147,150,0.15);
+    line-height: 1;
+    margin-bottom: 16px;
+    transition: color 0.2s;
+  }
+
+  .artifact-card:hover .artifact-number,
+  .artifact-card.active .artifact-number {
+    color: rgba(10,147,150,0.4);
+  }
+
+  .artifact-type {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--coral);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .artifact-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+
+  .artifact-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .artifact-caps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 20px;
+  }
+
+  .artifact-cap {
+    font-size: 10px;
+    padding: 3px 10px;
+    background: rgba(10,147,150,0.12);
+    color: var(--teal-light);
+    border-radius: 2px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ---- DETAIL PANEL ---- */
+  .detail-panel {
+    display: none;
+    background: #091318;
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 52px 52px;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .detail-panel.visible { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .detail-panel h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .detail-panel .detail-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 36px;
+  }
+
+  .detail-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+
+  .detail-section h4 {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .detail-section p, .detail-section li {
+    font-size: 14px;
+    color: rgba(248,244,237,0.75);
+    line-height: 1.7;
+  }
+
+  .detail-section ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .detail-section li::before {
+    content: '→ ';
+    color: var(--teal);
+    font-weight: 500;
+  }
+
+  /* ---- ENGAGEMENT PHOTOS ---- */
+  .photo-strip {
+    background: #091318;
+    border-top: 1px solid var(--border);
+    padding: 60px 80px;
+  }
+
+  .photo-strip .section-label {
+    max-width: 1100px;
+    margin: 0 auto 40px;
+  }
+
+  .photo-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .photo-item {
+    aspect-ratio: 4/3;
+    background: rgba(10,147,150,0.08);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .photo-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 10px 14px;
+    background: linear-gradient(transparent, rgba(0,18,25,0.92));
+    font-size: 11px;
+    color: rgba(248,244,237,0.7);
+    letter-spacing: 0.05em;
+  }
+
+  .photo-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.35;
+  }
+
+  .photo-placeholder svg {
+    width: 32px; height: 32px;
+    stroke: var(--teal-light);
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  .photo-placeholder span {
+    font-size: 11px;
+    color: var(--teal-light);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ---- PRESENTATION GUIDE ---- */
+  .presentation-guide {
+    background: rgba(10,147,150,0.05);
+    border: 1px solid var(--border);
+    padding: 52px;
+  }
+
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 8px;
+  }
+
+  .guide-item {
+    padding: 28px;
+    background: rgba(0,18,25,0.5);
+    border-left: 3px solid var(--teal);
+  }
+
+  .guide-step {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 10px;
+  }
+
+  .guide-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .guide-item p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  footer .firm {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--white);
+    letter-spacing: 0.05em;
+  }
+
+  footer .note {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 768px) {
+    .hero-content, section, .photo-strip, footer { padding-left: 28px; padding-right: 28px; }
+    .stat-bar { grid-template-columns: 1fr 1fr; }
+    .artifact-grid { grid-template-columns: 1fr; }
+    .detail-cols { grid-template-columns: 1fr; gap: 28px; }
+    .guide-grid { grid-template-columns: 1fr; }
+    .photo-grid { grid-template-columns: 1fr 1fr; }
+    h1 { font-size: 44px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="eyebrow">Bivines Group — Portfolio Case Study</div>
+    <h1>Infinity<span>Belize</span></h1>
+    <p class="hero-sub">From undeveloped beachfront land to an $860M international private equity fund structure — built from scratch across three countries in eight months.</p>
+    <div class="meta-row">
+      <div class="meta-item">
+        <span class="meta-label">Timeline</span>
+        <span class="meta-value">June 2021 – Feb 2022</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Role</span>
+        <span class="meta-value">Lead Strategist + Financial Modeler</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Geography</span>
+        <span class="meta-value">USA · Belize · International</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Capital Raised</span>
+        <span class="meta-value">~$3M</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="stat-bar">
+    <div class="stat">
+      <div class="stat-num">$860M</div>
+      <div class="stat-desc">Fund structure designed &amp; modeled</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">64%</div>
+      <div class="stat-desc">Projected IRR, 4.5-year horizon</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$2.7B</div>
+      <div class="stat-desc">Modeled national economic impact</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">8</div>
+      <div class="stat-desc">Months, zero to PM-level engagement</div>
+    </div>
+  </div>
+</div>
+
+<!-- CAPABILITIES -->
+<section>
+  <div class="section-label">Capabilities Demonstrated</div>
+  <div class="caps">
+    <span class="cap-tag">Financial Modeling</span>
+    <span class="cap-tag">Project / Corporate Finance</span>
+    <span class="cap-tag">Campaign Design + Management</span>
+    <span class="cap-tag">Enterprise Project Management</span>
+  </div>
+
+  <!-- ARTIFACT CARDS -->
+  <div class="section-label">Key Artifacts</div>
+  <div class="artifact-grid" id="artifactGrid">
+
+    <div class="artifact-card" onclick="toggleDetail(0)">
+      <div class="artifact-number">01</div>
+      <div class="artifact-type">Investor Deck · PDF · 20 Slides</div>
+      <div class="artifact-name">BG|Infinity Capital Investor Deck</div>
+      <div class="artifact-desc">Full investment narrative for a greenfield $860M PE fund — thesis, market timing, deal structure, economic impact, and government credentialing.</div>
+      <div class="artifact-caps">
+        <span class="artifact-cap">Financial Modeling</span>
+        <span class="artifact-cap">Corporate Finance</span>
+        <span class="artifact-cap">Campaign Design</span>
+      </div>
+    </div>
+
+    <div class="artifact-card" onclick="toggleDetail(1)">
+      <div class="artifact-number">02</div>
+      <div class="artifact-type">Capital Structure Diagram · JPEG</div>
+      <div class="artifact-name">Infinity Belize Project Deal Structure</div>
+      <div class="artifact-desc">12-entity capital stack showing sovereign debt guarantee, DFC insurance instruments, dual bond structure, GP/LP waterfall, and three-portfolio fund architecture.</div>
+      <div class="artifact-caps">
+        <span class="artifact-cap">Financial Modeling</span>
+        <span class="artifact-cap">Corporate Finance</span>
+      </div>
+    </div>
+
+    <div class="artifact-card" onclick="toggleDetail(2)">
+      <div class="artifact-number">03</div>
+      <div class="artifact-type">Transaction Flowchart · PDF</div>
+      <div class="artifact-name">Land Deal Flowchart</div>
+      <div class="artifact-desc">Conditional decision tree mapping every acquisition gate — escrow triggers, equity provisions, DFC milestones, and termination scenarios — before negotiations began.</div>
+      <div class="artifact-caps">
+        <span class="artifact-cap">Corporate Finance</span>
+        <span class="artifact-cap">Enterprise PM</span>
+      </div>
+    </div>
+
+    <div class="artifact-card" onclick="toggleDetail(3)">
+      <div class="artifact-number">04</div>
+      <div class="artifact-type">Campaign Architecture · PDF</div>
+      <div class="artifact-name">Fundraising Options Flowchart</div>
+      <div class="artifact-desc">Conditional capital campaign map — four development scenarios at four capital thresholds, each with asset sequences and revenue strategies, preserving optionality at every shortfall level.</div>
+      <div class="artifact-caps">
+        <span class="artifact-cap">Campaign Design</span>
+        <span class="artifact-cap">Corporate Finance</span>
+        <span class="artifact-cap">Enterprise PM</span>
+      </div>
+    </div>
+
+    <div class="artifact-card" onclick="toggleDetail(4)">
+      <div class="artifact-number">05</div>
+      <div class="artifact-type">Master Plan · PDF · 22 Pages</div>
+      <div class="artifact-name">Structural Architecture Master Plan</div>
+      <div class="artifact-desc">Site plans, isometric massing diagrams, use-type plans, section drawings, and individual zone callouts for 8 development zones across 100+ acres — coordinated with UK architecture partner.</div>
+      <div class="artifact-caps">
+        <span class="artifact-cap">Enterprise PM</span>
+        <span class="artifact-cap">Campaign Design</span>
+      </div>
+    </div>
+
+    <div class="artifact-card" onclick="toggleDetail(5)">
+      <div class="artifact-number">06</div>
+      <div class="artifact-type">Development Specification · PDF · 4 Pages</div>
+      <div class="artifact-name">Space Program</div>
+      <div class="artifact-desc">Building-by-building specification: 4,860 hotel keys across 12 structures, 4 water park complexes, international airport, 16-mile railroad, ferry terminal, and $70M water plant.</div>
+      <div class="artifact-caps">
+        <span class="artifact-cap">Financial Modeling</span>
+        <span class="artifact-cap">Enterprise PM</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DETAIL PANELS -->
+  <div id="detailPanel" class="detail-panel">
+    <div id="detailContent"></div>
+  </div>
+</section>
+
+<!-- ENGAGEMENT PHOTOS -->
+<div class="photo-strip">
+  <div class="section-label">In-Country Engagement</div>
+  <div class="photo-grid">
+    <div class="photo-item">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Strategy Sessions</span>
+      </div>
+      <div class="photo-label">Multi-party working session with landowner and development partners</div>
+    </div>
+    <div class="photo-item">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Government Meetings</span>
+      </div>
+      <div class="photo-label">Ministry-level presentations with project materials</div>
+    </div>
+    <div class="photo-item">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>City Council Chambers</span>
+      </div>
+      <div class="photo-label">Formal presentation to Belize City Council under the national seal</div>
+    </div>
+    <div class="photo-item">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Investment Summit</span>
+      </div>
+      <div class="photo-label">Belize Investment Summit 2021 — Government of Belize podium</div>
+    </div>
+    <div class="photo-item">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Prime Minister Meeting</span>
+      </div>
+      <div class="photo-label">Direct engagement with the Prime Minister of Belize</div>
+    </div>
+    <div class="photo-item">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Investor Meetings</span>
+      </div>
+      <div class="photo-label">In-country investor and partner sessions, San Pedro</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRESENTATION GUIDE -->
+<section>
+  <div class="section-label">How to Present This Engagement</div>
+  <div class="presentation-guide">
+    <div class="guide-grid">
+      <div class="guide-item">
+        <div class="guide-step">Step 01 — Open With</div>
+        <h4>The Deal Structure Diagram</h4>
+        <p>Start by showing the 12-entity capital stack diagram. Ask the prospect to count the entities. Then say: we designed the relationships between all of them. Let the complexity land before you explain any of it.</p>
+      </div>
+      <div class="guide-item">
+        <div class="guide-step">Step 02 — Anchor With</div>
+        <h4>The Economic Impact Table</h4>
+        <p>Open the investor deck to the hospitality revenue model: 4,860 keys, three star ratings, $485M gross revenue, $2.7B national impact. This shows the financial model was built on real inputs, not narrative assumptions.</p>
+      </div>
+      <div class="guide-item">
+        <div class="guide-step">Step 03 — Close With</div>
+        <h4>The Government Photos</h4>
+        <p>End with the photo evidence: City Council chambers, Investment Summit podium, Prime Minister meeting. These prove the work moved from document to room — from strategy to sovereign-level credibility.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="firm">Bivines Group</div>
+  <div class="note">Confidential — Portfolio Use Only · Client Details Available Under NDA</div>
+</footer>
+
+<script>
+const details = [
+  {
+    name: "BG|Infinity Capital Investor Deck",
+    sub: "20-slide investor presentation · Used in government and investor meetings · October 2022",
+    proves: "Bivines Group built the entire investment narrative — thesis, timing, structure, and proof of government credibility — from nothing. The deck had to work in two rooms simultaneously: US institutional investors focused on IRR and DFC insurance, and Belizean ministers focused on jobs, infrastructure, and national economic benefit.",
+    show: [
+      "Slide 5 (Deal Overview): IRR 64%, MOIC 10.64x, $532M valuation — leads with the return thesis in under 10 seconds",
+      "Slide 8 (Economic Impact table): building-by-building revenue model shows the financial model had real inputs, not round numbers",
+      "Slides 14–15 (Deal Structure): layered capital stack demonstrates structural sophistication most consultants cannot produce",
+      "Slide 3 (Problem framing): volatile markets + capital surplus + foreign investment barriers — shows the thesis was built before the structure"
+    ],
+    anon: "Remove founder/partner names, team photos, and company names. Replace with 'Client Capital Group' and role descriptors."
+  },
+  {
+    name: "Infinity Belize Project Deal Structure",
+    sub: "Capital stack diagram · 12+ entities · Updated October 2022",
+    proves: "This is not a communications diagram — it is the actual architecture of a sovereign-backed private equity fund. Bivines Group designed how political risk insurance wraps the fund, how sovereign debt guarantees flow through the bond instruments, how management fees and carried interest relate to GP and LP roles, and how liquidation distributions cascade over an 8–10 year horizon.",
+    show: [
+      "Walk the three tiers verbally: (1) debt instrument layer with investment banks, (2) DFC insurance layer, (3) fund portfolios feeding the $5.4B profit pool",
+      "Ask the prospect to count the entities — there are 12+ — and note that Bivines Group designed the relationships between all of them",
+      "Pair with the BGIC Deal Structure diagram to show two levels: fund-level architecture and entity-level ownership"
+    ],
+    anon: "Replace 'Black Harbor Capital,' 'BGIC-GP,' 'BELIZE GOV LP,' and 'INVESTMENT BANK LPs' with role descriptors: US Capital Group, General Partner, Sovereign LP, Institutional LPs."
+  },
+  {
+    name: "Land Deal Flowchart",
+    sub: "Cross-border transaction decision tree · 94-acre acquisition · August 2022",
+    proves: "This flowchart shows the consultant can think through a complex multi-party transaction at the level of a transaction attorney — mapping contingent equity provisions, escrow triggers, DFC milestone deadlines, and termination scenarios before a single document was drafted. It is a risk management framework, not a diagram.",
+    show: [
+      "Walk the four conditional paths: Blue Ocean ($12M+), Limited Development ($8M), Seed Development ($1.5M), Media & Marketing ($750K)",
+      "Point to the 'Terminate Deal' node: explain that the escrow, earnest money, and non-compete protections were all designed by Bivines Group",
+      "Note the date-stamped milestones (8/15/22, 11.30.22) — the plan was executable, not theoretical"
+    ],
+    anon: "Replace all entity and personal names with role descriptors: 'Capital Group,' 'US Sponsor,' 'Belizean Land Partner.'"
+  },
+  {
+    name: "Fundraising Options Flowchart",
+    sub: "Conditional capital campaign architecture · Four scenarios · August 2022",
+    proves: "Most campaign advisors plan for success. Bivines Group built a plan for every outcome — from $750K to $12M+, each with its own asset acquisition sequence and revenue strategy. This demonstrates strategic campaign architecture: a raise designed to be resilient to underperformance, not collapse from it.",
+    show: [
+      "Lead with the overall structure: one starting point, four conditional paths, each with specific asset and revenue activities",
+      "Point to the 'By 1.1.23 BG has stable revenue?' circuit breaker — this shows risk management at the portfolio level, not just the campaign level",
+      "Pair with the investor deck to show the campaign had both a narrative (the deck) and a logic (this chart)"
+    ],
+    anon: "Replace 'BGIC,' 'Black Harbor,' 'Black 2 Belize Tours,' and 'Boomer Health Deal' with generic role and venture descriptors."
+  },
+  {
+    name: "Structural Architecture Master Plan",
+    sub: "22-page massing document · 8 development zones · Coordinated with Iterum (UK) · July 2022",
+    proves: "Bivines Group coordinated a 22-page architectural massing program across international partners — site plans, use-type diagrams, 3D isometric renders, section drawings, and individual building callouts. The ability to translate a financial model into a visual development concept, then present it credibly in government chambers, demonstrates enterprise PM at a level most consultants never reach.",
+    show: [
+      "Lead with page 4 (Site Plan with labeled zones A–H): scale and intentionality in a single page",
+      "Follow with page 6 (3D massing perspective): the most emotionally compelling visual in the portfolio — makes financial projections tangible",
+      "Show page 7 (Color-coded use-type plan): mixed-use planning sophistication across hotel/resort, residential, retail, office, green space, and public zones",
+      "For technical audiences: individual zone callouts (pages 9–16) show specificity of the space program"
+    ],
+    anon: "Remove or blur 'BG|Infinity Capital' branding from all pages."
+  },
+  {
+    name: "Space Program",
+    sub: "Development specification · 4 pages · Building-by-building · August 2022",
+    proves: "The space program is the foundational document that makes both the financial model and the architectural program possible. Specifying 4,860 hotel keys across 12 structures, 4 water park complexes, a full international airport, a 16-mile railroad, a ferry terminal, and a $70M water plant — with square footages, level counts, and amenity programs — is upstream development work. This shows Bivines Group works at the level of strategy and structure, not just presentation.",
+    show: [
+      "Show the hospitality suite table (page 1): building-by-building breakdown is the clearest evidence the financial model was built on real assumptions",
+      "Show the infrastructure section (page 3): airport, ferry, railroad, water plant — explains why a sovereign PPP and DFC capital were required",
+      "Pair with the economic impact slide from the investor deck to show the direct line from space program inputs to $2.7B impact projection"
+    ],
+    anon: "Remove 'BG|Infinity Capital' header branding. Confirm whether specific building names should be replaced with generic descriptors."
+  }
+];
+
+let openIndex = -1;
+
+function toggleDetail(i) {
+  const cards = document.querySelectorAll('.artifact-card');
+  const panel = document.getElementById('detailPanel');
+
+  if (openIndex === i) {
+    panel.classList.remove('visible');
+    cards[i].classList.remove('active');
+    openIndex = -1;
+    return;
+  }
+
+  cards.forEach(c => c.classList.remove('active'));
+  cards[i].classList.add('active');
+  openIndex = i;
+
+  const d = details[i];
+  document.getElementById('detailContent').innerHTML = `
+    <h3>${d.name}</h3>
+    <p class="detail-sub">${d.sub}</p>
+    <div class="detail-cols">
+      <div class="detail-section">
+        <h4>What This Proves</h4>
+        <p>${d.proves}</p>
+      </div>
+      <div class="detail-section">
+        <h4>What to Show</h4>
+        <ul>${d.show.map(s => `<li>${s}</li>`).join('')}</ul>
+        <br>
+        <h4>What to Anonymize</h4>
+        <p>${d.anon}</p>
+      </div>
+    </div>
+  `;
+
+  panel.classList.remove('visible');
+  void panel.offsetWidth;
+  panel.classList.add('visible');
+
+  setTimeout(() => {
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 50);
+}
+</script>
+</body>
+</html>

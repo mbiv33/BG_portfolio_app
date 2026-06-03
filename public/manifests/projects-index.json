@@ -1,0 +1,28 @@
+{
+  "projects": [
+    {
+      "id": "infinity-belize",
+      "manifest": "manifests/infinity-belize.json"
+    },
+    {
+      "id": "valet-vault",
+      "manifest": "manifests/valet-vault.json"
+    },
+    {
+      "id": "sports-complex",
+      "manifest": "manifests/sports-complex.json"
+    },
+    {
+      "id": "healthquest-atl",
+      "manifest": "manifests/healthquest-atl.json"
+    },
+    {
+      "id": "inspired-summer",
+      "manifest": "manifests/inspired-summer.json"
+    },
+    {
+      "id": "o2-project",
+      "manifest": "manifests/o2-project.json"
+    }
+  ]
+}

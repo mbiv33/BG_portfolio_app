@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MasterProjectPayload",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "type": { "type": "string" },
+    "subtitle": { "type": "string" },
+    "duration": { "type": "string" },
+    "kpis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "value": { "type": "string" },
+          "subtext": { "type": "string" }
+        },
+        "required": ["label", "value"]
+      }
+    },
+    "kpiSummary": {
+      "type": "object",
+      "properties": {
+        "budget": { "type": "string" },
+        "challenges": { "type": "array", "items": { "type": "string" } },
+        "rates": { "type": "string" },
+        "outcomes": { "type": "string" }
+      },
+      "required": ["budget", "challenges", "rates", "outcomes"]
+    },
+    "carousel": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "heading": { "type": "string" },
+          "content": { "type": "string" }
+        },
+        "required": ["title", "heading", "content"]
+      }
+    },
+    "hasSandbox": { "type": "boolean" },
+    "sandbox": {
+      "type": ["object", "null"],
+      "properties": {
+        "title": { "type": "string" },
+        "explanation": { "type": "string" },
+        "formulaId": { "type": "string" },
+        "slider1": { "$ref": "#/definitions/sliderConfig" },
+        "slider2": { "$ref": "#/definitions/sliderConfig" },
+        "slider3": { "$ref": "#/definitions/sliderConfig" }
+      }
+    },
+    "blueprint": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "phases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string" },
+              "desc": { "type": "string" }
+            }
+          }
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": { "type": "string" },
+              "connection": { "type": "string" },
+              "to": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "dnaMap": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "label": { "type": "string" },
+              "category": { "type": "string" },
+              "detail": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "gallery": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "title": { "type": "string" },
+          "desc": { "type": "string" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "sliderConfig": {
+      "type": "object",
+      "properties": {
+        "label": { "type": "string" },
+        "min": { "type": "numeric" },
+        "max": { "type": "numeric" },
+        "step": { "type": "numeric" },
+        "default": { "type": "numeric" }
+      }
+    }
+  }
+}

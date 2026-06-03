@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bivines Group — Health Quest ATL Portfolio Highlight</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f0e8;
+    --accent: #d44c1a;
+    --accent2: #1a3d6b;
+    --gold: #c9a227;
+    --mid: #6b6560;
+    --rule: #d4cfc6;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* HEADER BAND */
+  .masthead {
+    background: var(--ink);
+    padding: 18px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--accent);
+  }
+  .masthead-firm {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--paper);
+    letter-spacing: 0.12em;
+  }
+  .masthead-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 340px;
+    border-bottom: 2px solid var(--rule);
+  }
+  .hero-left {
+    background: var(--accent2);
+    padding: 56px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left::before {
+    content: 'Q30';
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14rem;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4.2rem;
+    line-height: 0.92;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+  }
+  .hero-title span {
+    color: var(--accent);
+  }
+  .hero-right {
+    background: var(--paper);
+    padding: 56px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 2px solid var(--rule);
+  }
+  .hero-problem {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--ink);
+    max-width: 480px;
+  }
+  .hero-problem strong {
+    font-weight: 700;
+    color: var(--accent2);
+  }
+  .tag-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    border-radius: 2px;
+  }
+  .tag.filled {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  /* STATS STRIP */
+  .stats-strip {
+    background: var(--accent);
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 2px solid var(--ink);
+  }
+  .stat {
+    padding: 32px 36px;
+    border-right: 1.5px solid rgba(255,255,255,0.2);
+    position: relative;
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.4rem;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+  .stat-unit {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .stat-placeholder {
+    font-size: 0.6rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+  }
+
+  /* BODY GRID */
+  .body-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 0;
+    border-bottom: 2px solid var(--rule);
+  }
+
+  /* ARTIFACT CARDS */
+  .artifact-section {
+    padding: 52px 48px;
+    border-right: 2px solid var(--rule);
+  }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .artifact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .artifact-card {
+    background: #ffffff;
+    border: 1.5px solid var(--rule);
+    border-left: 4px solid var(--accent2);
+    padding: 22px 24px;
+    position: relative;
+    transition: border-left-color 0.2s;
+  }
+  .artifact-card:hover {
+    border-left-color: var(--accent);
+  }
+  .artifact-card.orange {
+    border-left-color: var(--accent);
+  }
+  .artifact-card.gold {
+    border-left-color: var(--gold);
+  }
+  .artifact-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .artifact-type {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 10px;
+  }
+  .artifact-proves {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: #3a3a3a;
+    font-weight: 300;
+  }
+  .artifact-show {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: var(--paper);
+    border-left: 2px solid var(--gold);
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+  .artifact-show strong {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    padding: 52px 36px;
+  }
+  .sidebar-block {
+    margin-bottom: 36px;
+  }
+  .sidebar-block:last-child { margin-bottom: 0; }
+  .sidebar-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    color: var(--accent2);
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 8px;
+  }
+  .sidebar-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .sidebar-list li {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #3a3a3a;
+    padding-left: 14px;
+    position: relative;
+  }
+  .sidebar-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .cap-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1.5px solid var(--accent2);
+    color: var(--accent2);
+    border-radius: 2px;
+    margin: 3px 3px 3px 0;
+  }
+  .cap-badge.active {
+    background: var(--accent2);
+    color: #fff;
+  }
+
+  /* WHAT THIS PROVES */
+  .proves-section {
+    background: var(--ink);
+    padding: 52px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 36px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .prove-block {}
+  .prove-icon {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+  }
+  .prove-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .prove-body {
+    font-size: 0.8rem;
+    line-height: 1.65;
+    color: rgba(245,240,232,0.75);
+    font-weight: 300;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--ink);
+    padding: 22px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-firm {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: var(--paper);
+    letter-spacing: 0.1em;
+  }
+  .footer-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--mid);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left, .hero-right, .stats-strip, .artifact-section, .proves-section {
+    animation: fadeUp 0.55s ease both;
+  }
+  .hero-right { animation-delay: 0.08s; }
+  .stats-strip { animation-delay: 0.16s; }
+  .artifact-section { animation-delay: 0.24s; }
+  .proves-section { animation-delay: 0.32s; }
+
+  .stat-num {
+    display: inline-block;
+    animation: fadeUp 0.5s 0.3s ease both;
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-firm">Bivines Group</div>
+  <div class="masthead-label">Portfolio · Campaign Design &amp; Media Management</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Case Study · Spring 2023</div>
+    <div class="hero-title">Health<br>Quest<span>.</span><br>ATL</div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-problem">
+      Atlanta Public Schools had a <strong>free telehealth service</strong> available to 52,000 students. Less than <strong>3% of eligible families</strong> had enrolled. The district's own communications hadn't moved the needle. Bivines Group was brought in to design a campaign that could.
+    </div>
+    <div class="tag-row">
+      <span class="tag filled">Campaign Design</span>
+      <span class="tag filled">Media Management</span>
+      <span class="tag">Enterprise Project Mgmt</span>
+      <span class="tag">Community Engagement</span>
+    </div>
+  </div>
+</div>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stat">
+    <div class="stat-num">500K+</div>
+    <div class="stat-unit">Targeted Impressions</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">4</div>
+    <div class="stat-unit">Radio Stations Secured</div>
+    <div class="stat-placeholder">Single-day multi-station placement</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">3</div>
+    <div class="stat-unit">Flagship Events Executed</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">90</div>
+    <div class="stat-unit">Day Campaign Window</div>
+    <div class="stat-placeholder">March – May 2023</div>
+  </div>
+</div>
+
+<!-- BODY GRID -->
+<div class="body-grid">
+
+  <!-- ARTIFACT CARDS -->
+  <div class="artifact-section">
+    <div class="section-label">Key Artifacts &amp; What to Show</div>
+    <div class="artifact-cards">
+
+      <div class="artifact-card">
+        <div class="artifact-name">APS + Hazel Comprehensive Outreach Strategy</div>
+        <div class="artifact-type">Strategy Document · PDF · 21 pages</div>
+        <div class="artifact-proves">Demonstrates the consultant's ability to diagnose a complex behavioral problem, segment an audience by barrier type, and architect a multi-channel campaign in response. The five-gap market analysis shows strategic thinking beyond standard communications planning.</div>
+        <div class="artifact-show">
+          <strong>What to show</strong>
+          Lead with the Market Analysis section — the five-gap pie chart and audience segmentation paragraph. This is the moment a prospect sees that the work started with diagnosis, not tactics. Follow with the two-prong campaign diagram on page 8 to show how the strategy translated into execution.
+        </div>
+      </div>
+
+      <div class="artifact-card orange">
+        <div class="artifact-name">Health Quest ATL PR Strategy</div>
+        <div class="artifact-type">PR Outreach Plan · PDF · PDM Agency, directed by Bivines Group</div>
+        <div class="artifact-proves">Shows the consultant's ability to scope, commission, and direct a media subcontractor across a full earned media campaign — radio, TV, print, online, and live events — targeting a specific community demographic at scale.</div>
+        <div class="artifact-show">
+          <strong>What to show</strong>
+          Open on the Media Outlets page — the breadth of the outlet list (V103, Fox 5, AJC, Rolling Out) signals market access and media relationship depth. Pair it with the PR Activities and Timeline page to show that execution was managed week-by-week, not just planned.
+        </div>
+      </div>
+
+      <div class="artifact-card gold">
+        <div class="artifact-name">Health Quest ATL Interview Recap</div>
+        <div class="artifact-type">Media Results Document · PDF</div>
+        <div class="artifact-proves">Provides proof of execution: the campaign actually landed media placements on four Atlanta radio stations in a single morning. This is the evidence that the strategy was not just written — it was delivered.</div>
+        <div class="artifact-show">
+          <strong>What to show</strong>
+          Lead with slide 2 — the station logos and air times are the most immediate proof of placement. This is a one-slide close: V103 + WAOK + Star 94 + 92.9 The Game, same day, before 7AM. Let the logos do the talking.
+        </div>
+      </div>
+
+      <div class="artifact-card">
+        <div class="artifact-name">Q30 Partnership Press Release (APS x Health Quest ATL)</div>
+        <div class="artifact-type">Press Release · DOCX</div>
+        <div class="artifact-proves">Demonstrates the consultant's ability to write institutional-grade communications that translate a complex partnership into clear, quotable public messaging — and that anchor a district spokesperson quote for credibility.</div>
+        <div class="artifact-show">
+          <strong>What to show</strong>
+          Pull the Valencia Hildreth quote as a standalone block: it validates the strategic framing (access, absenteeism, equity) in the voice of the client. Use this as social proof in any prospect pitch deck — it's an APS health director endorsing the campaign rationale.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <div class="sidebar-block">
+      <div class="sidebar-heading">Capability Areas</div>
+      <div>
+        <span class="cap-badge active">Campaign Design</span>
+        <span class="cap-badge active">Media Management</span>
+        <span class="cap-badge active">Enterprise Proj. Mgmt</span>
+        <span class="cap-badge">Campaign Execution</span>
+        <span class="cap-badge">PR Strategy</span>
+      </div>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-heading">Client / Stakeholders</div>
+      <ul class="sidebar-list">
+        <li>VE360 (Virtual ED 360) — direct client</li>
+        <li>Atlanta Public Schools — end beneficiary</li>
+        <li>Hazel Health — telehealth partner</li>
+        <li>PDM Agency — media subcontractor</li>
+        <li>Corporate sponsors — reward partners</li>
+      </ul>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-heading">Channels Managed</div>
+      <ul class="sidebar-list">
+        <li>Earned radio &amp; TV placement</li>
+        <li>Wire press releases</li>
+        <li>Paid geo-fenced social</li>
+        <li>Organic influencer posts</li>
+        <li>Direct messaging (phone, text, email)</li>
+        <li>Live event activations</li>
+        <li>School ambassador program</li>
+      </ul>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-heading">Anonymize Before Sharing</div>
+      <ul class="sidebar-list">
+        <li>Remove individual staff emails (VE360 contact page)</li>
+        <li>Mask Valencia Hildreth name if APS hasn't approved use</li>
+        <li>Confirm use of APS name and logo with client</li>
+        <li>Insert final enrollment figures before distributing</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- WHAT THIS PROVES -->
+<div class="proves-section">
+  <div class="prove-block">
+    <div class="prove-icon">🧩</div>
+    <div class="prove-title">Structural Campaign Thinking</div>
+    <div class="prove-body">Bivines Group didn't design a campaign around a message — they designed one around a behavioral diagnosis. The five-gap audience segmentation model shows a consultant who understands why people don't act, not just what to say to them.</div>
+  </div>
+  <div class="prove-block">
+    <div class="prove-icon">🎙</div>
+    <div class="prove-title">Media Market Access &amp; Execution</div>
+    <div class="prove-body">Securing placement across V103, WAOK, Fox 5, AJC, and Rolling Out for a community health initiative — not a commercial brand — required earned media strategy, active pitching, and real media relationships. The interview recap proves it happened.</div>
+  </div>
+  <div class="prove-block">
+    <div class="prove-icon">🏗</div>
+    <div class="prove-title">Multi-Vendor Project Architecture</div>
+    <div class="prove-body">Bivines Group served as lead strategist and project director — holding accountability across VE360, PDM Agency, community partners, and sponsors. The milestones timeline and PR activity calendar show a consultant who builds systems, not just plans.</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-firm">Bivines Group</div>
+  <div class="footer-note">Portfolio · Health Quest ATL · Atlanta Public Schools · Spring 2023</div>
+</div>
+
+</body>
+</html>

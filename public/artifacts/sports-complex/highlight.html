@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Artifact Highlight — Sports Complex Deal Development</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --red: #C41B1B;
+    --red-dim: #8B1212;
+    --cream: #F5F0E8;
+    --ink: #1A1410;
+    --ink-mid: #3D2F28;
+    --ink-light: #7A6A60;
+    --rule: #D4C8B8;
+    --highlight: #FFF3CD;
+    --green: #1A5C3A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 40px 24px 80px;
+  }
+
+  .page-header {
+    max-width: 900px;
+    margin: 0 auto 48px;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .page-header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(22px, 4vw, 32px);
+    line-height: 1.1;
+    color: var(--ink);
+  }
+
+  .page-header .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 500;
+  }
+
+  /* PORTFOLIO CARD */
+  .portfolio-card {
+    max-width: 900px;
+    margin: 0 auto 48px;
+    background: #fff;
+    border: 1.5px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .card-header {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 20px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .card-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .card-header .caps {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    background: rgba(196,27,27,0.15);
+    border: 1px solid var(--red-dim);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  .card-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1.5px solid var(--ink);
+  }
+
+  @media (max-width: 600px) {
+    .card-meta { grid-template-columns: 1fr; }
+  }
+
+  .meta-cell {
+    padding: 16px 28px;
+    border-right: 1px solid var(--rule);
+  }
+  .meta-cell:nth-child(even) { border-right: none; }
+  .meta-cell:nth-child(n+3) { border-top: 1px solid var(--rule); }
+
+  .meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  /* CAPABILITY TAGS */
+  .capability-row {
+    padding: 16px 28px;
+    border-bottom: 1.5px solid var(--ink);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .cap-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-right: 6px;
+  }
+  .cap-tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+    border: 1.5px solid;
+  }
+  .cap-tag.red { background: #FEE8E8; border-color: var(--red); color: var(--red-dim); }
+  .cap-tag.ink { background: #EAE6DF; border-color: var(--ink-mid); color: var(--ink-mid); }
+
+  /* SECTIONS */
+  .card-section {
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .card-section:last-child { border-bottom: none; }
+
+  .section-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .section-body {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-mid);
+  }
+
+  /* WHAT TO SHOW — interactive list */
+  .show-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .show-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 14px;
+    border: 1px solid var(--rule);
+    background: var(--cream);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    border-radius: 2px;
+    position: relative;
+  }
+  .show-item:hover { background: var(--highlight); border-color: var(--ink); }
+  .show-item.active { background: var(--highlight); border-color: var(--ink); border-left: 3px solid var(--red); }
+
+  .show-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--red);
+    min-width: 18px;
+    padding-top: 1px;
+  }
+  .show-text {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .show-text strong { font-weight: 600; color: var(--ink); }
+
+  /* METRICS GRID */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 4px;
+  }
+  .metric-box {
+    padding: 14px 16px;
+    border: 1.5px solid var(--rule);
+    background: var(--cream);
+    position: relative;
+  }
+  .metric-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--red);
+  }
+  .metric-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .metric-desc {
+    font-size: 11px;
+    color: var(--ink-light);
+    line-height: 1.4;
+  }
+
+  /* ANONYMIZE TABLE */
+  .anon-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  .anon-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1.5px solid var(--ink);
+    background: none;
+  }
+  .anon-table td {
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.5;
+    color: var(--ink-mid);
+  }
+  .anon-table tr:last-child td { border-bottom: none; }
+  .badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+  .badge.req { background: #FEE8E8; color: var(--red-dim); border: 1px solid #F5C0C0; }
+  .badge.opt { background: #E8F4EE; color: var(--green); border: 1px solid #A8D4BA; }
+
+  /* REVENUE STREAMS MINI CHART */
+  .revenue-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .rev-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .rev-name {
+    font-size: 11px;
+    color: var(--ink);
+    min-width: 170px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .rev-bar-wrap {
+    flex: 1;
+    height: 14px;
+    background: var(--rule);
+    border-radius: 1px;
+    overflow: hidden;
+    position: relative;
+  }
+  .rev-bar {
+    height: 100%;
+    background: var(--red);
+    border-radius: 1px;
+    transition: width 0.8s cubic-bezier(0.16,1,0.3,1);
+    width: 0;
+  }
+  .rev-amt {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-light);
+    min-width: 80px;
+    text-align: right;
+  }
+
+  /* FOOTER NOTE */
+  .footer-note {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 11px;
+    color: var(--ink-light);
+    font-style: italic;
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+    line-height: 1.6;
+  }
+
+  /* Accordion animation */
+  .accordion-body {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease;
+  }
+  .accordion-body.open {
+    max-height: 600px;
+  }
+  .accordion-toggle {
+    cursor: pointer;
+    user-select: none;
+  }
+  .accordion-toggle .arrow {
+    display: inline-block;
+    transition: transform 0.25s;
+    font-style: normal;
+    margin-left: 6px;
+    color: var(--red);
+  }
+  .accordion-toggle.open .arrow { transform: rotate(90deg); }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>Portfolio Highlight<br><em style="font-style:italic;font-family:'DM Serif Display',serif;color:var(--red);">Sports Complex Deal Development</em></h1>
+  <span class="label">Artifact Reference · 2023</span>
+</header>
+
+<!-- MAIN PORTFOLIO CARD -->
+<div class="portfolio-card">
+
+  <div class="card-header">
+    <h2>Premier Prospects Academy Multi-Sports Complex<br>
+    <span style="font-size:14px;font-weight:400;opacity:0.75">Conyers, Georgia · 34-Acre Development</span></h2>
+    <span class="caps">Engagement Active</span>
+  </div>
+
+  <!-- META -->
+  <div class="card-meta">
+    <div class="meta-cell">
+      <div class="meta-label">Project / Client</div>
+      <div class="meta-value">Premier Prospects Academy<br>Conyers, GA</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-label">Audience</div>
+      <div class="meta-value">Private equity investors;<br>development partners</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-label">Challenge</div>
+      <div class="meta-value">Construction started, no business model, no investor materials, no capital campaign</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-label">Engagement Scope</div>
+      <div class="meta-value">Full deal development, financial modeling, investor relations, phased operations management</div>
+    </div>
+  </div>
+
+  <!-- CAPABILITY TAGS -->
+  <div class="capability-row">
+    <span class="cap-label">Capabilities</span>
+    <span class="cap-tag red">Project / Corporate Finance</span>
+    <span class="cap-tag red">Financial Modeling</span>
+    <span class="cap-tag ink">Campaign Design / Management</span>
+    <span class="cap-tag ink">Enterprise Project Management</span>
+  </div>
+
+  <!-- KEY METRICS -->
+  <div class="card-section">
+    <div class="section-title">Engagement at a Glance</div>
+    <div class="metrics-grid">
+      <div class="metric-box">
+        <div class="metric-num">$4.1M</div>
+        <div class="metric-desc">Private equity raise target across 6 investor tiers</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num">$5.2M</div>
+        <div class="metric-desc">Projected gross annual revenue across 7 streams</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num">18 mo</div>
+        <div class="metric-desc">Vision-to-funded timeline with 30+ milestones</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num">69%</div>
+        <div class="metric-desc">Below market rate for equivalent consulting scope</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num">$16.3M</div>
+        <div class="metric-desc">Total capital requirement modeled for development</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num">18+</div>
+        <div class="metric-desc">Distinct deliverables across 5 project phases</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT THIS PROVES -->
+  <div class="card-section">
+    <div class="section-title">What This Proves</div>
+    <div class="section-body">
+      This engagement proves the ability to hold the entire arc of a complex development deal — from structuring the business model and building investor-grade financials, to designing and running the capital campaign, to managing phased operations after funding. The financial model alone demonstrates the ability to build multi-stream revenue assumptions from first principles for a non-standard asset class. The proposal structure shows the judgment to scope, price, and sequence a 12-month, 2,655-hour engagement with milestone-tied deliverables and third-party vendor management embedded throughout.
+    </div>
+  </div>
+
+  <!-- REVENUE STREAMS -->
+  <div class="card-section accordion-toggle" onclick="toggleAccordion(this)" id="rev-toggle">
+    <div class="section-title">Revenue Model — 7 Streams <span class="arrow">▶</span></div>
+    <div class="section-body" style="font-size:13px;color:var(--ink-light)">Click to expand the financial model breakdown</div>
+    <div class="accordion-body" id="rev-body">
+      <div style="height:16px"></div>
+      <div class="revenue-bars" id="revBars">
+        <div class="rev-row">
+          <span class="rev-name">Personal Training</span>
+          <div class="rev-bar-wrap"><div class="rev-bar" data-pct="100"></div></div>
+          <span class="rev-amt">$1,890,000</span>
+        </div>
+        <div class="rev-row">
+          <span class="rev-name">Basketball Tournaments</span>
+          <div class="rev-bar-wrap"><div class="rev-bar" data-pct="75"></div></div>
+          <span class="rev-amt">$1,425,000</span>
+        </div>
+        <div class="rev-row">
+          <span class="rev-name">Juice Bar</span>
+          <div class="rev-bar-wrap"><div class="rev-bar" data-pct="33"></div></div>
+          <span class="rev-amt">$625,000</span>
+        </div>
+        <div class="rev-row">
+          <span class="rev-name">Pro Shop</span>
+          <div class="rev-bar-wrap"><div class="rev-bar" data-pct="27"></div></div>
+          <span class="rev-amt">$510,000</span>
+        </div>
+        <div class="rev-row">
+          <span class="rev-name">Soccer Tournaments</span>
+          <div class="rev-bar-wrap"><div class="rev-bar" data-pct="19"></div></div>
+          <span class="rev-amt">$350,000</span>
+        </div>
+        <div class="rev-row">
+          <span class="rev-name">Indoor Golf / Driving Range</span>
+          <div class="rev-bar-wrap"><div class="rev-bar" data-pct="11"></div></div>
+          <span class="rev-amt">$201,600</span>
+        </div>
+        <div class="rev-row">
+          <span class="rev-name">Volleyball Tournaments</span>
+          <div class="rev-bar-wrap"><div class="rev-bar" data-pct="7"></div></div>
+          <span class="rev-amt">$125,000</span>
+        </div>
+        <div class="rev-row">
+          <span class="rev-name">Batting Cages</span>
+          <div class="rev-bar-wrap"><div class="rev-bar" data-pct="6"></div></div>
+          <span class="rev-amt">$110,000</span>
+        </div>
+      </div>
+      <div style="margin-top:12px;padding:10px 0 0;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px">
+        <span style="font-size:12px;color:var(--ink-light)">Total gross revenue · direct costs ($814,700) = net revenue of $4,421,900</span>
+        <span style="font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--ink)">$5,236,600 gross</span>
+      </div>
+      <div style="height:8px"></div>
+    </div>
+  </div>
+
+  <!-- WHAT TO SHOW -->
+  <div class="card-section">
+    <div class="section-title">What to Show a Prospect</div>
+    <ul class="show-list">
+      <li class="show-item" onclick="this.classList.toggle('active')">
+        <span class="show-num">01</span>
+        <span class="show-text"><strong>Revenue model tab (Excel, Sheet3).</strong> Walk through two or three line items to show how assumptions were built: "350 clients at $450/month" is a different conversation than showing a total. Prospects who understand numbers will ask about the assumptions — that's where the rigor lives, not in the gross revenue totals.</span>
+      </li>
+      <li class="show-item" onclick="this.classList.toggle('active')">
+        <span class="show-num">02</span>
+        <span class="show-text"><strong>Project Fees table (Proposal, page 9).</strong> The market-rate comparison is an immediate value signal: $1.1M market rate versus a $352K proposed fee. No explanation needed. It repositions the conversation from "what does this cost" to "what would this cost anywhere else."</span>
+      </li>
+      <li class="show-item" onclick="this.classList.toggle('active')">
+        <span class="show-num">03</span>
+        <span class="show-text"><strong>Milestone tables (Proposal, pages 6–8).</strong> The phased structure with specific start dates, durations, and named deliverables proves project management depth — not just a consulting approach, but an operating rhythm. Show a skeptical prospect that you manage against deadlines, not against hours billed.</span>
+      </li>
+      <li class="show-item" onclick="this.classList.toggle('active')">
+        <span class="show-num">04</span>
+        <span class="show-text"><strong>The Purpose section as a pull quote (Proposal, page 1).</strong> The whereas/therefore structure translates a founder's scattered vision into a clean, binding professional scope. This is the moment to say: "This is how I take what a client is trying to do and make it real on paper before we spend a dollar."</span>
+      </li>
+      <li class="show-item" onclick="this.classList.toggle('active')">
+        <span class="show-num">05</span>
+        <span class="show-text"><strong>Ownership model (Excel, Sheet2).</strong> Six investor tiers, per-share pricing at $20.51, and a $1M distribution model side-by-side. This shows deal structuring judgment — not just financial modeling, but understanding how equity gets carved up and communicated to investors with different contribution levels.</span>
+      </li>
+    </ul>
+    <div style="margin-top:10px;font-size:11px;color:var(--ink-light);font-style:italic">Click any item to highlight it for your walkthrough.</div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<p class="footer-note">
+  Portfolio artifact prepared for prospect presentation. All revenue projections shown here are model assumptions, not guaranteed outcomes.
+</p>
+
+<script>
+  function toggleAccordion(el) {
+    const id = el.id.replace('-toggle', '-body');
+    const body = document.getElementById(id);
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open');
+    el.classList.toggle('open');
+
+    // Animate revenue bars on open
+    if (!isOpen && id === 'rev-body') {
+      setTimeout(() => {
+        document.querySelectorAll('.rev-bar').forEach(bar => {
+          bar.style.width = bar.dataset.pct + '%';
+        });
+      }, 80);
+    }
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valet Vault — Portfolio Artifact Highlight</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f4f2ed;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    color: #1a1a18;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    margin-bottom: 2rem;
+  }
+  .header-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 0.5rem;
+  }
+  .header-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1a1a18;
+    line-height: 1.2;
+  }
+  .header-sub {
+    font-size: 14px;
+    color: #666;
+    margin-top: 0.4rem;
+  }
+
+  /* Result banner */
+  .result-banner {
+    background: #1a1a18;
+    color: #f4f2ed;
+    border-radius: 14px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  .result-item {
+    flex: 1;
+    min-width: 120px;
+    padding-right: 1.5rem;
+    border-right: 1px solid rgba(244,242,237,0.15);
+    margin-right: 1.5rem;
+  }
+  .result-item:last-child {
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+  }
+  .result-num {
+    font-size: 32px;
+    font-weight: 600;
+    color: #f4f2ed;
+    line-height: 1;
+  }
+  .result-lbl {
+    font-size: 12px;
+    color: rgba(244,242,237,0.55);
+    margin-top: 4px;
+  }
+  .result-vs {
+    font-size: 12px;
+    color: rgba(244,242,237,0.4);
+    margin-top: 2px;
+  }
+
+  /* Tabs */
+  .tab-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .tab {
+    font-size: 13px;
+    font-family: inherit;
+    padding: 7px 16px;
+    border-radius: 100px;
+    border: 1px solid #d4d0c8;
+    background: transparent;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.15s;
+  }
+  .tab:hover { background: #eae8e2; }
+  .tab.active {
+    background: #1a1a18;
+    color: #f4f2ed;
+    border-color: #1a1a18;
+    font-weight: 500;
+  }
+
+  /* Panels */
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* Cards */
+  .card {
+    background: #fff;
+    border: 1px solid #e2dfd6;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  .card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a18;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-body {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  /* Metric grid */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+  .metric {
+    background: #fff;
+    border: 1px solid #e2dfd6;
+    border-radius: 10px;
+    padding: 0.875rem 1rem;
+  }
+  .metric-val {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1a1a18;
+  }
+  .metric-lbl {
+    font-size: 12px;
+    color: #888;
+    margin-top: 3px;
+  }
+
+  /* Bar chart */
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 0.875rem;
+  }
+  .bar-chart { margin: 0 0 1.25rem; }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 7px;
+  }
+  .bar-yr {
+    font-size: 12px;
+    color: #888;
+    width: 40px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    height: 22px;
+    background: #ece9e1;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+  }
+  .bar-fill-light { background: #b5c8e6; }
+  .bar-fill-dark { background: #1a3a5c; }
+  .bar-num {
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .bar-num-dark { color: #2a4a70; }
+  .bar-num-light { color: #e0eaf6; }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 1.75rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: #d4d0c8;
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 1.1rem;
+  }
+  .tl-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #1a3a5c;
+    position: absolute;
+    left: -1.75rem;
+    top: 2px;
+    border: 2px solid #f4f2ed;
+  }
+  .tl-dot-green { background: #3b6d11; }
+  .tl-date {
+    font-size: 11px;
+    font-weight: 600;
+    color: #888;
+    letter-spacing: 0.04em;
+  }
+  .tl-text {
+    font-size: 13px;
+    color: #333;
+    margin-top: 2px;
+    line-height: 1.5;
+  }
+
+  /* Proof blocks */
+  .proof-block {
+    border-left: 2px solid #1a3a5c;
+    padding: 0.5rem 0 0.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+  .proof-q {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+    margin-bottom: 4px;
+  }
+  .proof-a {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  /* Badge */
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 100px;
+  }
+  .badge-blue { background: #dce8f5; color: #1a3a5c; }
+  .badge-green { background: #deefd4; color: #3b6d11; }
+
+  /* Icon dots */
+  .icon-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    background: #ece9e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .footer-note {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-eyebrow">Bivines Group Consulting &nbsp;·&nbsp; Portfolio Case Study</div>
+    <div class="header-title">Valet Vault — Seed Fundraise & Product Launch</div>
+    <div class="header-sub">Financial modeling · Strategic advisory · Investor materials · 2020</div>
+  </div>
+
+  <div class="result-banner">
+    <div class="result-item">
+      <div class="result-num">$500K</div>
+      <div class="result-lbl">seed capital raised</div>
+      <div class="result-vs">goal was $250K</div>
+    </div>
+    <div class="result-item">
+      <div class="result-num">2×</div>
+      <div class="result-lbl">funding goal exceeded</div>
+      <div class="result-vs">doubled the target</div>
+    </div>
+    <div class="result-item">
+      <div class="result-num">½</div>
+      <div class="result-lbl">projected timeline</div>
+      <div class="result-vs">closed in half the window</div>
+    </div>
+    <div class="result-item">
+      <div class="result-num">1</div>
+      <div class="result-lbl">unsolicited job offer</div>
+      <div class="result-vs">from reviewing investor</div>
+    </div>
+  </div>
+
+  <div class="tab-row">
+    <button class="tab active" onclick="switchTab('model')">Financial model</button>
+    <button class="tab" onclick="switchTab('strategy')">Strategic advisory</button>
+    <button class="tab" onclick="switchTab('delivery')">Delivery</button>
+    <button class="tab" onclick="switchTab('present')">How to present it</button>
+  </div>
+
+  <!-- MODEL PANEL -->
+  <div id="tab-model" class="panel active">
+    <p class="section-label">Five-year revenue projections</p>
+    <div class="bar-chart">
+      <div class="bar-row"><span class="bar-yr">FY21</span><div class="bar-track"><div class="bar-fill bar-fill-light" style="width:19%"><span class="bar-num bar-num-dark">$4.9M</span></div></div></div>
+      <div class="bar-row"><span class="bar-yr">FY22</span><div class="bar-track"><div class="bar-fill bar-fill-light" style="width:28%"><span class="bar-num bar-num-dark">$7.4M</span></div></div></div>
+      <div class="bar-row"><span class="bar-yr">FY23</span><div class="bar-track"><div class="bar-fill bar-fill-light" style="width:46%"><span class="bar-num bar-num-dark">$12M</span></div></div></div>
+      <div class="bar-row"><span class="bar-yr">FY24</span><div class="bar-track"><div class="bar-fill bar-fill-dark" style="width:68%"><span class="bar-num bar-num-light">$17.7M</span></div></div></div>
+      <div class="bar-row"><span class="bar-yr">FY25</span><div class="bar-track"><div class="bar-fill bar-fill-dark" style="width:100%"><span class="bar-num bar-num-light">$26.2M</span></div></div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon-dot">⊞</div> Five independent revenue streams — all modeled separately</div>
+      <div class="card-body">Hardware sales, upgrade customizations, technology add-ons, maintenance services, and SaaS subscriptions — each with its own cost structure, growth rate, and margin profile. SaaS grows from near-zero to 60% of gross revenue by FY25, at zero additional production cost.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon-dot">✓</div> Survived outside accountant review <span class="badge badge-green">verified</span></div>
+      <div class="card-body">An interested investor retained outside accountants to scrutinize the pro forma. The model required no material revision. That same investor then made an unsolicited job offer to the consultant responsible for building it.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon-dot">$</div> Valuation and equity structure embedded in the model</div>
+      <div class="card-body">Current company value of $12M derived from 5× FY22 EBITDA — the standard multiple for a product-asset business with $1M+ annual gross. Initial $250K angel investment priced at 5% equity based on a $5M valuation, representing a 59.3% discount to the modeled current value. The discount structure created investor urgency without desperation.</div>
+    </div>
+  </div>
+
+  <!-- STRATEGY PANEL -->
+  <div id="tab-strategy" class="panel">
+    <div class="card">
+      <div class="card-title"><div class="icon-dot">↻</div> Business model redesign: hardware to hardware + SaaS <span class="badge badge-blue">highest impact</span></div>
+      <div class="card-body">The client entered the engagement as a hardware company. The consultant identified that the Defender's smart-lock and access-monitoring features were not just product features — they were the foundation of a recurring revenue business. The SaaS pivot restructured the entire financial model and substantially increased the company's long-term valuation multiple. By Year 3, SaaS was projected to represent 35% of gross revenue at zero additional production cost.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon-dot">◎</div> Go-to-market repositioning built on two non-obvious levers</div>
+      <div class="card-body">Rather than conventional marketing spend, the strategy used (1) pursuit of a UL burglary rating to reframe the product from operational equipment to security imperative, and (2) pursuit of a parking insurance underwriter endorsement — an unprecedented move designed to create industry-level validation that no marketing budget can buy. This approach reset the market's core value propositions before a single ad ran.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon-dot">≡</div> Market analysis grounded in primary purchased research</div>
+      <div class="card-body">The market section was built from a purchased 2020 AnythingResearch Premium Report on Parking Lots &amp; Garages registered to this engagement, NPA emergency relief press data, and AHA hospital statistics to quantify the healthcare vertical. This distinguishes the document from generic investor materials built on assumptions.</div>
+    </div>
+  </div>
+
+  <!-- DELIVERY PANEL -->
+  <div id="tab-delivery" class="panel">
+    <div class="metric-grid">
+      <div class="metric"><div class="metric-val">17</div><div class="metric-lbl">days, start to finish</div></div>
+      <div class="metric"><div class="metric-val">3</div><div class="metric-lbl">contracted deliverables</div></div>
+      <div class="metric"><div class="metric-val">$5,500</div><div class="metric-lbl">fixed fee engagement</div></div>
+      <div class="metric"><div class="metric-val">3</div><div class="metric-lbl">payment milestones tied to delivery</div></div>
+    </div>
+
+    <p class="section-label">Project timeline</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Apr 17, 2020</div>
+        <div class="tl-text">SOW signed, project launched — $2,500 engagement payment</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Apr 18–21</div>
+        <div class="tl-text">Client discovery and product research</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Apr 27</div>
+        <div class="tl-text">Pro forma &amp; financial models delivered — $1,500 milestone payment</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">May 4</div>
+        <div class="tl-text">Pitch deck and executive summary delivered, final sign-off — $1,500 final payment</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot tl-dot-green"></div>
+        <div class="tl-date">May 2020</div>
+        <div class="tl-text"><strong>$500K raised</strong> — doubled the goal, closed in half the projected fundraising window</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRESENT PANEL -->
+  <div id="tab-present" class="panel">
+    <div class="proof-block">
+      <div class="proof-q">For a prospect who needs financial modeling</div>
+      <div class="proof-a">Lead with the assumptions tab of the pro forma — not the output statements. Show how changing a single input (SaaS attach rate, units per customer) cascades through five years of projections. That one demonstration is worth more than any explanation. Follow with the investor offer page to show the valuation methodology.</div>
+    </div>
+
+    <div class="proof-block">
+      <div class="proof-q">For a prospect who needs strategic advisory</div>
+      <div class="proof-a">Tell the SaaS pivot story. The client came in as a hardware company and left as a hardware + SaaS company. Show the difference in the FY25 revenue line with and without the SaaS layer. The number tells the story — no slides needed.</div>
+    </div>
+
+    <div class="proof-block">
+      <div class="proof-q">For a prospect who needs investor materials produced</div>
+      <div class="proof-a">Show the signed SOW alongside the executive summary. The contract demonstrates scope management and professionalism; the document demonstrates execution quality. Then land on the outcome: $500K raised in half the projected time. Let the contrast do the work.</div>
+    </div>
+
+    <div class="proof-block">
+      <div class="proof-q">What to always lead with, regardless of audience</div>
+      <div class="proof-a">"$500K raised — double the goal, half the time." That line is the first thing any prospect hears. Everything else is evidence for how it happened.</div>
+    </div>
+
+  </div>
+
+  <div class="footer-note">Bivines Group Consulting, LLC &nbsp;·&nbsp; Principal Consultant: Marcus Bivines, Esq.</div>
+
+</div>
+<script>
+function switchTab(name) {
+  var tabs = ['model','strategy','delivery','present'];
+  document.querySelectorAll('.tab').forEach(function(t, i) {
+    t.classList.toggle('active', tabs[i] === name);
+  });
+  document.querySelectorAll('.panel').forEach(function(p) {
+    p.classList.toggle('active', p.id === 'tab-' + name);
+  });
+}
+</script>
+</body>
+</html>
