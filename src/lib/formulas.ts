@@ -16,6 +16,7 @@ export function calculateSandboxOutputs(
     | "valet_vault_saas"
     | "conyers_sports_academy"
     | "healthquest_campaign"
+    | "ara_survey_campaign"
     | "inspired_campaign"
     | "o2_development",
   var1: number,
@@ -79,6 +80,23 @@ export function calculateSandboxOutputs(
       metric2: `${Math.round(amplifiedReach / 1000)}K`,
       metric3: `${Math.round(executionCapacity / 1000)}K`,
       metric4: `${eventScale} activations`
+    };
+  }
+
+  if (formulaId === "ara_survey_campaign") {
+    const fieldDays = var1;
+    const liveTouchesPerDay = var2;
+    const conversionRate = var3 / 100;
+    const totalTouches = fieldDays * liveTouchesPerDay;
+    const surveyActions = Math.round(totalTouches * conversionRate);
+    const reachProxy = Math.round(totalTouches * 1.9);
+    const clusterCoverage = Math.max(1, Math.round(fieldDays / 2));
+
+    return {
+      metric1: `${Math.round(totalTouches).toLocaleString()} touches`,
+      metric2: `${surveyActions.toLocaleString()} survey actions`,
+      metric3: `${reachProxy.toLocaleString()} reach proxy`,
+      metric4: `${clusterCoverage} clusters`
     };
   }
 

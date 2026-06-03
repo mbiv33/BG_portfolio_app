@@ -255,9 +255,11 @@
         "deal-documentation"
       ],
       "viewer": {
-        "kind": "image",
-        "src": "./media/infinity-belize/entity-diagram.jpeg",
-        "alt": "Infinity Belize deal finance structure diagram"
+        "kind": "pages",
+        "images": [
+          "./artifacts/infinity-belize/bgic-deal-structure-diagram/Fundraising_Flow.png",
+          "./artifacts/infinity-belize/bgic-deal-structure-diagram/Land_purchase_Flow_Chart.png"
+        ]
       }
     },
     {
@@ -296,7 +298,18 @@
         "deal-documentation"
       ],
       "viewer": {
-        "kind": "none"
+        "kind": "pages",
+        "images": [
+          "./artifacts/infinity-belize/property-owner-deal-summary/01-Property_Owner_Deal_Summary.png",
+          "./artifacts/infinity-belize/property-owner-deal-summary/02-Property_Owner_Deal_Summary.png",
+          "./artifacts/infinity-belize/property-owner-deal-summary/03-Property_Owner_Deal_Summary.png",
+          "./artifacts/infinity-belize/property-owner-deal-summary/04-Property_Owner_Deal_Summary.png",
+          "./artifacts/infinity-belize/property-owner-deal-summary/05-Property_Owner_Deal_Summary.png",
+          "./artifacts/infinity-belize/property-owner-deal-summary/06-Property_Owner_Deal_Summary.png",
+          "./artifacts/infinity-belize/property-owner-deal-summary/07-Property_Owner_Deal_Summary.png",
+          "./artifacts/infinity-belize/property-owner-deal-summary/08-Property_Owner_Deal_Summary.png",
+          "./artifacts/infinity-belize/property-owner-deal-summary/09-Property_Owner_Deal_Summary.png"
+        ]
       }
     },
     {
@@ -333,7 +346,29 @@
         "investor-campaign"
       ],
       "viewer": {
-        "kind": "none"
+        "kind": "pages",
+        "images": [
+          "./artifacts/infinity-belize/investor-deck/01-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/02-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/03-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/04-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/05-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/06-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/07-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/08-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/09-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/10-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/11-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/12-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/13-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/14-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/15-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/16-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/17-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/18-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/19-Investor_Deck.png",
+          "./artifacts/infinity-belize/investor-deck/20-Investor_Deck.png"
+        ]
       }
     },
     {
@@ -394,6 +429,128 @@
         "src": "./media/infinity-belize/site-2.jpg",
         "alt": "Belize project site photograph"
       }
+    },
+    {
+      "id": "infinity-belize-structural-architecture-master-plan",
+      "title": "Structural Architecture Master Plan",
+      "category": "Deliverable",
+      "type": "Pages",
+      "summary": "Project artifact: structural architecture master plan.",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Bivines Group"
+      ],
+      "relatedNodeIds": [],
+      "viewer": {
+        "kind": "pages",
+        "images": [
+          "./artifacts/infinity-belize/structural-architecture-master-plan/01-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/02-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/03-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/04-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/05-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/06-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/07-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/08-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/09-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/10-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/11-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/12-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/13-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/14-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/15-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/16-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/17-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/18-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/19-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/20-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/21-Structural_Architecture_Master_Plan.png",
+          "./artifacts/infinity-belize/structural-architecture-master-plan/22-Structural_Architecture_Master_Plan.png"
+        ]
+      }
+    },
+    {
+      "id": "prime-minister-gallery",
+      "title": "Prime Minister meeting gallery",
+      "category": "Gallery",
+      "type": "Images",
+      "summary": "Gallery images from Prime Minister-level engagement during the Infinity Belize project.",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Bivines Group",
+        "Infinity Belize project team"
+      ],
+      "relatedNodeIds": [
+        "investor-campaign"
+      ],
+      "viewer": {
+        "kind": "gallery",
+        "images": [
+          "./artifacts/infinity-belize/prime-minister-gallery/01-MK_64269.JPG",
+          "./artifacts/infinity-belize/prime-minister-gallery/02-MK_64277.JPG",
+          "./artifacts/infinity-belize/prime-minister-gallery/03-MK_64301.JPG"
+        ]
+      }
+    },
+    {
+      "id": "prime-minister-video-clips",
+      "title": "Prime Minister meeting video clips",
+      "category": "Video",
+      "type": "Video",
+      "summary": "Video clips documenting Prime Minister-level project engagement in Belize.",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Bivines Group",
+        "Infinity Belize project team"
+      ],
+      "relatedNodeIds": [
+        "investor-campaign"
+      ],
+      "viewer": {
+        "kind": "video",
+        "sources": [
+          {
+            "src": "./artifacts/infinity-belize/prime-minister-videos/02-Prime_Minister_Meeting_Clip.mp4",
+            "type": "video/mp4"
+          }
+        ]
+      }
+    },
+    {
+      "id": "project-media-gallery",
+      "title": "Project media gallery",
+      "category": "Gallery",
+      "type": "Images",
+      "summary": "Site and project media gallery from the Infinity Belize development work.",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Bivines Group",
+        "Infinity Belize project team"
+      ],
+      "relatedNodeIds": [
+        "site-program"
+      ],
+      "viewer": {
+        "kind": "gallery",
+        "images": [
+          "./artifacts/infinity-belize/project-media-gallery/01-MK_61859.JPG",
+          "./artifacts/infinity-belize/project-media-gallery/02-MK_62030.JPG",
+          "./artifacts/infinity-belize/project-media-gallery/03-MK_62050.JPG",
+          "./artifacts/infinity-belize/project-media-gallery/04-MK_62194.JPG",
+          "./artifacts/infinity-belize/project-media-gallery/05-MK_62340.JPG",
+          "./artifacts/infinity-belize/project-media-gallery/06-MK_62382.JPG",
+          "./artifacts/infinity-belize/project-media-gallery/07-MK_62759.JPG",
+          "./artifacts/infinity-belize/project-media-gallery/08-MK_62763.JPG",
+          "./artifacts/infinity-belize/project-media-gallery/09-MK_62913.JPG",
+          "./artifacts/infinity-belize/project-media-gallery/10-MK_63260.JPG",
+          "./artifacts/infinity-belize/project-media-gallery/11-MK_63617.JPG",
+          "./artifacts/infinity-belize/project-media-gallery/12-MK_63688.JPG"
+        ]
+      }
     }
   ],
   "gallery": [
@@ -447,6 +604,19 @@
       "visibility": "redacted",
       "relatedArtifactIds": [
         "belize-entity-diagram"
+      ]
+    },
+    {
+      "id": "gallery-infinity-belize-structural-architecture-master-plan",
+      "title": "Structural Architecture Master Plan",
+      "caption": "Project artifact pages.",
+      "category": "Deliverable",
+      "parties": [
+        "Bivines Group"
+      ],
+      "visibility": "public-preview",
+      "relatedArtifactIds": [
+        "infinity-belize-structural-architecture-master-plan"
       ]
     }
   ]

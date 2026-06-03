@@ -48,12 +48,12 @@
     {
       "title": "1. The Situation",
       "heading": "Construction had started. Money had not been secured.",
-      "content": "A youth sports academy in Conyers, Georgia had already broken ground on a 34-acre property — but without a business model, investor materials, or a capital campaign to fund completion. Construction had started. Money had not been secured."
+      "content": "A youth sports academy in Conyers, Georgia had already broken ground on a 34-acre property \u2014 but without a business model, investor materials, or a capital campaign to fund completion. Construction had started. Money had not been secured."
     },
     {
       "title": "2. The Approach",
       "heading": "Five sequential phases",
-      "content": "The engagement was structured across five sequential phases, each with defined milestones, deliverable deadlines, and fee invoices tied directly to delivery — not to time."
+      "content": "The engagement was structured across five sequential phases, each with defined milestones, deliverable deadlines, and fee invoices tied directly to delivery \u2014 not to time."
     },
     {
       "title": "3. The Financial Model",
@@ -68,7 +68,7 @@
     {
       "title": "5. The Fee Structure",
       "heading": "$352,205 fixed-fee engagement",
-      "content": "Total engagement fee: $352,205 — structured as fixed-fee milestones tied to deliverables, not hourly billing. Equivalent market-rate services from large management consulting firms were benchmarked at $1,126,475 for the same scope."
+      "content": "Total engagement fee: $352,205 \u2014 structured as fixed-fee milestones tied to deliverables, not hourly billing. Equivalent market-rate services from large management consulting firms were benchmarked at $1,126,475 for the same scope."
     },
     {
       "title": "6. What This Demonstrates",
@@ -78,7 +78,7 @@
     {
       "title": "7. Portfolio Card",
       "heading": "Management Consulting Proposal + Financial Model",
-      "content": "This engagement proves the consultant can hold the entire arc of a complex development deal — from structuring the business model and building investor-grade financials, to designing and running the capital campaign, to managing phased operations after funding."
+      "content": "This engagement proves the consultant can hold the entire arc of a complex development deal \u2014 from structuring the business model and building investor-grade financials, to designing and running the capital campaign, to managing phased operations after funding."
     }
   ],
   "sandbox": {
@@ -265,7 +265,22 @@
         "pm-architecture"
       ],
       "viewer": {
-        "kind": "none"
+        "kind": "pages",
+        "images": [
+          "./artifacts/sports-complex/sport-complex-proposal/01-Sport_Complex_Proposal.png",
+          "./artifacts/sports-complex/sport-complex-proposal/02-Sport_Complex_Proposal.png",
+          "./artifacts/sports-complex/sport-complex-proposal/03-Sport_Complex_Proposal.png",
+          "./artifacts/sports-complex/sport-complex-proposal/04-Sport_Complex_Proposal.png",
+          "./artifacts/sports-complex/sport-complex-proposal/05-Sport_Complex_Proposal.png",
+          "./artifacts/sports-complex/sport-complex-proposal/06-Sport_Complex_Proposal.png",
+          "./artifacts/sports-complex/sport-complex-proposal/07-Sport_Complex_Proposal.png",
+          "./artifacts/sports-complex/sport-complex-proposal/08-Sport_Complex_Proposal.png",
+          "./artifacts/sports-complex/sport-complex-proposal/09-Sport_Complex_Proposal.png",
+          "./artifacts/sports-complex/sport-complex-proposal/10-Sport_Complex_Proposal.png",
+          "./artifacts/sports-complex/sport-complex-proposal/11-Sport_Complex_Proposal.png",
+          "./artifacts/sports-complex/sport-complex-proposal/12-Sport_Complex_Proposal.png",
+          "./artifacts/sports-complex/sport-complex-proposal/13-Sport_Complex_Proposal.png"
+        ]
       }
     }
   ],

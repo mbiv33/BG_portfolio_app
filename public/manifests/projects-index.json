@@ -17,6 +17,10 @@
       "manifest": "manifests/healthquest-atl.json"
     },
     {
+      "id": "ara-survey",
+      "manifest": "manifests/ara-survey.json"
+    },
+    {
       "id": "inspired-summer",
       "manifest": "manifests/inspired-summer.json"
     },

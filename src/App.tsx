@@ -14,6 +14,7 @@ import {
 import { calculateSandboxOutputs } from "./lib/formulas";
 import { loadProjects } from "./lib/content";
 import type { Artifact, DnaNode, ProjectManifest } from "./types";
+import { DocumentPageViewer } from "./components/DocumentPageViewer";
 
 type TabId = "overview" | "sandbox" | "blueprint" | "dnamap";
 
@@ -22,6 +23,7 @@ const PROJECT_COLORS: Record<string, string> = {
   "valet-vault": "#193661",
   "sports-complex": "#808080",
   "healthquest-atl": "#2d6a4f",
+  "ara-survey": "#7a1420",
   "inspired-summer": "#c77dff",
   "o2-project": "#1d4e89"
 };
@@ -69,6 +71,12 @@ const PROJECT_CAPABILITY_MAP: Record<string, readonly string[]> = {
     "PR Strategy",
     "Enterprise Project Management"
   ],
+  "ara-survey": [
+    "Campaign Design/Management",
+    "Media Management",
+    "PR Strategy",
+    "Enterprise Project Management"
+  ],
   "inspired-summer": [
     "Campaign Design/Management",
     "Media Management",
@@ -81,6 +89,7 @@ const PROJECT_MENU_LABELS: Record<string, string> = {
   "sports-complex": "Premier Prospects Academy (Conyers Sports Complex)",
   "infinity-belize": "Infinity Belize (IBF Fund)",
   "healthquest-atl": "VE360 / APS Health Quest ATL",
+  "ara-survey": "OpinionatED Minds / APS ARA Survey",
   "inspired-summer": "inspirED Summer / EDcendent"
 };
 
@@ -105,6 +114,41 @@ function renderCarouselContent(content: string) {
       </p>
     );
   });
+}
+
+function getArtifactSourcePaths(artifact: Artifact) {
+  switch (artifact.viewer.kind) {
+    case "html":
+    case "image":
+      return [artifact.viewer.src];
+    case "pages":
+    case "gallery":
+      return artifact.viewer.images;
+    case "video":
+      return artifact.viewer.sources?.map((source) => source.src) ?? (artifact.viewer.src ? [artifact.viewer.src] : []);
+    case "none":
+      return [];
+  }
+}
+
+function getArtifactFolder(projectId: string, artifact: Artifact) {
+  const paths = getArtifactSourcePaths(artifact);
+
+  if (paths.length === 0) {
+    return null;
+  }
+
+  const folders = paths.map((src) => {
+    const match = src.match(new RegExp(`(?:^|/)artifacts/${projectId}/([^/]+)/`));
+    return match?.[1] ?? null;
+  });
+
+  if (folders.some((folder) => !folder)) {
+    return null;
+  }
+
+  const uniqueFolders = new Set(folders);
+  return uniqueFolders.size === 1 ? folders[0] : null;
 }
 
 function App() {
@@ -152,14 +196,22 @@ function App() {
     return projects.filter((entry) => PROJECT_CAPABILITY_MAP[entry.id]?.includes(activeCapability));
   }, [activeCapability, projects]);
 
+  const currentProjectArtifacts = useMemo(
+    () => (project ? project.artifacts.filter((artifact) => getArtifactFolder(project.id, artifact)) : []),
+    [project]
+  );
+
   const activeNode = useMemo<DnaNode | null>(() => {
     if (!project) return null;
     return project.dnaMap.nodes.find((n) => n.id === selectedNodeId) ?? project.dnaMap.nodes[0] ?? null;
   }, [project, selectedNodeId]);
 
   const selectedArtifact = useMemo<Artifact | null>(
-    () => project?.artifacts.find((a) => a.id === selectedArtifactId) ?? project?.artifacts[0] ?? null,
-    [project, selectedArtifactId]
+    () =>
+      currentProjectArtifacts.find((a) => a.id === selectedArtifactId) ??
+      currentProjectArtifacts[0] ??
+      null,
+    [currentProjectArtifacts, selectedArtifactId]
   );
 
   const relatedNodesForArtifact = useMemo<DnaNode[]>(
@@ -179,7 +231,7 @@ function App() {
     setActiveTab("overview");
     setCarouselIndex(0);
     setSelectedNodeId(next.dnaMap.nodes[0]?.id ?? "");
-    setSelectedArtifactId(next.artifacts[0]?.id ?? "");
+    setSelectedArtifactId(next.artifacts.find((a) => getArtifactFolder(next.id, a))?.id ?? "");
     setSandboxVar1(next.sandbox.slider1.default);
     setSandboxVar2(next.sandbox.slider2.default);
     setSandboxVar3(next.sandbox.slider3.default);
@@ -198,9 +250,13 @@ function App() {
 
   useEffect(() => {
     if (!project) return;
-    setSelectedNodeId(project.dnaMap.nodes[0]?.id ?? "");
-    setSelectedArtifactId(project.artifacts[0]?.id ?? "");
-  }, [project?.id]);
+    if (!selectedNodeId || !project.dnaMap.nodes.some((node) => node.id === selectedNodeId)) {
+      setSelectedNodeId(project.dnaMap.nodes[0]?.id ?? "");
+    }
+    if (!currentProjectArtifacts.some((artifact) => artifact.id === selectedArtifactId)) {
+      setSelectedArtifactId(currentProjectArtifacts[0]?.id ?? "");
+    }
+  }, [currentProjectArtifacts, project, selectedArtifactId, selectedNodeId]);
 
   if (loading) {
     return (
@@ -641,9 +697,9 @@ function App() {
                 {/* Artifact list */}
                 <div className="md:col-span-4 bg-[#151515] rounded-xl p-4 border border-[#333333] flex flex-col gap-2">
                   <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1 block">
-                    Artifacts:
+                    Project Artifacts:
                   </span>
-                  {project.artifacts.map((artifact) => (
+                  {currentProjectArtifacts.map((artifact) => (
                     <button
                       key={artifact.id}
                       onClick={() => {
@@ -657,7 +713,7 @@ function App() {
                           : { backgroundColor: "#1e1e1e40", borderColor: "#333333" }
                       }
                     >
-                      <div className="flex justify-between items-center">
+                      <div className="flex justify-between items-center gap-2">
                         <strong className="text-xs text-white font-bold">{artifact.title}</strong>
                         <span className="text-[8px] uppercase px-1.5 py-0.5 rounded bg-[#333333] text-slate-300 font-extrabold">
                           {artifact.category}
@@ -668,6 +724,11 @@ function App() {
                       </span>
                     </button>
                   ))}
+                  {!currentProjectArtifacts.length && (
+                    <p className="text-xs text-slate-500 leading-relaxed">
+                      No folder-backed artifacts are available yet.
+                    </p>
+                  )}
                 </div>
 
                 {/* Viewer column */}
@@ -692,7 +753,13 @@ function App() {
                         ) : null}
                       </div>
 
-                      {selectedArtifact && <ArtifactViewer artifact={selectedArtifact} accentColor={accentColor} />}
+                      {selectedArtifact && (
+                        <ArtifactViewer
+                          artifact={selectedArtifact}
+                          accentColor={accentColor}
+                          projectId={project.id}
+                        />
+                      )}
                     </>
                   )}
                 </div>
@@ -713,7 +780,19 @@ function App() {
   );
 }
 
-function ArtifactViewer({ artifact, accentColor }: { artifact: Artifact; accentColor: string }) {
+function ArtifactViewer({
+  artifact,
+  accentColor,
+  projectId
+}: {
+  artifact: Artifact;
+  accentColor: string;
+  projectId: string;
+}) {
+  const artifactFolder = getArtifactFolder(projectId, artifact);
+  const isGallery =
+    artifact.viewer.kind === "gallery" || Boolean(artifactFolder?.toLowerCase().includes("gallery"));
+
   return (
     <section className="bg-[#151515] border border-[#333333] rounded-xl p-4 flex flex-col gap-3 animate-scale-up">
       <div className="flex justify-between items-start gap-2">
@@ -733,18 +812,51 @@ function ArtifactViewer({ artifact, accentColor }: { artifact: Artifact; accentC
         />
       )}
       {artifact.viewer.kind === "image" && (
-        <img
-          className="w-full rounded-lg object-cover max-h-[420px]"
-          src={artifact.viewer.src}
-          alt={artifact.viewer.alt}
+        <DocumentPageViewer
+          images={[artifact.viewer.src]}
+          accentColor={accentColor}
+          title={artifact.title}
+          mode="gallery"
         />
       )}
+      {(artifact.viewer.kind === "pages" || artifact.viewer.kind === "gallery") && (
+        <DocumentPageViewer
+          images={artifact.viewer.images}
+          accentColor={accentColor}
+          title={artifact.title}
+          mode={isGallery ? "gallery" : "pages"}
+        />
+      )}
+      {artifact.viewer.kind === "video" && <VideoArtifactViewer artifact={artifact} />}
       {artifact.viewer.kind === "none" && (
         <div className="bg-[#1e1e1e] rounded-lg p-4 border border-[#333333] text-xs text-slate-500">
           <p>This item is intentionally not exposed as a raw file in the public app.</p>
         </div>
       )}
     </section>
+  );
+}
+
+function VideoArtifactViewer({ artifact }: { artifact: Artifact }) {
+  if (artifact.viewer.kind !== "video") return null;
+
+  const sources = artifact.viewer.sources ?? (artifact.viewer.src ? [{ src: artifact.viewer.src }] : []);
+
+  return (
+    <div className="rounded-xl border border-[#333333] overflow-hidden bg-black">
+      <video
+        className="w-full max-h-[560px] bg-black"
+        controls
+        playsInline
+        preload="metadata"
+        poster={artifact.viewer.poster}
+      >
+        {sources.map((source) => (
+          <source key={source.src} src={source.src} type={source.type} />
+        ))}
+        Your browser does not support this video format.
+      </video>
+    </div>
   );
 }
 

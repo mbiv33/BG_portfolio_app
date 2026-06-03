@@ -1,6 +1,14 @@
+export type VideoSource = {
+  src: string;
+  type?: string;
+};
+
 export type ArtifactViewer =
   | { kind: "html"; src: string }
   | { kind: "image"; src: string; alt: string }
+  | { kind: "pages"; images: string[] }
+  | { kind: "gallery"; images: string[] }
+  | { kind: "video"; src?: string; sources?: VideoSource[]; poster?: string }
   | { kind: "none" };
 
 export type Artifact = {
@@ -65,6 +73,7 @@ export type SandboxConfig = {
     | "valet_vault_saas"
     | "conyers_sports_academy"
     | "healthquest_campaign"
+    | "ara_survey_campaign"
     | "inspired_campaign"
     | "o2_development";
   slider1: SliderConfig;

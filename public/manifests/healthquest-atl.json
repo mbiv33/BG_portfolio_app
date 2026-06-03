@@ -254,7 +254,31 @@
         "institutional-risk"
       ],
       "viewer": {
-        "kind": "none"
+        "kind": "pages",
+        "images": [
+          "./artifacts/healthquest-atl/outreach-strategy/01-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/02-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/03-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/04-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/05-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/06-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/07-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/08-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/09-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/10-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/11-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/12-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/13-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/14-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/15-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/16-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/17-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/18-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/19-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/20-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/21-Outreach_Strategy.png",
+          "./artifacts/healthquest-atl/outreach-strategy/22-Outreach_Strategy.png"
+        ]
       }
     },
     {
@@ -311,7 +335,47 @@
         "event-activation"
       ],
       "viewer": {
-        "kind": "none"
+        "kind": "pages",
+        "images": [
+          "./artifacts/healthquest-atl/virtual-health-summit/01-Virtual_health_Summit.png",
+          "./artifacts/healthquest-atl/virtual-health-summit/02-Virtual_health_Summit.png",
+          "./artifacts/healthquest-atl/virtual-health-summit/03-Virtual_health_Summit.png",
+          "./artifacts/healthquest-atl/virtual-health-summit/04-Virtual_health_Summit.png",
+          "./artifacts/healthquest-atl/virtual-health-summit/05-Virtual_health_Summit.png"
+        ]
+      }
+    },
+    {
+      "id": "healthquest-influencer-posts",
+      "title": "Mental Health Teen Summit influencer posts",
+      "category": "Video",
+      "type": "Video",
+      "summary": "Influencer video posts supporting the Mental Health Teen Summit event activation.",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Bivines Group",
+        "Health Quest ATL"
+      ],
+      "relatedNodeIds": [
+        "event-activation"
+      ],
+      "viewer": {
+        "kind": "video",
+        "sources": [
+          {
+            "src": "./artifacts/healthquest-atl/mental-health-teen-summit-influencer-posts/01-Influencer_Kachelle_Post.MP4",
+            "type": "video/mp4"
+          },
+          {
+            "src": "./artifacts/healthquest-atl/mental-health-teen-summit-influencer-posts/02-Influencer_Tray_Bills_Post_2.MP4",
+            "type": "video/mp4"
+          },
+          {
+            "src": "./artifacts/healthquest-atl/mental-health-teen-summit-influencer-posts/03-Influencer_Tray_Bills_Post.MP4",
+            "type": "video/mp4"
+          }
+        ]
       }
     }
   ],

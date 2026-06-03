@@ -223,7 +223,7 @@
       "viewer": {
         "kind": "image",
         "src": "./media/o2-project/render-1.jpg",
-        "alt": "O2 project concept render"
+        "alt": "O2 concept render"
       }
     },
     {
@@ -261,7 +261,31 @@
         "pitch-positioning"
       ],
       "viewer": {
-        "kind": "none"
+        "kind": "pages",
+        "images": [
+          "./artifacts/o2-project/o2-pitch-deck/01-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/02-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/03-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/04-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/05-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/06-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/07-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/08-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/09-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/10-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/11-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/12-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/13-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/14-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/15-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/16-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/17-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/18-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/19-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/20-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/21-O2_Pitch_Deck.png",
+          "./artifacts/o2-project/o2-pitch-deck/22-O2_Pitch_Deck.png"
+        ]
       }
     },
     {
@@ -279,7 +303,23 @@
         "pitch-positioning"
       ],
       "viewer": {
-        "kind": "none"
+        "kind": "pages",
+        "images": [
+          "./artifacts/o2-project/o2-brand-guidlines/01-O2_Brand_Guidlines.png",
+          "./artifacts/o2-project/o2-brand-guidlines/02-O2_Brand_Guidlines.png",
+          "./artifacts/o2-project/o2-brand-guidlines/03-O2_Brand_Guidlines.png",
+          "./artifacts/o2-project/o2-brand-guidlines/04-O2_Brand_Guidlines.png",
+          "./artifacts/o2-project/o2-brand-guidlines/05-O2_Brand_Guidlines.png",
+          "./artifacts/o2-project/o2-brand-guidlines/06-O2_Brand_Guidlines.png",
+          "./artifacts/o2-project/o2-brand-guidlines/07-O2_Brand_Guidlines.png",
+          "./artifacts/o2-project/o2-brand-guidlines/08-O2_Brand_Guidlines.png",
+          "./artifacts/o2-project/o2-brand-guidlines/09-O2_Brand_Guidlines.png",
+          "./artifacts/o2-project/o2-brand-guidlines/10-O2_Brand_Guidlines.png",
+          "./artifacts/o2-project/o2-brand-guidlines/11-O2_Brand_Guidlines.png",
+          "./artifacts/o2-project/o2-brand-guidlines/12-O2_Brand_Guidlines.png",
+          "./artifacts/o2-project/o2-brand-guidlines/17-O2_Brand_Guidlines.png",
+          "./artifacts/o2-project/o2-brand-guidlines/18-O2_Brand_Guidlines.png"
+        ]
       }
     },
     {
@@ -297,7 +337,24 @@
         "planning-stack"
       ],
       "viewer": {
-        "kind": "none"
+        "kind": "pages",
+        "images": [
+          "./artifacts/o2-project/arch-massing-floor/01-Arch_Massing_Floor.png",
+          "./artifacts/o2-project/arch-massing-floor/02-Arch_Massing_Floor.png",
+          "./artifacts/o2-project/arch-massing-floor/03-Arch_Massing_Floor.png",
+          "./artifacts/o2-project/arch-massing-floor/04-Arch_Massing_Floor.png",
+          "./artifacts/o2-project/arch-massing-floor/05-Arch_Massing_Floor.png",
+          "./artifacts/o2-project/arch-massing-floor/06-Arch_Massing_Floor.png",
+          "./artifacts/o2-project/arch-massing-floor/07-Arch_Massing_Floor.png",
+          "./artifacts/o2-project/arch-massing-floor/08-Arch_Massing_Floor.png",
+          "./artifacts/o2-project/arch-massing-floor/09-Arch_Massing_Floor.png",
+          "./artifacts/o2-project/arch-massing-floor/10-Arch_Massing_Floor.png",
+          "./artifacts/o2-project/arch-massing-floor/11-Arch_Massing_Floor.png",
+          "./artifacts/o2-project/arch-massing-floor/12-Arch_Massing_Floor.png",
+          "./artifacts/o2-project/arch-massing-floor/13-Arch_Massing_Floor.png",
+          "./artifacts/o2-project/arch-massing-floor/14-Arch_Massing_Floor.png",
+          "./artifacts/o2-project/arch-massing-floor/15-Arch_Massing_Floor.png"
+        ]
       }
     },
     {
@@ -351,7 +408,137 @@
         "capital-prep"
       ],
       "viewer": {
-        "kind": "none"
+        "kind": "pages",
+        "images": [
+          "./artifacts/o2-project/okc-tif-letter/Letter.png"
+        ]
+      }
+    },
+    {
+      "id": "o2-project-arch-o2-space-program",
+      "title": "Arch O2 Space Program",
+      "category": "Planning",
+      "type": "Pages",
+      "summary": "Project artifact: arch o2 space program.",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Bivines Group"
+      ],
+      "relatedNodeIds": [
+        "planning-stack"
+      ],
+      "viewer": {
+        "kind": "pages",
+        "images": [
+          "./artifacts/o2-project/arch-o2-space-program/01-Arch_O2_Space_Program.png",
+          "./artifacts/o2-project/arch-o2-space-program/02-Arch_O2_Space_Program.png",
+          "./artifacts/o2-project/arch-o2-space-program/03-Arch_O2_Space_Program.png",
+          "./artifacts/o2-project/arch-o2-space-program/04-Arch_O2_Space_Program.png",
+          "./artifacts/o2-project/arch-o2-space-program/05-Arch_O2_Space_Program.png",
+          "./artifacts/o2-project/arch-o2-space-program/06-Arch_O2_Space_Program.png"
+        ]
+      }
+    },
+    {
+      "id": "o2-project-arch-massing-3d-site-plan",
+      "title": "Arch Massing 3D Site Plan",
+      "category": "Planning",
+      "type": "Pages",
+      "summary": "Project artifact: arch massing 3d site plan.",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Bivines Group"
+      ],
+      "relatedNodeIds": [
+        "planning-stack"
+      ],
+      "viewer": {
+        "kind": "pages",
+        "images": [
+          "./artifacts/o2-project/arch-massing-3d-site-plan/01-Arch_Massing_3d_site_plan.png",
+          "./artifacts/o2-project/arch-massing-3d-site-plan/02-Arch_Massing_3d_site_plan.png",
+          "./artifacts/o2-project/arch-massing-3d-site-plan/03-Arch_Massing_3d_site_plan.png",
+          "./artifacts/o2-project/arch-massing-3d-site-plan/04-Arch_Massing_3d_site_plan.png",
+          "./artifacts/o2-project/arch-massing-3d-site-plan/05-Arch_Massing_3d_site_plan.png",
+          "./artifacts/o2-project/arch-massing-3d-site-plan/06-Arch_Massing_3d_site_plan.png"
+        ]
+      }
+    },
+    {
+      "id": "o2-arch-render-gallery",
+      "title": "Architecture render gallery",
+      "category": "Gallery",
+      "type": "Images",
+      "summary": "Rendering gallery for the O2 concept and Deep Deuce Club visual direction.",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Project design team"
+      ],
+      "relatedNodeIds": [
+        "visual-concept"
+      ],
+      "viewer": {
+        "kind": "gallery",
+        "images": [
+          "./artifacts/o2-project/arch-render-gallery/01-4.14.25_RENDER_1.jpg",
+          "./artifacts/o2-project/arch-render-gallery/02-4.14.25_RENDER_2.jpg",
+          "./artifacts/o2-project/arch-render-gallery/03-4.14.25_RENDER_3.jpg",
+          "./artifacts/o2-project/arch-render-gallery/04-4.14.25_RENDER_4.jpg",
+          "./artifacts/o2-project/arch-render-gallery/05-4.14.25_RENDER_5.jpg",
+          "./artifacts/o2-project/arch-render-gallery/06-DEEP_DEUCE_CLUB_2.jpg",
+          "./artifacts/o2-project/arch-render-gallery/07-DEEP_DEUCE_CLUB.jpg"
+        ]
+      }
+    },
+    {
+      "id": "o2-arch-3d-diagram-video",
+      "title": "Live 3D architecture diagram",
+      "category": "Video",
+      "type": "Video",
+      "summary": "Video walkthrough of the O2 3D architecture diagram.",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Project design team"
+      ],
+      "relatedNodeIds": [
+        "planning-stack"
+      ],
+      "viewer": {
+        "kind": "video",
+        "sources": [
+          {
+            "src": "./artifacts/o2-project/arch-3d-diagram-video/01-Live_3D_O2_diagram.mp4",
+            "type": "video/mp4"
+          }
+        ]
+      }
+    },
+    {
+      "id": "o2-sizzle-reel",
+      "title": "O2 sizzle reel",
+      "category": "Video",
+      "type": "Video",
+      "summary": "Sizzle reel used to communicate the O2 concept and experience.",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Project design team"
+      ],
+      "relatedNodeIds": [
+        "visual-concept"
+      ],
+      "viewer": {
+        "kind": "video",
+        "sources": [
+          {
+            "src": "./artifacts/o2-project/arch-o2-sizzle-reel/01-O2_Sizzle_Reel-09-09-25.mp4",
+            "type": "video/mp4"
+          }
+        ]
       }
     }
   ],
@@ -405,6 +592,32 @@
       "visibility": "public-preview",
       "relatedArtifactIds": [
         "o2-render-hero"
+      ]
+    },
+    {
+      "id": "gallery-o2-project-arch-o2-space-program",
+      "title": "Arch O2 Space Program",
+      "caption": "Project artifact pages.",
+      "category": "Planning",
+      "parties": [
+        "Bivines Group"
+      ],
+      "visibility": "public-preview",
+      "relatedArtifactIds": [
+        "o2-project-arch-o2-space-program"
+      ]
+    },
+    {
+      "id": "gallery-o2-project-arch-massing-3d-site-plan",
+      "title": "Arch Massing 3D Site Plan",
+      "caption": "Project artifact pages.",
+      "category": "Planning",
+      "parties": [
+        "Bivines Group"
+      ],
+      "visibility": "public-preview",
+      "relatedArtifactIds": [
+        "o2-project-arch-massing-3d-site-plan"
       ]
     }
   ]

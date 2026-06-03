@@ -92,6 +92,7 @@
             "valet_vault_saas",
             "conyers_sports_academy",
             "healthquest_campaign",
+            "ara_survey_campaign",
             "inspired_campaign",
             "o2_development"
           ]
@@ -202,10 +203,26 @@
             "properties": {
               "kind": {
                 "type": "string",
-                "enum": ["html", "image", "none"]
+                "enum": ["html", "image", "pages", "gallery", "video", "none"]
               },
               "src": { "type": "string" },
-              "alt": { "type": "string" }
+              "alt": { "type": "string" },
+              "poster": { "type": "string" },
+              "images": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["src"],
+                  "properties": {
+                    "src": { "type": "string" },
+                    "type": { "type": "string" }
+                  }
+                }
+              }
             }
           }
         }

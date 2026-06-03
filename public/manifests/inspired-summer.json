@@ -294,7 +294,108 @@
         "outreach-engine"
       ],
       "viewer": {
-        "kind": "none"
+        "kind": "pages",
+        "images": [
+          "./artifacts/inspired-summer/proposal-p4e/01-Proposal_P4E.png",
+          "./artifacts/inspired-summer/proposal-p4e/02-Proposal_P4E.png",
+          "./artifacts/inspired-summer/proposal-p4e/03-Proposal_P4E.png",
+          "./artifacts/inspired-summer/proposal-p4e/04-Proposal_P4E.png"
+        ]
+      }
+    },
+    {
+      "id": "inspired-summer-overview-deck",
+      "title": "Overview Deck",
+      "category": "Deliverable",
+      "type": "Pages",
+      "summary": "Project artifact: overview deck.",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Bivines Group"
+      ],
+      "relatedNodeIds": [],
+      "viewer": {
+        "kind": "pages",
+        "images": [
+          "./artifacts/inspired-summer/overview-deck/01-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/02-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/04-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/05-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/06-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/07-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/08-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/09-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/10-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/11-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/12-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/13-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/14-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/15-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/16-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/17-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/18-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/19-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/20-Overview_Deck.png",
+          "./artifacts/inspired-summer/overview-deck/21-Overview_Deck.png"
+        ]
+      }
+    },
+    {
+      "id": "inspired-summer-social-media",
+      "title": "Social Media",
+      "category": "Deliverable",
+      "type": "Pages",
+      "summary": "Project artifact: social media.",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Bivines Group"
+      ],
+      "relatedNodeIds": [],
+      "viewer": {
+        "kind": "pages",
+        "images": [
+          "./artifacts/inspired-summer/social-media/01-Social_Media.png",
+          "./artifacts/inspired-summer/social-media/02-Social_Media.png"
+        ]
+      }
+    },
+    {
+      "id": "inspired-summer-tech-summary",
+      "title": "Tech Summary",
+      "category": "Deliverable",
+      "type": "Pages",
+      "summary": "Project artifact: tech summary.",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Bivines Group"
+      ],
+      "relatedNodeIds": [],
+      "viewer": {
+        "kind": "pages",
+        "images": [
+          "./artifacts/inspired-summer/tech-summary/01-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/02-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/03-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/04-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/05-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/06-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/07-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/08-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/09-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/10-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/11-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/12-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/13-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/14-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/15-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/16-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/17-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/18-Tech_Summary.png",
+          "./artifacts/inspired-summer/tech-summary/19-Tech_Summary.png"
+        ]
       }
     }
   ],
@@ -349,6 +450,45 @@
       "visibility": "public-preview",
       "relatedArtifactIds": [
         "inspired-brand-assets"
+      ]
+    },
+    {
+      "id": "gallery-inspired-summer-overview-deck",
+      "title": "Overview Deck",
+      "caption": "Project artifact pages.",
+      "category": "Deliverable",
+      "parties": [
+        "Bivines Group"
+      ],
+      "visibility": "public-preview",
+      "relatedArtifactIds": [
+        "inspired-summer-overview-deck"
+      ]
+    },
+    {
+      "id": "gallery-inspired-summer-social-media",
+      "title": "Social Media",
+      "caption": "Project artifact pages.",
+      "category": "Deliverable",
+      "parties": [
+        "Bivines Group"
+      ],
+      "visibility": "public-preview",
+      "relatedArtifactIds": [
+        "inspired-summer-social-media"
+      ]
+    },
+    {
+      "id": "gallery-inspired-summer-tech-summary",
+      "title": "Tech Summary",
+      "caption": "Project artifact pages.",
+      "category": "Deliverable",
+      "parties": [
+        "Bivines Group"
+      ],
+      "visibility": "public-preview",
+      "relatedArtifactIds": [
+        "inspired-summer-tech-summary"
       ]
     }
   ]

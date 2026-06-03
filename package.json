@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/prepare-pages-dist.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -22,6 +22,7 @@
     "postcss": "^8.5.15",
     "tailwindcss": "^4.3.0",
     "typescript": "^5.5.4",
-    "vite": "^5.4.2"
+    "vite": "^5.4.2",
+    "wrangler": "^4.97.0"
   }
 }

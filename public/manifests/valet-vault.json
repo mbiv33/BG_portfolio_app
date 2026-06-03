@@ -268,7 +268,36 @@
         "executive-summary"
       ],
       "viewer": {
-        "kind": "none"
+        "kind": "pages",
+        "images": [
+          "./artifacts/valet-vault/exsum-summary/01-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/02-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/03-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/04-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/05-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/06-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/07-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/08-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/09-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/10-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/11-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/12-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/13-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/14-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/15-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/16-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/17-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/18-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/19-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/20-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/21-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/22-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/23-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/24-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/25-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/26-ExSum_Summary.png",
+          "./artifacts/valet-vault/exsum-summary/27-ExSum_Summary.png"
+        ]
       }
     },
     {
@@ -287,7 +316,39 @@
         "pitch-deck"
       ],
       "viewer": {
-        "kind": "none"
+        "kind": "pages",
+        "images": [
+          "./artifacts/valet-vault/vv-pitch-deck/01-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/02-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/03-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/04-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/05-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/06-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/07-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/08-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/09-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/10-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/11-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/12-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/13-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/14-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/15-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/16-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/17-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/18-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/19-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/20-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/21-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/22-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/23-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/24-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/25-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/26-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/27-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/28-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/29-VV_Pitch_Deck.png",
+          "./artifacts/valet-vault/vv-pitch-deck/30-VV_Pitch_Deck.png"
+        ]
       }
     },
     {
@@ -307,6 +368,47 @@
       ],
       "viewer": {
         "kind": "none"
+      }
+    },
+    {
+      "id": "valet-exsum-research",
+      "title": "Executive Summary Research",
+      "category": "Research",
+      "type": "Pages",
+      "status": "preview",
+      "sensitivity": "public-preview",
+      "parties": [
+        "Bivines Group"
+      ],
+      "relatedNodeIds": [
+        "executive-summary"
+      ],
+      "summary": "Research and source materials compiled for the executive summary.",
+      "viewer": {
+        "kind": "pages",
+        "images": [
+          "./artifacts/valet-vault/exsum-research/36-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/37-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/38-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/39-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/40-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/41-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/42-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/43-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/44-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/45-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/46-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/47-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/48-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/49-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/50-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/51-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/52-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/53-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/54-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/55-ExSum_Research.png",
+          "./artifacts/valet-vault/exsum-research/56-ExSum_Research.png"
+        ]
       }
     }
   ],
@@ -356,6 +458,19 @@
       "visibility": "redacted",
       "relatedArtifactIds": [
         "valet-pitch-deck"
+      ]
+    },
+    {
+      "id": "gallery-valet-exsum-research",
+      "title": "Executive Summary Research",
+      "caption": "Project artifact pages.",
+      "category": "Research",
+      "parties": [
+        "Bivines Group"
+      ],
+      "visibility": "public-preview",
+      "relatedArtifactIds": [
+        "valet-exsum-research"
       ]
     }
   ]
