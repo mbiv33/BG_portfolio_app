@@ -23,6 +23,19 @@ interface Body {
   duration_ms?: number;
 }
 
+const TRACK_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+  "Cache-Control": "no-store",
+};
+
+export const onRequestOptions: PagesFunction<Env> = async () =>
+  new Response(null, {
+    status: 204,
+    headers: TRACK_HEADERS,
+  });
+
 export const onRequestPost: PagesFunction<Env> = async (context) => {
   const { request, env } = context;
   try {
@@ -83,10 +96,10 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
     return new Response(null, {
       status: 204,
-      headers: { "Cache-Control": "no-store" },
+      headers: TRACK_HEADERS,
     });
   } catch {
     // Never surface tracking errors to the client.
-    return new Response(null, { status: 204 });
+    return new Response(null, { status: 204, headers: TRACK_HEADERS });
   }
 };
