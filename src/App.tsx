@@ -15,7 +15,8 @@ import {
   Network,
   ShieldAlert,
   ShieldCheck,
-  User
+  User,
+  X
 } from "lucide-react";
 import { calculateSandboxOutputs } from "./lib/formulas";
 import { loadProjects } from "./lib/content";
@@ -88,6 +89,13 @@ const PROJECT_CAPABILITY_MAP: Record<string, readonly string[]> = {
     "Media Management",
     "Brand Strategy/Identity",
     "Enterprise Project Management"
+  ],
+  "o2-project": [
+    "Brand Strategy/Identity",
+    "Business Planning",
+    "Strategy Consulting",
+    "Investor Relations",
+    "Project/Corporate Finance"
   ]
 };
 
@@ -173,6 +181,10 @@ const PORTAL_PASSCODES: Record<string, string> = {
   "thomie.venisee@thevictorygroupllc.com":   "VICTORY2026",
 };
 
+// ── Per-user welcome messages (shown once per login) ────────────
+const WELCOME_EMAIL = "sbyrd@sowegarising.org";
+const WELCOME_STORAGE_KEY = "bg-welcome-dismissed-sbyrd";
+
 type PortalUser = { email: string; name: string; clearance: string };
 
 function App() {
@@ -184,6 +196,7 @@ function App() {
   const [showPass, setShowPass]     = useState(false);
   const [loginError, setLoginError] = useState(false);
   const [shaking, setShaking]       = useState(false);
+  const [showWelcome, setShowWelcome] = useState(false);
   const passcodeRef = useRef<HTMLInputElement>(null);
 
   // ── Portfolio state ─────────────────────────────────────────
@@ -208,6 +221,10 @@ function App() {
       setPortalUser({ email, ...user });
       setLoginError(false);
       setAuthed(true);
+      const dismissed =
+        typeof window !== "undefined" &&
+        window.localStorage.getItem(WELCOME_STORAGE_KEY) === "true";
+      setShowWelcome(email === WELCOME_EMAIL && !dismissed);
     } else {
       setLoginError(true);
       setShaking(true);
@@ -222,6 +239,14 @@ function App() {
     setLoginEmail("");
     setLoginPass("");
     setLoginError(false);
+    setShowWelcome(false);
+  }
+
+  function handleWelcomeDontShowAgain() {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(WELCOME_STORAGE_KEY, "true");
+    }
+    setShowWelcome(false);
   }
 
   useEffect(() => {
@@ -470,6 +495,15 @@ function App() {
         "--accent": accentColor
       }}
     >
+      {showWelcome && (
+        <WelcomeModal
+          name={portalUser?.name ?? "there"}
+          accentColor={accentColor}
+          onClose={() => setShowWelcome(false)}
+          onDontShowAgain={handleWelcomeDontShowAgain}
+        />
+      )}
+
       {/* HEADER */}
       <header className="border-b border-[#333333] bg-[#1e1e1e]/90 backdrop-blur sticky top-0 z-40 px-6 py-3 lg:h-[100px]">
         <div className="max-w-7xl h-full mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
@@ -1073,6 +1107,125 @@ function getYouTubeEmbedSrc(src: string) {
   }
 
   return null;
+}
+
+function WelcomeModal({
+  name,
+  accentColor,
+  onClose,
+  onDontShowAgain
+}: {
+  name: string;
+  accentColor: string;
+  onClose: () => void;
+  onDontShowAgain: () => void;
+}) {
+  return (
+    <div
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 animate-fade-in"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Welcome message"
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#1e1e1e] border border-[#333333] rounded-2xl shadow-2xl animate-scale-up"
+        style={{ fontFamily: '"Montserrat", "Avenir Next", sans-serif' }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* close */}
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close welcome message"
+          className="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        {/* accent bar */}
+        <div className="h-1.5 rounded-t-2xl" style={{ backgroundColor: accentColor }} />
+
+        <div className="p-7 md:p-9 flex flex-col gap-5">
+          <div className="flex items-center gap-2.5">
+            <span
+              className="text-[9px] uppercase tracking-widest font-extrabold px-2 py-0.5 rounded-sm text-white"
+              style={{ backgroundColor: accentColor }}
+            >
+              Private &amp; Confidential · NDA
+            </span>
+          </div>
+
+          <div className="flex flex-col gap-4 text-sm text-slate-300 leading-relaxed">
+            <p className="text-white text-lg font-extrabold">{name},</p>
+
+            <p>
+              Thank you again for the conversation — and for trusting us with the SOWEGA RISING
+              materials under NDA.
+            </p>
+            <p>
+              We built this private page as a single, calm reference point for you and your team.
+              This portfolio portal gathers sample work, project frameworks, and examples of how we
+              approach complex real estate, community development, capital strategy, and
+              public-interest projects.
+            </p>
+
+            <div>
+              <h3 className="text-white font-extrabold text-sm mb-2">How we see SOWEGA RISING</h3>
+              <p>
+                From our conversation, SOWEGA RISING is far more than a historic preservation effort.
+                A vision at that scale needs more than a feasibility study. It needs a project
+                control strategy, disciplined financial modeling, capital readiness, coordinated
+                partners, and a communications plan that protects the organization while advancing
+                the vision.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-white font-extrabold text-sm mb-2">
+                What you&apos;ll find here
+              </h3>
+              <p className="mb-2">Examples of how we think through:</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>project strategy and early-stage development planning</li>
+                <li>capital stack design and financial modeling</li>
+                <li>public, private, and philanthropic funding approaches</li>
+                <li>project management and implementation sequencing</li>
+                <li>partner and stakeholder alignment</li>
+                <li>communications, narrative, and positioning</li>
+              </ul>
+            </div>
+
+            <p>
+              Take your time and explore at whatever pace is useful. Everything here is illustrative
+              of our approach — when you&apos;re ready, we&apos;ll map it directly to SOWEGA RISING.
+            </p>
+
+            <p className="text-white font-bold">— Marcus Bivines, Bivines Group</p>
+          </div>
+
+          <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3 border-t border-[#333333] pt-5">
+            <button
+              type="button"
+              onClick={onDontShowAgain}
+              className="text-[11px] text-slate-500 hover:text-slate-300 transition-colors font-semibold uppercase tracking-wider self-start"
+            >
+              Don&apos;t show this again
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-6 py-2.5 rounded-lg text-white text-xs font-bold transition-colors flex items-center justify-center gap-2"
+              style={{ backgroundColor: accentColor }}
+            >
+              <Compass className="w-4 h-4" />
+              Enter the Portal
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default App;
