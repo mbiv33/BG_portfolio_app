@@ -1,84 +1,92 @@
 {
   "id": "o2-project",
-  "title": "O2 Project",
-  "subtitle": "Development concept, brand positioning, and capital-preparation materials for an urban mixed-use destination project.",
+  "title": "OKCIAN Origin (O2) + Spaghetti Block Redevelopment",
+  "subtitle": "$163.6M mixed-use Bricktown redevelopment structured across five capital sources with public financing commitments secured.",
   "type": "Development Project Sample",
   "duration": "2025 development cycle",
-  "location": "Oklahoma City, Oklahoma",
-  "summary": "The O2 folder reads as a live development and positioning archive: renders, floor-by-floor planning, tower studies, brand guidelines, pitch materials, and a pro forma. This portfolio version turns that archive into a coherent public case shell anchored by visuals while preserving raw development and finance documents as restricted source artifacts.",
+  "location": "Bricktown, Oklahoma City, Oklahoma",
+  "summary": "OKCIAN Origin (O2) + Spaghetti Block Redevelopment is a $163.6M mixed-use urban redevelopment in Bricktown: four towers, 383,000+ square feet, and five capital sources. Bivines Group structured the deal, built the financial model, secured public financing commitments, and produced the investor materials that got a first-time developer to the table with institutional equity.",
   "capabilities": [
     "Development Strategy",
-    "Project Positioning",
-    "Concept Packaging",
-    "Capital Preparation"
+    "Project Finance",
+    "Public Finance",
+    "Financial Modeling",
+    "Investor Materials",
+    "Capital Stack Architecture"
   ],
   "kpis": [
     {
-      "label": "Preview renders",
-      "value": "5+",
-      "subtext": "Public-facing concept imagery"
+      "label": "Total development cost",
+      "value": "$163.6M",
+      "subtext": "Mixed-use four-tower redevelopment"
     },
     {
-      "label": "Core planning files",
-      "value": "4",
-      "subtext": "Development, flooring, blocking, and TIF materials"
+      "label": "Equity raise",
+      "value": "$25M",
+      "subtext": "Institutional and Opportunity Zone equity target"
     },
     {
-      "label": "Pitch package",
-      "value": "1",
-      "subtext": "OKCian concept presentation set"
+      "label": "Levered IRR",
+      "value": "21.3%",
+      "subtext": "3.95x equity multiple"
     },
     {
-      "label": "Finance model",
-      "value": "1",
-      "subtext": "Developer pro forma workbook"
+      "label": "Economic impact",
+      "value": "$2.53B",
+      "subtext": "Projected 25-year regional impact"
     }
   ],
   "kpiSummary": {
-    "budget": "Concept-to-capital-preparation archive spanning design narrative, development studies, branding, and TIF-oriented financial support materials.",
-    "rates": "No formal fee sheet was included in this folder, so this portfolio entry is framed around deliverable depth and project-preparation scope rather than contract economics.",
-    "outcomes": "Demonstrates the ability to package a place-based development concept through renders, planning documentation, pitch materials, and financial scaffolding in a way investors and partners can understand.",
+    "budget": "$163.6M total development cost across hotel, multifamily, retail, museum, restaurant, structured parking, and public-realm activation in Bricktown's Opportunity Zone.",
+    "rates": "Capital stack structured across HUD 221(d)(4), TIF/C-PACE, traditional debt, Opportunity Zone equity, sponsor equity, and landowner equity conversion.",
+    "outcomes": "TIF framework letter secured from the Alliance for Economic Development of Oklahoma City, Spaghetti Warehouse placed under contract, seller converted to equity partner, and institutional equity conversations advanced with a 22-slide investor deck and 14-tab master developer pro forma.",
     "challenges": [
-      "The archive contains strong visual and strategic materials but no ready-made case-study narrative, so the portfolio entry must be assembled from the deliverables themselves.",
-      "Development story, brand story, and capital story all need to stay coherent across different document types.",
-      "Several of the strongest source files are finance and planning documents that should stay restricted until preview-safe extracts are created."
+      "The sponsor team was a first-time large-scale developer with no institutional track record.",
+      "The existing Downtown TIF district was expiring in 2026, creating a compressed public-finance window.",
+      "Five capital sources had to be sequenced across five different underwriting timelines.",
+      "Architecture, pro forma, investor story, and public-benefit narrative needed to agree at the floor-by-floor level."
     ]
   },
   "carousel": [
     {
       "title": "1. Overview",
-      "heading": "A concept archive becoming a public-facing case",
-      "content": "The O2 materials show a development project being shaped across renders, brand positioning, pitch collateral, planning files, and a developer-oriented financial model."
+      "heading": "$163.6M mixed-use redevelopment in Bricktown OKC",
+      "content": "OKCIAN Origin (O2) + Spaghetti Block Redevelopment\nBricktown, Oklahoma City, OK\n\nA $163.6M mixed-use urban redevelopment - four towers, 383,000+ sq. ft., five capital sources. We structured the deal, built the financial model, secured public financing commitments, and produced the investor materials that got a first-time developer to the table with institutional equity."
     },
     {
-      "title": "2. Situation",
-      "heading": "Strong assets, but no single portfolio narrative yet",
-      "content": "The folder contains rich source material, but the work needs a clear public structure to explain what the project is and why the deliverables matter."
+      "title": "2. Details",
+      "heading": "Project at a glance",
+      "content": "- Total Development Cost: $163.6M\n- Equity Raise: $25M\n- Levered IRR: 21.3% | Equity Multiple: 3.95x\n- Program: Hotel, multifamily (155 units), retail, museum, restaurant, structured parking\n- Location: Sheridan Ave & Main St, Bricktown OKC - Opportunity Zone\n- Status: TIF commitment secured; land under contract (Q2 2025)"
     },
     {
-      "title": "3. The Ask",
-      "heading": "Turn development materials into an investable story",
-      "content": "That means presenting the place, the brand, the design intent, and the capital-preparation logic as one coherent package."
+      "title": "3. The Situation",
+      "heading": "A rare site, a credibility gap, and a closing window",
+      "content": "BG Infinity Capital identified a full city block in Oklahoma City's Bricktown district - the historic Spaghetti Warehouse and surrounding surface lots - sitting at the intersection of an expiring TIF district, an Opportunity Zone designation, and a rapidly developing urban core.\n\nThe opportunity was real. But the sponsor team was a first-time large-scale developer with no institutional track record. The existing Downtown TIF district was expiring in 2026. And closing a five-source capital stack - HUD, TIF, C-PACE, Opportunity Zone equity, and traditional debt - required navigating five counterparties with five different underwriting timelines simultaneously.\n\nWithout the right financial infrastructure and public benefit narrative, the deal would stall before it reached the market."
     },
     {
-      "title": "4. The Approach",
-      "heading": "Lead with image, support with planning logic",
-      "content": "The public version anchors on renders and destination imagery while the floor studies, TIF letters, and pro forma remain visible in the data model as restricted supporting artifacts."
+      "title": "4. The Ask",
+      "heading": "Build everything needed to close a $163M deal from scratch",
+      "content": "The sponsor came in with a vision, a site, and a team. They needed:\n\n- A master financial model that could withstand HUD underwriting, city TIF review, and institutional investor due diligence - simultaneously\n- A capital stack structured across five sources without any one of them collapsing the others\n- A government relations strategy to create a brand-new TIF district in under 12 months\n- An investor pitch that told a credible story despite an acknowledged lack of development experience\n- A floor-by-floor program that aligned with the financial projections - so the architecture and the proforma told the same story"
     },
     {
-      "title": "5. The Work",
-      "heading": "Renders, deck, development files, and pro forma",
-      "content": "The deliverable set includes visual concept renders, pitch materials, floor-by-floor and tower studies, brand guidelines, and a developer pro forma workbook."
+      "title": "5. The Approach",
+      "heading": "Three parallel tracks, one integrated strategy",
+      "content": "We ran the financial, public finance, and investor communications workstreams simultaneously rather than sequentially - because the TIF timeline, the equity raise, and the HUD application could not wait on each other.\n\nThe core strategic decision was to convert the landowner of the Spaghetti Warehouse from a cash seller into an equity partner. This reduced required outside equity by $8M, aligned long-term incentives, and strengthened the project's credibility with both city stakeholders and institutional investors.\n\nOn the public financing side, we framed the project's government case not as a subsidy request but as a catalyst investment - translating the development's economics into a 25-year, $2.53B regional impact argument that gave Alliance for Economic Development leadership what they needed to move toward formal approval.\n\nOn the investor side, we made a deliberate choice to name the sponsor's inexperience as a risk - then answered it structurally. Sophisticated investors distrust materials that show only upside."
     },
     {
-      "title": "6. Results",
-      "heading": "A credible development-positioning package",
-      "content": "Even without a single summary memo, the archive proves concept packaging depth across design, narrative, and early capital-preparation materials."
+      "title": "6. The Work",
+      "heading": "Four workstreams, one integrated package",
+      "content": "Financial Modeling\nBuilt a 14-tab master developer proforma across four independent towers - each with its own operating statement, cash flow model, and capital assumptions - rolled into a consolidated returns analysis. Unlevered IRR: 16.1%. Levered IRR: 21.3%. TIF toggle built into the assumptions tab so any counterparty could scenario-test in real time.\n\nCapital Stack Architecture\nStructured a five-source, $163.6M stack: $49M HUD 221(d)(4), $32.5M TIF/C-PACE, $24.4M traditional debt, $15M Opportunity Zone equity, $10M sponsor, $8M landowner conversion. Each source sequenced to the others' underwriting timelines.\n\nPublic Finance Navigation\nSubmitted a proforma to the Alliance for Economic Development of Oklahoma City sufficient to trigger a formal TIF framework letter - structured as a 10-year ad valorem reimbursement with phased rates across all four towers. New TIF district creation initiated concurrently with EDA approval process.\n\nInvestor Pitch Development\nProduced a 22-slide investor deck built to work for three audiences at once: private equity, city stakeholders, and development partners. Included property cashflow projections, entity structure diagrams, market outlook, risk/mitigation matrix, and a 25-year economic impact analysis."
     },
     {
-      "title": "7. Selected artifacts",
-      "heading": "Visual-first public proof with restricted technical files",
-      "content": "This portfolio entry uses renders and site imagery for public viewing while documenting the deeper development files as restricted structured artifacts."
+      "title": "7. The Impact",
+      "heading": "What moved because of this work",
+      "content": "- TIF framework letter secured from the Alliance for Economic Development of Oklahoma City - April 2025. A government body reviewed the proforma and responded with a structured reimbursement framework before a single shovel hit the ground.\n- Spaghetti Warehouse placed under contract - February 2025. The seller converted to an equity partner, removing $8M from the required equity raise.\n- Equity negotiations active with remaining landowners and target LP roster.\n- Architecture and engineering on track for Q3 2025 completion.\n- Groundbreaking projected Q4 2025.\n- Projected 25-year economic impact to the Bricktown district: $2.53B."
+    },
+    {
+      "title": "8. The Deliverables",
+      "heading": "What we produced",
+      "content": "- Master Developer Proforma - 14-tab XLSX model with four-tower rollup, TIF toggle, dual return analysis, and 317,000+ sq. ft. rent roll\n- Investor Pitch Deck - 22-slide PDF covering vision, capital stack, financials, team, market outlook, risks, and next steps\n- Capital Stack Memo - Five-source structure with sequenced underwriting strategy and landowner conversion framework\n- TIF Submission Package - Pro forma and public benefit narrative submitted to the Alliance for Economic Development; resulted in a signed preliminary framework letter\n- Floor-by-Floor Architectural Program - 15-level area schedule (Levels B-15) coordinated with proforma rent roll assumptions\n- Tower Blocking Diagrams - Four-phase massing studies (North, South, East, West towers) with color-coded use program\n- Architectural Renderings - Five-perspective visual set for investor and city presentation use"
     }
   ],
   "sandbox": {

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { RotateCcw, ZoomIn, ZoomOut } from "lucide-react";
+import { Maximize2 } from "lucide-react";
 
 const transparentImageSurface = {
   backgroundColor: "#ffffff",
@@ -10,6 +10,7 @@ interface DocumentPageViewerProps {
   accentColor: string;
   title?: string;
   mode?: "pages" | "gallery";
+  onExpand?: (pageIndex: number) => void;
 }
 
 export function DocumentPageViewer({
@@ -17,10 +18,10 @@ export function DocumentPageViewer({
   accentColor,
   title,
   mode = "pages",
+  onExpand,
 }: DocumentPageViewerProps) {
   const [currentPage, setCurrentPage] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
-  const [zoom, setZoom] = useState(1);
   const thumbRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const total = images.length;
   const unitLabel = mode === "gallery" ? "Image" : "Page";
@@ -58,16 +59,6 @@ export function DocumentPageViewer({
 
   const canPrev = currentPage > 0;
   const canNext = currentPage < total - 1;
-  const canZoomOut = zoom > 1;
-  const canZoomIn = zoom < 3;
-
-  function changeZoom(delta: number) {
-    setZoom((value) => Math.min(3, Math.max(1, Number((value + delta).toFixed(2)))));
-  }
-
-  function resetZoom() {
-    setZoom(1);
-  }
 
   return (
     <div
@@ -85,45 +76,19 @@ export function DocumentPageViewer({
           </span>
         )}
         <div className="flex items-center gap-2 sm:ml-auto">
-          <button
-            type="button"
-            onClick={() => changeZoom(-0.25)}
-            disabled={!canZoomOut}
-            title="Zoom out"
-            aria-label="Zoom out"
-            className="h-8 w-8 rounded border border-[#333333] flex items-center justify-center text-slate-300 disabled:text-slate-600 disabled:opacity-50"
-            style={{ background: "#1e1e1e" }}
-          >
-            <ZoomOut className="h-4 w-4" />
-          </button>
-          <span className="w-12 text-center text-[10px] font-bold text-slate-400">
-            {Math.round(zoom * 100)}%
-          </span>
-          <button
-            type="button"
-            onClick={() => changeZoom(0.25)}
-            disabled={!canZoomIn}
-            title="Zoom in"
-            aria-label="Zoom in"
-            className="h-8 w-8 rounded border border-[#333333] flex items-center justify-center text-slate-300 disabled:text-slate-600 disabled:opacity-50"
-            style={{ background: "#1e1e1e" }}
-          >
-            <ZoomIn className="h-4 w-4" />
-          </button>
-          <button
-            type="button"
-            onClick={resetZoom}
-            disabled={zoom === 1}
-            title="Reset zoom"
-            aria-label="Reset zoom"
-            className="h-8 w-8 rounded border border-[#333333] flex items-center justify-center text-slate-300 disabled:text-slate-600 disabled:opacity-50"
-            style={{ background: "#1e1e1e" }}
-          >
-            <RotateCcw className="h-4 w-4" />
-          </button>
-          <span className="text-slate-400 text-xs pl-1">
+          <span className="text-slate-400 text-xs">
             {unitLabel} {currentPage + 1} of {total}
           </span>
+          <button
+            type="button"
+            onClick={() => onExpand?.(currentPage)}
+            title="Expand"
+            aria-label="Expand artifact"
+            className="h-8 w-8 rounded border border-[#333333] flex items-center justify-center text-slate-300 hover:text-white transition-colors"
+            style={{ background: "#1e1e1e" }}
+          >
+            <Maximize2 className="h-4 w-4" />
+          </button>
         </div>
       </div>
 
@@ -187,12 +152,11 @@ export function DocumentPageViewer({
               boxShadow:
                 "0 18px 38px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.12)",
               padding: 8,
-              maxHeight: zoom === 1 ? 504 : "none",
-              maxWidth: zoom === 1 ? "100%" : "none",
-              width: zoom === 1 ? "auto" : `${zoom * 100}%`,
+              maxHeight: 504,
+              maxWidth: "100%",
               objectFit: "contain",
               opacity: transitioning ? 0 : 1,
-              transition: "opacity 150ms ease, width 150ms ease",
+              transition: "opacity 150ms ease",
             }}
           />
         </div>

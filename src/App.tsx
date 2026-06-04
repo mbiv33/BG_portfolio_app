@@ -212,6 +212,7 @@ function App() {
   const [sandboxVar3, setSandboxVar3] = useState(60);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(true);
+  const [artifactModal, setArtifactModal] = useState<{ images: string[]; page: number; title: string } | null>(null);
 
   function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -971,6 +972,9 @@ function App() {
                           artifact={selectedArtifact}
                           accentColor={accentColor}
                           projectId={project.id}
+                          onExpand={(images, page) =>
+                            setArtifactModal({ images, page, title: selectedArtifact.title })
+                          }
                         />
                       )}
                     </>
@@ -989,6 +993,79 @@ function App() {
           <span>&copy; 2026 Bivines Group Consulting, LLC. All rights reserved. Principal: Marcus Bivines, Esq.</span>
         </div>
       </footer>
+
+      {/* Artifact expand modal — fixed overlay mirroring the grid, below header */}
+      {artifactModal && (() => {
+        const { images, page, title } = artifactModal;
+        const unitLabel = "Page";
+        const canPrev = page > 0;
+        const canNext = page < images.length - 1;
+        return (
+          <div className="fixed top-[100px] bottom-0 left-0 right-0 z-30 pointer-events-none">
+            <div className="max-w-7xl w-full mx-auto p-4 md:p-6 h-full grid grid-cols-1 lg:grid-cols-4 gap-6">
+              <div className="hidden lg:block lg:col-span-1" />
+              <div
+                className="relative lg:col-span-3 pointer-events-auto rounded-2xl overflow-hidden flex items-center justify-center"
+                style={{ background: "rgba(0,0,0,0.92)", backdropFilter: "blur(6px)" }}
+                onClick={() => setArtifactModal(null)}
+              >
+                <button
+                  type="button"
+                  onClick={() => setArtifactModal(null)}
+                  aria-label="Close"
+                  className="absolute top-4 right-4 h-8 w-8 rounded-full border border-[#444] flex items-center justify-center text-slate-300 hover:text-white transition-colors z-10"
+                  style={{ background: "#1e1e1e" }}
+                >
+                  <X className="h-4 w-4" />
+                </button>
+
+                {canPrev && (
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); setArtifactModal((m) => m ? { ...m, page: m.page - 1 } : m); }}
+                    aria-label="Previous"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full border border-[#444] flex items-center justify-center text-slate-300 hover:text-white transition-colors z-10"
+                    style={{ background: "#1e1e1e" }}
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                  </button>
+                )}
+
+                {canNext && (
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); setArtifactModal((m) => m ? { ...m, page: m.page + 1 } : m); }}
+                    aria-label="Next"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full border border-[#444] flex items-center justify-center text-slate-300 hover:text-white transition-colors z-10"
+                    style={{ background: "#1e1e1e" }}
+                  >
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                )}
+
+                <img
+                  src={images[page]}
+                  alt={`${title} — ${unitLabel} ${page + 1}`}
+                  onClick={(e) => e.stopPropagation()}
+                  style={{
+                    backgroundColor: "#ffffff",
+                    borderRadius: 12,
+                    padding: 10,
+                    width: "82%",
+                    height: "82%",
+                    objectFit: "contain",
+                    boxShadow: "0 24px 60px rgba(0,0,0,0.5)",
+                  }}
+                />
+
+                <span className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                  {title} — {unitLabel} {page + 1} of {images.length}
+                </span>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 }
@@ -996,11 +1073,13 @@ function App() {
 function ArtifactViewer({
   artifact,
   accentColor,
-  projectId
+  projectId,
+  onExpand,
 }: {
   artifact: Artifact;
   accentColor: string;
   projectId: string;
+  onExpand?: (images: string[], pageIndex: number) => void;
 }) {
   const artifactFolder = getArtifactFolder(projectId, artifact);
   const isGallery =
@@ -1024,22 +1103,30 @@ function ArtifactViewer({
           src={artifact.viewer.src}
         />
       )}
-      {artifact.viewer.kind === "image" && (
-        <DocumentPageViewer
-          images={[artifact.viewer.src]}
-          accentColor={accentColor}
-          title={artifact.title}
-          mode="gallery"
-        />
-      )}
-      {(artifact.viewer.kind === "pages" || artifact.viewer.kind === "gallery") && (
-        <DocumentPageViewer
-          images={artifact.viewer.images}
-          accentColor={accentColor}
-          title={artifact.title}
-          mode={isGallery ? "gallery" : "pages"}
-        />
-      )}
+      {artifact.viewer.kind === "image" && (() => {
+        const imageSrc = artifact.viewer.src;
+        return (
+          <DocumentPageViewer
+            images={[imageSrc]}
+            accentColor={accentColor}
+            title={artifact.title}
+            mode="gallery"
+            onExpand={(page) => onExpand?.([imageSrc], page)}
+          />
+        );
+      })()}
+      {(artifact.viewer.kind === "pages" || artifact.viewer.kind === "gallery") && (() => {
+        const images = artifact.viewer.images;
+        return (
+          <DocumentPageViewer
+            images={images}
+            accentColor={accentColor}
+            title={artifact.title}
+            mode={isGallery ? "gallery" : "pages"}
+            onExpand={(page) => onExpand?.(images, page)}
+          />
+        );
+      })()}
       {artifact.viewer.kind === "video" && <VideoArtifactViewer artifact={artifact} />}
       {artifact.viewer.kind === "none" && (
         <div className="bg-[#1e1e1e] rounded-lg p-4 border border-[#333333] text-xs text-slate-500">
