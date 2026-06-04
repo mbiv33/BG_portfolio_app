@@ -98,13 +98,19 @@ async function compilePagesFunctions() {
       "functions",
       "build",
       "functions",
-      "--outfile=dist/_worker.js",
+      "--outdir=dist",
       "--output-routes-path=dist/_routes.json",
       "--project-directory=.",
       "--minify",
     ],
     { cwd: rootDir, stdio: "inherit" }
   );
+
+  await fs.rename(
+    path.join(distDir, "index.js"),
+    path.join(distDir, "_worker.js")
+  );
+
   console.log("Compiled Pages Functions into dist/_worker.js");
 }
 
