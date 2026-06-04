@@ -22,6 +22,10 @@ import { calculateSandboxOutputs } from "./lib/formulas";
 import { loadProjects } from "./lib/content";
 import type { Artifact, DnaNode, ProjectManifest } from "./types";
 import { DocumentPageViewer } from "./components/DocumentPageViewer";
+import { AdminDashboard } from "./components/AdminDashboard";
+import { setAnalyticsUser, startEngagementTracking, track } from "./lib/analytics";
+
+const ADMIN_EMAIL = "admin@bivinesgroup.com";
 
 type TabId = "overview" | "sandbox" | "blueprint" | "dnamap";
 
@@ -197,6 +201,7 @@ function App() {
   const [loginError, setLoginError] = useState(false);
   const [shaking, setShaking]       = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
+  const [showAdmin, setShowAdmin] = useState(false);
   const passcodeRef = useRef<HTMLInputElement>(null);
 
   // ── Portfolio state ─────────────────────────────────────────
@@ -222,11 +227,15 @@ function App() {
       setPortalUser({ email, ...user });
       setLoginError(false);
       setAuthed(true);
+      setAnalyticsUser(email);
+      track("login", { user_email: email, label: user.name });
+      track("page_view", { user_email: email });
       const dismissed =
         typeof window !== "undefined" &&
         window.localStorage.getItem(WELCOME_STORAGE_KEY) === "true";
       setShowWelcome(email === WELCOME_EMAIL && !dismissed);
     } else {
+      track("login_failed", { user_email: null, label: email || "(empty)" });
       setLoginError(true);
       setShaking(true);
       setTimeout(() => setShaking(false), 400);
@@ -241,6 +250,8 @@ function App() {
     setLoginPass("");
     setLoginError(false);
     setShowWelcome(false);
+    setShowAdmin(false);
+    setAnalyticsUser(null);
   }
 
   function handleWelcomeDontShowAgain() {
@@ -342,6 +353,28 @@ function App() {
       setSelectedArtifactId(currentProjectArtifacts[0]?.id ?? "");
     }
   }, [currentProjectArtifacts, project, selectedArtifactId, selectedNodeId]);
+
+  // ── Activity tracking ───────────────────────────────────────
+  useEffect(() => {
+    if (!authed) return;
+    const stop = startEngagementTracking();
+    return stop;
+  }, [authed]);
+
+  useEffect(() => {
+    if (!authed || !activeProjectId) return;
+    track("project_view", { project_id: activeProjectId });
+  }, [authed, activeProjectId]);
+
+  useEffect(() => {
+    if (!authed) return;
+    track("tab_change", { project_id: activeProjectId, label: activeTab });
+  }, [authed, activeTab]);
+
+  useEffect(() => {
+    if (!authed || !selectedArtifactId) return;
+    track("artifact_view", { project_id: activeProjectId, artifact_id: selectedArtifactId });
+  }, [authed, selectedArtifactId]);
 
   // ── LOGIN GATE ──────────────────────────────────────────────
   if (!authed) {
@@ -505,6 +538,10 @@ function App() {
         />
       )}
 
+      {showAdmin && portalUser?.email === ADMIN_EMAIL && (
+        <AdminDashboard onClose={() => setShowAdmin(false)} />
+      )}
+
       {/* HEADER */}
       <header className="border-b border-[#333333] bg-[#1e1e1e]/90 backdrop-blur sticky top-0 z-40 px-6 py-3 lg:h-[100px]">
         <div className="max-w-7xl h-full mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
@@ -549,6 +586,16 @@ function App() {
                 </p>
               </div>
             </div>
+            {portalUser?.email === ADMIN_EMAIL && (
+              <button
+                onClick={() => setShowAdmin(true)}
+                className="flex items-center gap-1.5 text-[10px] text-slate-300 hover:text-white bg-[#0e0e0e] border border-[#333333] hover:border-[#91000D] px-3 py-2 rounded-lg transition-colors font-bold uppercase tracking-wider"
+                title="Activity analytics"
+              >
+                <BarChart3 className="w-3.5 h-3.5 text-[#91000D]" />
+                <span className="hidden sm:inline">Analytics</span>
+              </button>
+            )}
             <button
               onClick={handleSignOut}
               className="flex items-center gap-1.5 text-[10px] text-slate-500 hover:text-red-400 transition-colors font-bold uppercase tracking-wider"

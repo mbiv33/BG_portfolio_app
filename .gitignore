@@ -7,3 +7,5 @@ vite.config.js
 vite.config.d.ts
 formulas.js
 master_project_showcase.tsx
+.dev.vars
+.wrangler
