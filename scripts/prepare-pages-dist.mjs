@@ -1,10 +1,13 @@
 import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
+import { execFile } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { promisify } from "node:util";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
 const distDir = path.join(rootDir, "dist");
+const execFileAsync = promisify(execFile);
 
 const oversizedAssets = [
   "artifacts/infinity-belize/prime-minister-videos/01-PM_Endorsement_Clip.mp4",
@@ -85,5 +88,26 @@ async function pruneManifests() {
   }
 }
 
+async function compilePagesFunctions() {
+  const npxBin = process.platform === "win32" ? "npx.cmd" : "npx";
+  await execFileAsync(
+    npxBin,
+    [
+      "wrangler",
+      "pages",
+      "functions",
+      "build",
+      "functions",
+      "--outfile=dist/_worker.js",
+      "--output-routes-path=dist/_routes.json",
+      "--project-directory=.",
+      "--minify",
+    ],
+    { cwd: rootDir, stdio: "inherit" }
+  );
+  console.log("Compiled Pages Functions into dist/_worker.js");
+}
+
 await removeOversizedAssets();
 await pruneManifests();
+await compilePagesFunctions();
