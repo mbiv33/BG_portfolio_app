@@ -10,7 +10,7 @@ pages_build_output_dir = "dist"
 [[d1_databases]]
 binding = "DB"
 database_name = "bg-analytics"
-database_id = "PLACEHOLDER_RUN_WRANGLER_D1_CREATE"
+database_id = "2159ac9a-cc07-420e-84dd-278e5d9f2d62"
 
 # Admin stats token is a secret, not stored here. Set it with:
 #   npx wrangler pages secret put ADMIN_STATS_TOKEN
