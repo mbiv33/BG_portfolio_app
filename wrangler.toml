@@ -1,0 +1,18 @@
+name = "bg-portfolio-app"
+compatibility_date = "2026-06-01"
+pages_build_output_dir = "dist"
+
+# Analytics database. Create it once with:
+#   npx wrangler d1 create bg-analytics
+# then paste the printed database_id below and run:
+#   npx wrangler d1 migrations apply bg-analytics --local   (local dev)
+#   npx wrangler d1 migrations apply bg-analytics --remote   (production)
+[[d1_databases]]
+binding = "DB"
+database_name = "bg-analytics"
+database_id = "PLACEHOLDER_RUN_WRANGLER_D1_CREATE"
+
+# Admin stats token is a secret, not stored here. Set it with:
+#   npx wrangler pages secret put ADMIN_STATS_TOKEN
+# For local dev, put it in .dev.vars (gitignored):
+#   ADMIN_STATS_TOKEN=your-local-token
