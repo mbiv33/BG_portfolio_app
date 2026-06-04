@@ -177,7 +177,7 @@
         "id": "pitch-positioning",
         "label": "Pitch positioning",
         "category": "Present",
-        "detail": "The OKCian pitch and brand materials suggest the project was being shaped not just as a development but as a positioned concept with a market-facing narrative.",
+        "detail": "The Okcian Origin brand guidelines and pitch materials show the project was shaped not just as a development but as a fully positioned concept — with a named brand identity, visual system, and market-facing narrative — before the project moved forward as O2.",
         "relatedArtifactIds": [
           "o2-pitch-deck",
           "o2-brand-guidelines"
@@ -290,10 +290,10 @@
     },
     {
       "id": "o2-brand-guidelines",
-      "title": "Brand guidelines",
+      "title": "Okcian Origin brand guidelines",
       "category": "Brand",
       "type": "PDF",
-      "summary": "Brand documentation is recorded in the manifest but left off the public viewer pending preview-safe extraction.",
+      "summary": "Brand guidelines created for Okcian Origin, the original brand identity for the O2 development concept. Covers visual identity, color, typography, and brand positioning for the OKC mixed-use destination.",
       "status": "restricted",
       "sensitivity": "confidential",
       "parties": [
